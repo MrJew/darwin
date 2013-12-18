@@ -6,38 +6,41 @@ from helper import *
 
 class BaseCherryPy:
     configuration = None
-    _cp_config = {'tools.inputCatcher.on': True,'tools.outputCatcher.on': True}
+    _cp_config = {'tools.logger.on': True}
 
     def __init__(self,configuration):
         self.configuration = configuration
 
     def lambdify(self,expr, pset):
+        """ given an individual and a pset it evaluates the individual and returns it back as a callable instance """
         print expr
         args = ",".join(arg for arg in pset.arguments)
         lstr = "lambda {args}: {code}".format(args=args, code=expr)
         return eval(lstr, dict(pset.context))
 
-    def inputCatcher(self=None):
+    def logger(self=None):
+        """ handles the request after it goes into any cherrypy method, input/output logging is done here """
         if cherrypy.request.params['logging']:
             params = cherrypy.request.params['logfile']
             functionCatcher = FunctionIOCatcher(str(params),"evaluate")
             functionCatcher.catchInput(cherrypy.request.params)
-
-    def outputCatcher(self=None):
-        if cherrypy.request.params['logging']:
-            params = cherrypy.request.params['logfile']
-            functionCatcher = FunctionIOCatcher(str(params),"evaluate")
             functionCatcher.catchOutput(cherrypy.response.body)
 
-    def evaluate(self,individual,arguments,logfile=None):
-        arguments = eval(arguments)
-        newArgs = listTokwags(arguments)
-        func = self.lambdify(individual,self.configuration.pset)
-        fitness = self.configuration.getFitnessFunction()
-        diff=0
-        for i in newArgs:
-            diff += (func(**i) - fitness(**i))**2
-        return str(diff)
+    def evaluate(self,individual,arguments,logging,isMax,logfile=None):
+        """ Is called for individual evaluation not when copying
+            *individual* : the individual that is being evaluated
+            *arguments*  : arguments to test the individual with
+            *logfile*    : name of the logfile used for the logger not gere
+        """
+        if not isMax:
+            arguments = eval(arguments)
+            newArgs = listTokwags(arguments)
+            func = self.lambdify(individual,self.configuration.pset)
+            fitness = self.configuration.getFitnessFunction()
+            diff=0
+            for i in newArgs:
+                diff += (func(**i) - fitness(**i))**2
+            return str(diff)
 
     evaluate.exposed=True
 
@@ -51,8 +54,7 @@ class BaseCherryPy:
 
     evaluateCopy.exposed=True
 
-    cherrypy.tools.inputCatcher = cherrypy.Tool('before_handler', inputCatcher)
-    cherrypy.tools.outputCatcher = cherrypy.Tool('before_finalize', outputCatcher)
+    cherrypy.tools.logger = cherrypy.Tool('before_finalize', logger)
 
 
 
