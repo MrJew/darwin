@@ -13,11 +13,12 @@ class Configuration:
     depthInitialMin = 1
     depthInitialMax = 3
     maxDepthLimit = 17
+    logging = True
 
 
     def __init__ (self ,configClass ,testArguments=None ,pop=None ,gen=None, cx=None, mut=None,
                   evaluatingService=None,copyService=None,depthInitialMin=None,
-                  depthInitialMax=None,isMax=None,maxDepthLimit=None):
+                  depthInitialMax=None,isMax=None,maxDepthLimit=None,logging=None):
 
         self.configClass = configClass
         self.cloud = evaluatingService
@@ -30,6 +31,7 @@ class Configuration:
         if depthInitialMin : self.deptInitialhMin = depthInitialMin
         if isMax    : self.isMax = isMax
         if maxDepthLimit : self.maxDepthLimit = maxDepthLimit
+        if logging  : self.logging = logging
 
         if mut and mut<1 and mut>0 : self.mut = mut
         if cx and cx<1 and cx>0 : self.cx = cx

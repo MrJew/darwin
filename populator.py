@@ -38,14 +38,13 @@ class Populator:
         return [ind for ind in offspring if not ind.fitness.valid]
 
     def evaluate(self,individual):
-        parameters = str(self.configuration.testArguments)
-
         destination = "/evaluate"
         if self.configuration.copyService:
             destination = "/evaluateCopy"
         args={"individual"  : gp.stringify(individual),
               "arguments"   : self.parameters,
-              "logfile"     : "log.txt"}
+              "logfile"     : "log.txt",
+              "logging"     : self.configuration.logging}
         r = requests.get(self.configuration.cloud+destination,params=args)
         result = float(r.text)
         print result
@@ -72,7 +71,7 @@ class Populator:
                 ind.fitness.values = fit
             self.population = offspring
             self.hof.update(self.population)
-            if len(self.topTwenty)>=20:
+            if len(self.topTwenty)>=1:
                 break
 
         print gp.stringify(self.hof[0])

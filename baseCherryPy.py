@@ -12,19 +12,22 @@ class BaseCherryPy:
         self.configuration = configuration
 
     def lambdify(self,expr, pset):
+        print expr
         args = ",".join(arg for arg in pset.arguments)
         lstr = "lambda {args}: {code}".format(args=args, code=expr)
         return eval(lstr, dict(pset.context))
 
     def inputCatcher(self=None):
-        params = cherrypy.request.params['logfile']
-        functionCatcher = FunctionIOCatcher(str(params),"evaluate")
-        functionCatcher.catchInput(cherrypy.request.params)
+        if cherrypy.request.params['logging']:
+            params = cherrypy.request.params['logfile']
+            functionCatcher = FunctionIOCatcher(str(params),"evaluate")
+            functionCatcher.catchInput(cherrypy.request.params)
 
     def outputCatcher(self=None):
-        params = cherrypy.request.params['logfile']
-        functionCatcher = FunctionIOCatcher(str(params),"evaluate")
-        functionCatcher.catchOutput(cherrypy.response.body)
+        if cherrypy.request.params['logging']:
+            params = cherrypy.request.params['logfile']
+            functionCatcher = FunctionIOCatcher(str(params),"evaluate")
+            functionCatcher.catchOutput(cherrypy.response.body)
 
     def evaluate(self,individual,arguments,logfile=None):
         arguments = eval(arguments)

@@ -7,5 +7,4 @@ def listTokwags(dicOfLists):
         for key in dicOfLists.keys():
             nd[key]=dicOfLists[key][i]
         newArgs.append(nd)
-    print "IN",newArgs
     return newArgs
