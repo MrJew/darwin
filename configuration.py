@@ -1,32 +1,41 @@
 from deap import base,creator,gp,tools
 
 class Configuration:
-    pop,gen,cx,mut = 100,40,0.1,0.5
     toolbox = base.Toolbox()
     pset = None
     listOfFintes = []
     configClass = None
     arguments = None
     cloud = None
+    copyService = None
     isMax = False
-    depthMin = 1
-    depthMax = 3
+    pop,gen,cx,mut = 100,40,0.1,0.5
+    depthInitialMin = 1
+    depthInitialMax = 3
+    maxDepthLimit = 17
 
-    def __init__ (self,configClass,numberOfArgs,arguments=None,pop=None,gen=None,cx=None,mut=None, cloud=None,depthMin=None,depthMax=None,isMax=None,):
-        self.pset = gp.PrimitiveSet("MAIN", numberOfArgs)
+
+    def __init__ (self ,configClass ,testArguments=None ,pop=None ,gen=None, cx=None, mut=None,
+                  evaluatingService=None,copyService=None,depthInitialMin=None,
+                  depthInitialMax=None,isMax=None,maxDepthLimit=None):
 
         self.configClass = configClass
-        self.cloud = cloud
-        self.testArguments = arguments
+        self.cloud = evaluatingService
+        self.copyService = copyService
+        self.testArguments = testArguments
 
         if pop      : self.pop = pop
         if gen      : self.gen = gen
-        if depthMax : self.depthMax = depthMax
-        if depthMin : self.depthMin = depthMin
+        if depthInitialMax : self.deptInitialMax = depthInitialMax
+        if depthInitialMin : self.deptInitialhMin = depthInitialMin
         if isMax    : self.isMax = isMax
+        if maxDepthLimit : self.maxDepthLimit = maxDepthLimit
 
         if mut and mut<1 and mut>0 : self.mut = mut
         if cx and cx<1 and cx>0 : self.cx = cx
+
+        self.pset = gp.PrimitiveSet("MAIN", len(testArguments))
+
 
     def setPrimitiveFunctions(self):
         for function in self.configClass.getFunctions():
@@ -45,13 +54,25 @@ class Configuration:
         else                : creator.create("FitnessMax", base.Fitness, weights=(-1.0,))
 
         creator.create("Individual", gp.PrimitiveTree, fitness=creator.FitnessMin, pset=self.pset)
-        self.toolbox.register("expr", gp.genRamped, pset= self.pset, min_=self.depthMin, max_=self.depthMax)
+        self.toolbox.register("expr", gp.genRamped, pset= self.pset, min_=self.depthInitialMin, max_=self.depthInitialMax)
         self.toolbox.register("individual", tools.initIterate, creator.Individual,  self.toolbox.expr)
         self.toolbox.register("population", tools.initRepeat, list,  self.toolbox.individual)
         self.toolbox.register("select", tools.selTournament, tournsize=3)
         self.toolbox.register("mate", gp.cxOnePoint)
         self.toolbox.register("expr_mut", gp.genFull, min_=0, max_=2)
         self.toolbox.register('mutate', gp.mutUniform, expr= self.toolbox.expr_mut)
+
+        self.toolbox.decorate('mutate',gp.staticDepthLimit(self.maxDepthLimit))
+        self.toolbox.decorate('mate',gp.staticDepthLimit(self.maxDepthLimit))
+        self.configureArguments()
+
+    def configureArguments(self):
+        renameArgs = {}
+        argNames = list(enumerate(self.testArguments.keys()))
+
+        for entry in argNames:
+            renameArgs["ARG"+str(entry[0])] = entry[1]
+        self.pset.renameArguments(**renameArgs)
 
     def setEmpheralConstant(self,constant):
         self.pset.addEphemeralConstant(constant)
@@ -61,8 +82,13 @@ class Configuration:
         else:
             for i in terminal: self.pset.addTerminal(i)
 
-    def setCloud(self, cloud):
-        self.cloud = cloud
+    # Setters for the configurations
+
+    def setCopyService(self, copyService):
+        self.copyService = copyService
+
+    def setEvaluatingService(self, evaluatingService):
+        self.cloud = evaluatingService
 
     def setConfig(self,configClass):
         self.configClass = configClass
@@ -73,8 +99,11 @@ class Configuration:
     def setFitnessMax(self,isMax):
         self.isMax=isMax
 
-    def setMinDepth(self,depthlvl):
+    def setMinInitialDepth(self,depthlvl):
         self.depthMin = depthlvl
 
-    def setMaxDepth(self,depthlvl):
+    def setMaxInitialDepth(self,depthlvl):
         self.depthMax = depthlvl
+
+    def setMaxDepthLimit(self,maxDepthLimit):
+        self.maxDepthLimit = maxDepthLimit

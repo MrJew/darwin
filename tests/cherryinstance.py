@@ -8,7 +8,7 @@ import cherrypy
 
 
 ########################### CONFIG ##############################
-cherrypy.config.update({'server.socket_host': '127.0.0.1',	#
+cherrypy.config.update({'server.socket_host': '192.168.0.111',	#
                         'server.socket_port': 8888,				#
                        })										#
 #################################################################
@@ -30,9 +30,6 @@ class Config(BaseConfig):
     def subtract(self,a,b):
         return operator.sub(a,b)
 
-    def fitnessFunction(self,x):
-        return x**3+x**2-8
-
 
 class HelloWorld(BaseCherryPy):
 
@@ -40,10 +37,13 @@ class HelloWorld(BaseCherryPy):
         return "Hello world!"
     index.exposed = True
 
+arguments = {"x":[0,1,-5,12,100,-3.0,-2,45.1],
+             "y":[0,1,-5,12,100,-3.0,-2,45.1],
+             "z":[0,1,-5,12,100,-3.0,-2,45.1]}
 
-c = Configuration(configClass=Config(),numberOfArgs=1)
-c.pset.renameArguments(ARG0="x")
+
+c = Configuration(configClass=Config(),testArguments=arguments,maxDepthLimit=10)
 c.setTerminal(1)
 c.configure()
-cherrypy.quickstart(HelloWorld(c,fname="log.txt"))
+cherrypy.quickstart(HelloWorld(c))
 

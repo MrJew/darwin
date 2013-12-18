@@ -1,6 +1,7 @@
 import random
 import requests
 from deap import gp,tools
+from helper import *
 
 
 __author__ = 'MrJew'
@@ -11,11 +12,14 @@ class Populator:
     toolbox = None
     topTwenty = []
     hof = tools.HallOfFame(1)
+    parameters = None
 
     def __init__(self,configuration):
         self.configuration = configuration
         self.toolbox = configuration.toolbox
         self.population = self.toolbox.population(n=configuration.pop)
+        self.parameters = self.collectFitnessFromTarget()
+
 
     def crossover(self,offspring):
         for child1, child2 in zip(offspring[::2], offspring[1::2]):
@@ -34,12 +38,27 @@ class Populator:
         return [ind for ind in offspring if not ind.fitness.valid]
 
     def evaluate(self,individual):
-        args={"individual":gp.stringify(individual),"arguments":str(self.configuration.testArguments),"logfile":"log.txt"}
-        r = requests.get(self.configuration.cloud+"/evaluate",params=args)
-        print r.text
+        parameters = str(self.configuration.testArguments)
+
+        destination = "/evaluate"
+        if self.configuration.copyService:
+            destination = "/evaluateCopy"
+        args={"individual"  : gp.stringify(individual),
+              "arguments"   : self.parameters,
+              "logfile"     : "log.txt"}
+        r = requests.get(self.configuration.cloud+destination,params=args)
         result = float(r.text)
+        print result
         if result == 0.0: self.topTwenty.append(individual)
         return result,
+
+    def collectFitnessFromTarget(self):
+        kwargs = listTokwags(self.configuration.testArguments)
+        fitnessList = []
+        for kwarg in kwargs:
+            r = requests.get(self.configuration.copyService,params=kwarg)
+            fitnessList.append([kwarg,float(r.text)])
+        return str(fitnessList)
 
     def populate(self):
         for gen in range(self.configuration.gen):

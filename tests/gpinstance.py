@@ -5,8 +5,9 @@ from configuration import Configuration
 from populator import Populator
 
 from baseConfig import BaseConfig
-import operator
 import math
+import requests
+
 
 class Config(BaseConfig):
 
@@ -25,13 +26,14 @@ class Config(BaseConfig):
     def subtract(self,a,b):
         return operator.sub(a,b)
 
-    def fitnessFunction(self,x):
-        return x**3+x**2-8
 
+arguments = {"x":[0,1,-5,12,100,-3.0,-2,45.1],
+             "y":[0,1,-5,12,100,-3.0,-2,45.1],
+             "z":[0,1,-5,12,100,-3.0,-2,45.1]}
 
-arguments = {"x":[0,1,-5,12,100,-3.0,-2,45.1]}
-c = Configuration(configClass=Config(),numberOfArgs=1,pop=1000,gen=40,cx=0.9,cloud="http://127.0.0.1:8888",arguments=arguments)
-c.pset.renameArguments(ARG0="x")
+c = Configuration(configClass=Config(),pop=1000,gen=100,cx=0.9,mut=0.1,maxDepthLimit=10,
+                  evaluatingService="http://192.168.0.111:8888",
+                  copyService="http://192.168.0.111:8080",testArguments=arguments)
 c.setTerminal(1)
 c.configure()
 p = Populator(c)
