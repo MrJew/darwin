@@ -28,7 +28,7 @@ class Configuration:
     cloud = None
     copyService = None
     isMax = False
-    pop,gen = None,None
+    pop,gen = 1000,40
     cx,mut = 0.1,0.5
     depthInitialMin = 1
     depthInitialMax = 3
@@ -37,7 +37,7 @@ class Configuration:
     hofnum = None
 
 
-    def __init__ (self, configClass, testArguments,evaluatingService, pop, gen, cx=None, mut=None,
+    def __init__ (self, configClass, testArguments=None,evaluatingService=None, pop=None, gen=None, cx=None, mut=None,
                   copyService=None, depthInitialMin=None, hofnum=None,
                   depthInitialMax=None, isMax=None, maxDepthLimit=None, logging=None):
 
@@ -45,9 +45,8 @@ class Configuration:
         self.cloud = evaluatingService
         self.copyService = copyService
         self.testArguments = testArguments
-        self.pop = pop
-        self.gen = gen
-
+        if pop      : self.pop = pop
+        if gen      : self.gen = gen
         if hofnum   : self.hofnum = hofnum
         if isMax    : self.isMax = isMax
         if logging  : self.logging = logging

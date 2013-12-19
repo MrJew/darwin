@@ -18,7 +18,7 @@ class Populator:
         self.toolbox = configuration.toolbox
         self.population = self.toolbox.population(n=configuration.pop)
         self.parameters = self.collectFitnessFromTarget()
-        self.hof = tools.HallOfFame(self.configuration.hofnum)
+        self.hof = tools.HallOfFame(1)
 
     def crossover(self,offspring):
         """ Given a generation it mates all the individuals based on the crossover parameter"""
@@ -48,12 +48,17 @@ class Populator:
         args={"individual"  : gp.stringify(individual),
               "arguments"   : self.parameters,
               "logfile"     : "log.txt",
-              "logging"     : self.configuration.logging,
-              "isMax"       : self.configuration.isMax}
-        r = requests.get(self.configuration.cloud+destination,params=args)
-        result = float(r.text)
+              "logging"     : self.configuration.logging,}
+        try:
+            r = requests.get(self.configuration.cloud+destination,params=args)
+            result = float(r.text)
+        except requests.ConnectionError as e:
+            print e
+            result=500
+            self.outputIndividuals()
+
+
         print result
-        if result == 0.0: self.topTwenty.append(individual)
         return result,
 
     def collectFitnessFromTarget(self):
@@ -81,5 +86,9 @@ class Populator:
             self.population = offspring
             self.hof.update(self.population)
 
-        print gp.stringify(self.hof[0])
-        print self.hof[0].fitness
+        self.outputIndividuals()
+
+    def outputIndividuals(self):
+        for ind in self.hof:
+            print gp.stringify(ind)
+            print ind.fitness
