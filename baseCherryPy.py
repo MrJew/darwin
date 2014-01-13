@@ -3,17 +3,13 @@ __author__ = 'MrJew'
 import cherrypy
 from functionCatcher import FunctionIOCatcher
 from helper import *
-from guppy import hpy
 
 class BaseCherryPy:
     configuration = None
     _cp_config = {'tools.logger.on': True}
-    hp = None
 
     def __init__(self,configuration):
         self.configuration = configuration
-        self.hp = hpy()
-        self.hp.setrelheap()
 
     def lambdify(self,expr, pset):
         """ given an individual and a pset it evaluates the individual and returns it back as a callable instance """

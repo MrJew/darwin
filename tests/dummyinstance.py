@@ -1,10 +1,9 @@
 __author__ = 'MrJew'
 
 import cherrypy
-import inspect
 
 ########################### CONFIG ##############################
-cherrypy.config.update({'server.socket_host': '192.168.0.111',	    #
+cherrypy.config.update({'server.socket_host': 'localhost',	    #
                         'server.socket_port': 8080,				#
                        })										#
 #################################################################
@@ -12,10 +11,7 @@ cherrypy.config.update({'server.socket_host': '192.168.0.111',	    #
 class CopyService():
 
     def index(self,x,y,z):
-        if float(z)!=0:
-            r = float(x)**2 + float(y)/float(z) - 3
-        else: r = float(x)**2 - 3
-        print r
+        r = (float(x)+1)**2 + float(y)*float(z)*4 - 3*float(x)
         return str(r)
 
     index.exposed = True

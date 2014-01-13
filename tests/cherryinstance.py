@@ -8,7 +8,7 @@ import cherrypy
 
 
 ########################### CONFIG ##############################
-cherrypy.config.update({'server.socket_host': '192.168.0.111',	#
+cherrypy.config.update({'server.socket_host': 'localhost',	#
                         'server.socket_port': 8888,				#
                        })										#
 #################################################################
@@ -46,4 +46,3 @@ c = Configuration(configClass=Config(),testArguments=arguments,maxDepthLimit=10)
 c.setTerminal(1)
 c.configure()
 cherrypy.quickstart(HelloWorld(c))
-
