@@ -39,27 +39,42 @@ class Populator:
         """ Crete a list of all nonevaluated individuals in the population """
         return [ind for ind in offspring if not ind.fitness.valid]
 
+    def generateSource(self,individual):
+        """Takes all the information from the configuration file and represents the source of the individual """
+        source = self.configuration.configClass.getSource(self.configuration.imports,
+                                                          self.lambdify(gp.stringify(individual),self.configuration.pset),
+                                                          getSignature(self.configuration.testArguments))
+        return source
+
     def evaluate(self,individual):
         """ Prepares the paramters and sends a request towards the evaluating
             web service and returns the fitness for the called individual"""
+
+
+        print individual
+        # check which service is send TODO merge
         destination = "/evaluate"
         if self.configuration.copyService:
             destination = "/evaluateCopy"
-        args={"individual"  : gp.stringify(individual),
+
+        args={"individual"  : self.generateSource(individual),
               "arguments"   : self.parameters,
-              "logfile"     : "log.txt",
-              "logging"     : self.configuration.logging,}
+              }
         try:
             r = requests.get(self.configuration.cloud+destination,params=args)
             result = float(r.text)
-        except requests.ConnectionError as e:
-            print e
+        except:
             result=500
             self.outputIndividuals()
 
-
         print result
         return result,
+
+    def lambdify(self,expr, pset):
+        """ given an individual and a pset it evaluates the individual and returns it back as a callable instance """
+        args = ",".join(arg for arg in pset.arguments)
+        lstr = "lambda {args}: {code}".format(args=args, code=expr)
+        return lstr
 
     def collectFitnessFromTarget(self):
         """ When cloning a service it's used for generating list of fitness based

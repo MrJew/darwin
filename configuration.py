@@ -35,16 +35,18 @@ class Configuration:
     maxDepthLimit = 17
     logging = True
     hofnum = None
+    imports = []
 
 
     def __init__ (self, configClass, testArguments=None,evaluatingService=None, pop=None, gen=None, cx=None, mut=None,
-                  copyService=None, depthInitialMin=None, hofnum=None,
+                  copyService=None, depthInitialMin=None, hofnum=None, imports=None,
                   depthInitialMax=None, isMax=None, maxDepthLimit=None, logging=None):
 
         self.configClass = configClass
         self.cloud = evaluatingService
         self.copyService = copyService
         self.testArguments = testArguments
+        if imports  : self.imports = imports
         if pop      : self.pop = pop
         if gen      : self.gen = gen
         if hofnum   : self.hofnum = hofnum

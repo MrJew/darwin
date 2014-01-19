@@ -1,15 +1,20 @@
 __author__ = 'MrJew'
-
+from helper import *
 import inspect
 import sys
 
 class BaseConfig:
+    listOfExcludes = ["listOfExcludes","getSource","getPrimitives","functionArgs",
+                      "fitnessFunction","numberOfFunctionArgs","getFunctions",
+                      "__doc__","__module__","__init__"]
+
+    def getPrimitives(self):
+        return [method for method in dir(self) if method not in self.listOfExcludes]
 
     def getFunctions(self):
         """ returns a list of all the non predefined functions in the extended class """
         listOfMethods = dir(self)
-        listOfExcludes = ["functionArgs","fitnessFunction","numberOfFunctionArgs","getFunctions","__doc__","__module__","__init__"]
-        listOfMethods = [(getattr(self,method), self.numberOfFunctionArgs(method)) for method in listOfMethods if method not in listOfExcludes ]
+        listOfMethods = [(getattr(self,method), self.numberOfFunctionArgs(method)) for method in listOfMethods if method not in self.listOfExcludes ]
         return listOfMethods
 
     def numberOfFunctionArgs(self,funcName):
@@ -23,3 +28,37 @@ class BaseConfig:
         args = inspect.getargspec(func)[0]
         del args[0] # removes 'self'
         return args
+
+    def getSource(self, imports,individual,arguments):
+        result=""
+        result+="import sys\n"
+        for i in imports:
+            result +="import "+i+"\n"
+        result+="\n"
+
+        # getting the source and removing the self arg
+        for method in self.getPrimitives():
+
+            code = formatCode(inspect.getsource(getattr(self,method)))
+            code = code.split("\n")
+            args=''
+            for arg in self.functionArgs(method):
+                args=args+arg+','
+            args=args[:-1]
+            code[0] = "def "+method+"("+args+"):"
+
+            for line in code:
+                result += line +"\n"
+
+        #add lambda
+        main = "def main("+arguments+"):\n"
+        for x in arguments.split(','):
+            main += "    "+x+" = "+"float("+x+")\n"
+
+        main +="    ind = "+individual+"\n"
+        main +="    return ind("+arguments+")\n\n"
+        main += "print main(**sys.argv)\n"
+
+        result += main
+
+        return result
