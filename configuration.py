@@ -1,4 +1,6 @@
 from deap import base,creator,gp,tools
+from lxml import etree
+import StringIO
 
 class Configuration:
     """
@@ -25,8 +27,8 @@ class Configuration:
     listOfFintes = []
     configClass = None
     arguments = None
-    cloud = None
-    copyService = None
+    evalUrl = None
+    copyUtl = None
     isMax = False
     pop,gen = 1000,40
     cx,mut = 0.1,0.5
@@ -38,13 +40,13 @@ class Configuration:
     imports = []
 
 
-    def __init__ (self, configClass, testArguments=None,evaluatingService=None, pop=None, gen=None, cx=None, mut=None,
+    def __init__ (self, configClass, configXml=None, testArguments=None,evaluatingService=None, pop=None, gen=None, cx=None, mut=None,
                   copyService=None, depthInitialMin=None, hofnum=None, imports=None,
                   depthInitialMax=None, isMax=None, maxDepthLimit=None, logging=None):
 
         self.configClass = configClass
-        self.cloud = evaluatingService
-        self.copyService = copyService
+        self.evalUrl = evaluatingService
+        self.copyUrl = copyService
         self.testArguments = testArguments
         if imports  : self.imports = imports
         if pop      : self.pop = pop
@@ -58,7 +60,38 @@ class Configuration:
         if mut and mut<1 and mut>0 : self.mut = mut
         if cx and cx<1 and cx>0 : self.cx = cx
 
-        self.pset = gp.PrimitiveSet("MAIN", len(testArguments))
+        if configXml : self.configXml(configXml)
+
+
+        self.pset = gp.PrimitiveSet("MAIN", len(self.testArguments))
+
+    def configXml(self,xmlFile):
+        """ Configure the gp framework through an xml file specifying the parameters"""
+
+        tree = etree.parse("../"+xmlFile)
+        root = tree.getroot()
+        children = []
+        params = {}
+
+        for child in root:
+            children.append(child.tag)
+
+        for child in children:
+            if child == "import":
+                print "in"
+                params[child] = root.find(child).text.split(",")
+            else:
+                params[child] = root.find(child).text
+
+        if params['cx']     : self.cx = float(params['cx'])
+        if params['mut']    : self.mut = float(params['mut'])
+        if params['pop']    : self.pop = int(params['pop'])
+        if params['gen']    : self.gen = int(params['gen'])
+        if params['import']: self.imports = params['import']
+        if params['evalUrl']: self.evalUrl = params['evalUrl']
+        if params['copyUrl']: self.copyUrl = params['copyUrl']
+        if params['args']   : self.testArguments = eval(params['args'])
+        print self.cx,self.pop,self.gen,self.mut,self.mut,repr(self.imports)
 
 
     def setPrimitiveFunctions(self):
@@ -111,10 +144,10 @@ class Configuration:
     # Setters for the configurations
 
     def setCopyService(self, copyService):
-        self.copyService = copyService
+        self.copyUrl = copyService
 
     def setEvaluatingService(self, evaluatingService):
-        self.cloud = evaluatingService
+        self.evalUrl = evaluatingService
 
     def setConfig(self,configClass):
         self.configClass = configClass

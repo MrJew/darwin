@@ -29,11 +29,12 @@ arguments = {"x":[0,1,-5,12,100,-3.0,-2,45.1],
 
 imports = ["operator"]
 
-c = Configuration(configClass=Config(),pop=1000,gen=100,cx=0.9,mut=0.1,maxDepthLimit=10,
-                  evaluatingService="http://localhost:8844",
-                  copyService="http://localhost:8080",testArguments=arguments,imports=imports)
+#c = Configuration(configClass=Config(),pop=1000,gen=100,cx=0.9,mut=0.1,maxDepthLimit=10,
+#                  evaluatingService="http://localhost:8844",
+#                  copyService="http://localhost:8080",testArguments=arguments,imports=imports)
+c = Configuration(Config(),configXml="config.xml")
 c.setTerminal(1)
 c.configure()
-p = Populator(c)
+p = Populator(configuration=c)
 p.populate()
 

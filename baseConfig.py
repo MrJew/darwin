@@ -60,5 +60,4 @@ class BaseConfig:
         main += "print main(**sys.argv)\n"
 
         result += main
-
         return result

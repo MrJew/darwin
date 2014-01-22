@@ -13,12 +13,13 @@ class Populator:
     hof = None
     parameters = None
 
-    def __init__(self,configuration):
-        self.configuration = configuration
-        self.toolbox = configuration.toolbox
-        self.population = self.toolbox.population(n=configuration.pop)
-        self.parameters = self.collectFitnessFromTarget()
-        self.hof = tools.HallOfFame(1)
+    def __init__(self,configuration=None):
+        if configuration!=None:
+            self.configuration = configuration
+            self.toolbox = configuration.toolbox
+            self.population = self.toolbox.population(n=configuration.pop)
+            self.parameters = self.collectFitnessFromTarget()
+            self.hof = tools.HallOfFame(1)
 
     def crossover(self,offspring):
         """ Given a generation it mates all the individuals based on the crossover parameter"""
@@ -54,14 +55,14 @@ class Populator:
         print individual
         # check which service is send TODO merge
         destination = "/evaluate"
-        if self.configuration.copyService:
+        if self.configuration.copyUrl:
             destination = "/evaluateCopy"
 
         args={"individual"  : self.generateSource(individual),
               "arguments"   : self.parameters,
               }
         try:
-            r = requests.get(self.configuration.cloud+destination,params=args)
+            r = requests.get(self.configuration.evalUrl+destination,params=args)
             result = float(r.text)
         except:
             result=500
@@ -82,7 +83,7 @@ class Populator:
         kwargs = listTokwags(self.configuration.testArguments)
         fitnessList = []
         for kwarg in kwargs:
-            r = requests.get(self.configuration.copyService,params=kwarg)
+            r = requests.get(self.configuration.copyUrl,params=kwarg)
             fitnessList.append([kwarg,float(r.text)])
         return str(fitnessList)
 
@@ -95,7 +96,9 @@ class Populator:
             self.crossover(offspring)
             self.mutation(offspring)
             invalid_ind = self.nonEvaluated(offspring)
+
             fitnesses = self.toolbox.map(self.evaluate, invalid_ind)
+            print "FITNESSES:",fitnesses
             for ind, fit in zip(invalid_ind, fitnesses):
                 ind.fitness.values = fit
             self.population = offspring
