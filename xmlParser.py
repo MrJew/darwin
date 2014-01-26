@@ -2,11 +2,14 @@ __author__ = 'mrjew'
 from lxml import etree
 
 
-arguments = {"x":[0,1,-5,12,100,-3.0,-2,45.1],
-             "y":[0,1,-5,12,100,-3.0,-2,45.1],
-             "z":[0,1,-5,12,100,-3.0,-2,45.1]}
+arguments = {'x':[1,2,3,4],'y':[1,2,3,4],'z':[1,2,3,4]}
+primitives = ["add","mul","safeDiv","sub"]
+terminals = [1]
+customPrimitives = []
 
-children = {"pop":'',"gen":'1000',"cx":'0.8',"mut":'0.2',"evalUrl":"http://localhost:8844","copyUrl":"http://localhost:8080","import":"operator","args":str(arguments)}
+children = {"pop":'1000',"gen":'1000',"cx":'0.8',"mut":'0.2',"evalUrl":"http://localhost:8844",
+            "copyUrl":"http://localhost:8080","import":"operator","args":str(arguments),
+            "basicPrimitives":str(primitives),"terminals": str(terminals),"customPrimitives":str(customPrimitives)}
 
 # create XML
 root = etree.Element('config')
@@ -23,7 +26,7 @@ f = open("config.xml","w")
 f.write(s)
 f.close()
 
-tree = etree.parse("config.xml")
+tree = etree.parse("testConfig.xml")
 root = tree.getroot()
 children = []
 for child in root:

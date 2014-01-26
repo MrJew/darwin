@@ -12,6 +12,7 @@ class BaseCherryPy:
 
         for i in arguments:
             sys.argv = i[0]
+            print individual
             with stdoutIO() as s:
                 exec(individual) in {}
             diff += (float(s.getvalue()) - i[1])**2

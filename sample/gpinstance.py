@@ -33,7 +33,6 @@ imports = ["operator"]
 #                  evaluatingService="http://localhost:8844",
 #                  copyService="http://localhost:8080",testArguments=arguments,imports=imports)
 c = Configuration(Config(),configXml="config.xml")
-c.setTerminal(1)
 c.configure()
 p = Populator(configuration=c)
 p.populate()

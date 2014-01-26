@@ -1,6 +1,7 @@
 from deap import base,creator,gp,tools
 from lxml import etree
 import StringIO
+from baseConfig import *
 
 class Configuration:
     """
@@ -38,13 +39,15 @@ class Configuration:
     logging = True
     hofnum = None
     imports = []
+    terminals = []
 
 
-    def __init__ (self, configClass, configXml=None, testArguments=None,evaluatingService=None, pop=None, gen=None, cx=None, mut=None,
+    def __init__ (self, configClass=None, configXml=None, testArguments=None,evaluatingService=None, pop=None, gen=None, cx=None, mut=None,
                   copyService=None, depthInitialMin=None, hofnum=None, imports=None,
                   depthInitialMax=None, isMax=None, maxDepthLimit=None, logging=None):
 
-        self.configClass = configClass
+        if configClass : self.configClass = configClass
+        else: configClass = BaseConfig()
         self.evalUrl = evaluatingService
         self.copyUrl = copyService
         self.testArguments = testArguments
@@ -78,7 +81,6 @@ class Configuration:
 
         for child in children:
             if child == "import":
-                print "in"
                 params[child] = root.find(child).text.split(",")
             else:
                 params[child] = root.find(child).text
@@ -91,7 +93,8 @@ class Configuration:
         if params['evalUrl']: self.evalUrl = params['evalUrl']
         if params['copyUrl']: self.copyUrl = params['copyUrl']
         if params['args']   : self.testArguments = eval(params['args'])
-        print self.cx,self.pop,self.gen,self.mut,self.mut,repr(self.imports)
+        if params['basicPrimitives'] : self.configClass.updateExcludes(eval(params['basicPrimitives']))
+        if params['terminals']       : self.terminals = eval(params['terminals'])
 
 
     def setPrimitiveFunctions(self):
@@ -106,6 +109,7 @@ class Configuration:
     def configure(self):
         """ Creates the toolbox and sets all the needed parameters"""
         self.setPrimitiveFunctions()
+        self.setTerminals(self.terminals)
 
         if not self.isMax   : creator.create("FitnessMin", base.Fitness, weights=(-1.0,))
         else                : creator.create("FitnessMax", base.Fitness, weights=(-1.0,))
@@ -135,7 +139,9 @@ class Configuration:
     def setEmpheralConstant(self,constant):
         self.pset.addEphemeralConstant(constant)
 
-    def setTerminal(self, terminal):
+
+
+    def setTerminals(self, terminal):
         """ terminal: either a list or a numerical constant """
         if isinstance( terminal, (float,int,long) ): self.pset.addTerminal(terminal)
         else:

@@ -90,6 +90,7 @@ class Populator:
     def populate(self):
         """ Generates all the populations that are evaluated, mutated, mated and when
             all the generations finish it returns a list of the top 20 individuals"""
+
         for gen in range(self.configuration.gen):
             offspring = self.toolbox.select(self.population, len(self.population))
             offspring = map(self.toolbox.clone, offspring)
@@ -98,7 +99,6 @@ class Populator:
             invalid_ind = self.nonEvaluated(offspring)
 
             fitnesses = self.toolbox.map(self.evaluate, invalid_ind)
-            print "FITNESSES:",fitnesses
             for ind, fit in zip(invalid_ind, fitnesses):
                 ind.fitness.values = fit
             self.population = offspring

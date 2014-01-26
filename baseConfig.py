@@ -2,11 +2,52 @@ __author__ = 'MrJew'
 from helper import *
 import inspect
 import sys
+import operator
+import math
 
 class BaseConfig:
-    listOfExcludes = ["listOfExcludes","getSource","getPrimitives","functionArgs",
-                      "fitnessFunction","numberOfFunctionArgs","getFunctions",
+    listOfExcludes = ["listOfExcludes","getSource","getPrimitives","functionArgs","updateExcludes",
+                      "fitnessFunction","numberOfFunctionArgs","getFunctions","basicPrimitives",
                       "__doc__","__module__","__init__"]
+    basicPrimitives = ["add","mul","sub","safeDiv","sin","cos","sqrt","pow","log"]
+
+    def add(self,a,b):
+        return operator.add(a,b)
+
+    def mul(self,a,b):
+        return operator.mul(a,b)
+
+    def sub(self,a,b):
+        return operator.sub(a,b)
+
+    def safeDiv(self,a,b):
+        if b==0:
+            return 0
+        else:
+            return operator.div(a,b)
+
+    def sin(self,a):
+        return math.sin(a)
+
+    def cos(self,a):
+        return math.cos(a)
+
+    def sqrt(self,a):
+        if a>0:
+            return math.sqrt(a)
+        else:
+            return 0
+
+    def pow(self,a,b):
+        return math.pow(a,b)
+
+    def log(self,a):
+        return math.log(a)
+
+    def updateExcludes(self,chosenPrimitives):
+        print chosenPrimitives
+        print self.basicPrimitives
+        self.listOfExcludes.extend([ p for p in self.basicPrimitives if p not in chosenPrimitives ])
 
     def getPrimitives(self):
         return [method for method in dir(self) if method not in self.listOfExcludes]
