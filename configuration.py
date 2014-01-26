@@ -47,7 +47,7 @@ class Configuration:
                   depthInitialMax=None, isMax=None, maxDepthLimit=None, logging=None):
 
         if configClass : self.configClass = configClass
-        else: configClass = BaseConfig()
+        else: self.configClass = BaseConfig()
         self.evalUrl = evaluatingService
         self.copyUrl = copyService
         self.testArguments = testArguments

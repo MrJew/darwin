@@ -1,9 +1,8 @@
 __author__ = 'MrJew'
 
 
-from configuration import Configuration
 from baseConfig import BaseConfig
-from populator import *
+from runner import runGP
 
 class Config(BaseConfig):
 
@@ -23,17 +22,8 @@ class Config(BaseConfig):
         return operator.sub(a,b)
 
 
-arguments = {"x":[0,1,-5,12,100,-3.0,-2,45.1],
-             "y":[0,1,-5,12,100,-3.0,-2,45.1],
-             "z":[0,1,-5,12,100,-3.0,-2,45.1]}
-
-imports = ["operator"]
-
 #c = Configuration(configClass=Config(),pop=1000,gen=100,cx=0.9,mut=0.1,maxDepthLimit=10,
 #                  evaluatingService="http://localhost:8844",
 #                  copyService="http://localhost:8080",testArguments=arguments,imports=imports)
-c = Configuration(Config(),configXml="config.xml")
-c.configure()
-p = Populator(configuration=c)
-p.populate()
+runGP("config.xml")
 
