@@ -54,9 +54,7 @@ class Populator:
 
         print individual
         # check which service is send TODO merge
-        destination = "/evaluate"
-        if self.configuration.copyUrl:
-            destination = "/evaluateCopy"
+        destination = "/evaluateCopy"
 
         args={"individual"  : self.generateSource(individual),
               "arguments"   : self.parameters,
@@ -82,9 +80,16 @@ class Populator:
             on the results from the web service """
         kwargs = listTokwags(self.configuration.testArguments)
         fitnessList = []
-        for kwarg in kwargs:
-            r = requests.get(self.configuration.copyUrl,params=kwarg)
-            fitnessList.append([kwarg,float(r.text)])
+        if self.configuration.copyUrl:
+            for kwarg in kwargs:
+                r = requests.get(self.configuration.copyUrl,params=kwarg)
+                fitnessList.append([kwarg,float(r.text)])
+        else:
+            for kwarg in kwargs:
+                r = self.configuration.getFitnessFunction()(**kwarg)
+                fitnessList.append([kwarg,float(r)])
+                print fitnessList
+
         return str(fitnessList)
 
     def populate(self):

@@ -1,13 +1,12 @@
 <config>
-  <args>{'y': [1, 2, 3, 4], 'x': [1, 2, 3, 4], 'z': [1, 2, 3, 4]}</args>
+  <mut>0.2</mut>
   <customPrimitives>[]</customPrimitives>
+  <args>{'y': [1, 2, 3, 4], 'x': [1, 2, 3, 4], 'z': [1, 2, 3, 4]}</args>
   <pop>1000</pop>
   <terminals>[1]</terminals>
   <cx>0.8</cx>
   <copyUrl>http://localhost:8080</copyUrl>
   <basicPrimitives>['add', 'mul', 'safeDiv', 'sub']</basicPrimitives>
-  <gen>1000</gen>
-  <mut>0.2</mut>
-  <import>operator</import>
   <evalUrl>http://localhost:8844</evalUrl>
+  <gen>1000</gen>
 </config>

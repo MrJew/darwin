@@ -25,5 +25,5 @@ class Config(BaseConfig):
 #c = Configuration(configClass=Config(),pop=1000,gen=100,cx=0.9,mut=0.1,maxDepthLimit=10,
 #                  evaluatingService="http://localhost:8844",
 #                  copyService="http://localhost:8080",testArguments=arguments,imports=imports)
-runGP("config.xml")
+
 

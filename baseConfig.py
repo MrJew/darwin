@@ -73,6 +73,7 @@ class BaseConfig:
     def getSource(self, imports,individual,arguments):
         result=""
         result+="import sys\n"
+        result+="import operator\n"
         for i in imports:
             result +="import "+i+"\n"
         result+="\n"

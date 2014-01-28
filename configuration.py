@@ -71,7 +71,7 @@ class Configuration:
     def configXml(self,xmlFile):
         """ Configure the gp framework through an xml file specifying the parameters"""
 
-        tree = etree.parse("../"+xmlFile)
+        tree = etree.parse(xmlFile)
         root = tree.getroot()
         children = []
         params = {}
@@ -85,16 +85,16 @@ class Configuration:
             else:
                 params[child] = root.find(child).text
 
-        if params['cx']     : self.cx = float(params['cx'])
-        if params['mut']    : self.mut = float(params['mut'])
-        if params['pop']    : self.pop = int(params['pop'])
-        if params['gen']    : self.gen = int(params['gen'])
-        if params['import']: self.imports = params['import']
-        if params['evalUrl']: self.evalUrl = params['evalUrl']
-        if params['copyUrl']: self.copyUrl = params['copyUrl']
-        if params['args']   : self.testArguments = eval(params['args'])
-        if params['basicPrimitives'] : self.configClass.updateExcludes(eval(params['basicPrimitives']))
-        if params['terminals']       : self.terminals = eval(params['terminals'])
+        if 'cx'      in params: self.cx = float(params['cx'])
+        if 'mut'     in params: self.mut = float(params['mut'])
+        if 'pop'     in params: self.pop = int(params['pop'])
+        if 'gen'     in params: self.gen = int(params['gen'])
+        if 'import'  in params: self.imports = params['import']
+        if 'evalUrl' in params: self.evalUrl = params['evalUrl']
+        if 'copyUrl' in params: self.copyUrl = params['copyUrl']
+        if 'args'    in params: self.testArguments = eval(params['args'])
+        if 'basicPrimitives' in params: self.configClass.updateExcludes(eval(params['basicPrimitives']))
+        if 'terminals'       in params: self.terminals = eval(params['terminals'])
 
 
     def setPrimitiveFunctions(self):
