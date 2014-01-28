@@ -17,12 +17,13 @@ If you want to run only the evaluator and use your own fitness function
 
 For example:
 
-class Config(BaseConfig):
+    class Config(BaseConfig):
 
-    def fitnessFunction(self,x,y,z):
-        return x + y + z/3
+        def fitnessFunction(self,x,y,z):
+            return x + y + z/3
 
-runGP(configClass=Config(),xmlConfig="config.xml")
+    runGP(configClass=Config(),xmlConfig="config.xml")
+
 Where "config.xml" is the location of the configuration XML you want to use
 
 
