@@ -1,12 +1,31 @@
 <config>
   <mut>0.2</mut>
-  <customPrimitives>[]</customPrimitives>
-  <args>{'y': [1, 2, 3, 4], 'x': [1, 2, 3, 4], 'z': [1, 2, 3, 4]}</args>
+  <arguments>
+    <arg name="y" number="0">1</arg>
+    <arg name="y" number="1">2</arg>
+    <arg name="y" number="2">3</arg>
+    <arg name="y" number="3">4</arg>
+    <arg name="x" number="0">1</arg>
+    <arg name="x" number="1">2</arg>
+    <arg name="x" number="2">3</arg>
+    <arg name="x" number="3">4</arg>
+    <arg name="z" number="0">1</arg>
+    <arg name="z" number="1">2</arg>
+    <arg name="z" number="2">3</arg>
+    <arg name="z" number="3">4</arg>
+  </arguments>
   <pop>1000</pop>
-  <terminals>[1]</terminals>
+  <terminals>
+    <terminal>1</terminal>
+  </terminals>
   <cx>0.8</cx>
   <copyUrl>http://localhost:8080</copyUrl>
-  <basicPrimitives>['add', 'mul', 'safeDiv', 'sub']</basicPrimitives>
+  <basicPrimitives>
+    <primitive>add</primitive>
+    <primitive>mul</primitive>
+    <primitive>safeDiv</primitive>
+    <primitive>sub</primitive>
+  </basicPrimitives>
   <evalUrl>http://localhost:8844</evalUrl>
   <gen>1000</gen>
 </config>

@@ -73,17 +73,45 @@ class Configuration:
 
         tree = etree.parse(xmlFile)
         root = tree.getroot()
-        children = []
         params = {}
+        terminals=[]
+        imports=[]
+        primitives =[]
+        customPrimitives=[]
+        arguments={}
+
 
         for child in root:
-            children.append(child.tag)
-
-        for child in children:
-            if child == "import":
-                params[child] = root.find(child).text.split(",")
+            if child.tag == "terminals":
+                terms = root.find(child.tag)
+                for t in terms:
+                    terminals.append(float(terms.find(t.tag).text))
+                params["terminals"]=terminals
+            elif child.tag == "imports":
+                imps = root.find(child.tag)
+                for i in imps:
+                    imports.append(i.text)
+                params["imports"]=imports
+            elif child.tag == "basicPrimitives":
+                imps = root.find(child.tag)
+                for i in imps:
+                    primitives.append(i.text)
+                params["basicPrimitives"]=primitives
+            elif child.tag == "customPrimitives":
+                imps = root.find(child.tag)
+                for i in imps:
+                    customPrimitives.append(i.text)
+                params["customPrimitives"]=customPrimitives
+            elif child.tag == "arguments":
+                args = root.find(child.tag)
+                for a in args:
+                    if a.get("name") not in arguments:
+                        arguments[a.get("name")]=[]
+                    arguments[a.get("name")].append(float(a.text))
+                params["args"]=arguments
             else:
-                params[child] = root.find(child).text
+                params[child.tag]=child.text
+
 
         if 'cx'      in params: self.cx = float(params['cx'])
         if 'mut'     in params: self.mut = float(params['mut'])
@@ -92,9 +120,9 @@ class Configuration:
         if 'import'  in params: self.imports = params['import']
         if 'evalUrl' in params: self.evalUrl = params['evalUrl']
         if 'copyUrl' in params: self.copyUrl = params['copyUrl']
-        if 'args'    in params: self.testArguments = eval(params['args'])
-        if 'basicPrimitives' in params: self.configClass.updateExcludes(eval(params['basicPrimitives']))
-        if 'terminals'       in params: self.terminals = eval(params['terminals'])
+        if 'args'    in params: self.testArguments = params['args']
+        if 'basicPrimitives' in params: self.configClass.updateExcludes(params['basicPrimitives'])
+        if 'terminals'       in params: self.terminals = params['terminals']
 
 
     def setPrimitiveFunctions(self):
