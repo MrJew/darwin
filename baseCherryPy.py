@@ -9,7 +9,7 @@ class BaseCherryPy:
     def evaluateCopy(self,individual,arguments):
         arguments = eval(arguments)
         diff=0
-
+        print individual
         for i in arguments:
             sys.argv = i[0]
             with stdoutIO() as s:

@@ -45,8 +45,6 @@ class BaseConfig:
         return math.log(a)
 
     def updateExcludes(self,chosenPrimitives):
-        print chosenPrimitives
-        print self.basicPrimitives
         self.listOfExcludes.extend([ p for p in self.basicPrimitives if p not in chosenPrimitives ])
 
     def getPrimitives(self):
@@ -74,6 +72,7 @@ class BaseConfig:
         result=""
         result+="import sys\n"
         result+="import operator\n"
+        result+="import math\n"
         for i in imports:
             result +="import "+i+"\n"
         result+="\n"
