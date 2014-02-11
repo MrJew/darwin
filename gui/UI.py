@@ -4,6 +4,9 @@ import wx.lib.agw.floatspin as fs
 from baseConfig import BaseConfig
 from wx.lib.mixins.listctrl import CheckListCtrlMixin, ListCtrlAutoWidthMixin
 import sys
+import csv
+from xmlParser import *
+from urlparse import urlparse,urlsplit
 
 class CheckListCtrl(wx.ListCtrl, CheckListCtrlMixin, ListCtrlAutoWidthMixin):
     def __init__(self, parent):
@@ -67,17 +70,32 @@ class UI(wx.Frame):
 
     def InitTexts(self):
         panel = wx.Panel(self,-1)
-        sizer = wx.GridBagSizer(3,1)
+        sizer = wx.GridBagSizer(4,2)
+
+        #filetxt = wx.StaticText(panel, label="File Name")
+        #sizer.Add(filetxt,pos=(0,0), flag = wx.LEFT|wx.TOP)
+        #self.file = wx.TextCtrl(panel,style=wx.TE_LEFT)
+        #sizer.Add(self.file, span=(1,20), pos=(1,0), flag = wx.TOP|wx.EXPAND|wx.BOTTOM)
 
         clienttxt = wx.StaticText(panel, label="Client IP Adress")
         sizer.Add(clienttxt,pos=(0,0), flag = wx.LEFT|wx.TOP)
-        client = wx.TextCtrl(panel,style=wx.TE_RIGHT)
-        sizer.Add(client, span=(1,20), pos=(1,0), flag = wx.TOP|wx.EXPAND|wx.BOTTOM)
+        self.client = wx.TextCtrl(panel,style=wx.TE_LEFT)
+        sizer.Add(self.client, span=(1,20), pos=(1,0), flag = wx.TOP|wx.EXPAND|wx.BOTTOM)
+
+        portclientxt = wx.StaticText(panel, label="Port")
+        sizer.Add(portclientxt,pos=(0,21), flag = wx.LEFT|wx.TOP)
+        self.portclient = wx.TextCtrl(panel,style=wx.TE_LEFT)
+        sizer.Add(self.portclient, pos=(1,21), flag = wx.TOP|wx.EXPAND|wx.BOTTOM)
 
         tartgettxt = wx.StaticText(panel, label="Target IP Adress")
         sizer.Add(tartgettxt,pos=(2,0), flag = wx.LEFT|wx.TOP|wx.EXPAND)
-        target = wx.TextCtrl(panel,style=wx.TE_RIGHT)
-        sizer.Add(target, span=(1,20),pos=(3,0), flag = wx.TOP|wx.EXPAND|wx.BOTTOM)
+        self.target = wx.TextCtrl(panel,style=wx.TE_LEFT)
+        sizer.Add(self.target, span=(1,20),pos=(3,0), flag = wx.TOP|wx.EXPAND|wx.BOTTOM)
+
+        porttargetxt = wx.StaticText(panel, label="Port")
+        sizer.Add(porttargetxt,pos=(2,21), flag = wx.LEFT|wx.TOP)
+        self.porttarget = wx.TextCtrl(panel,style=wx.TE_LEFT)
+        sizer.Add(self.porttarget, pos=(3,21), flag = wx.TOP|wx.EXPAND|wx.BOTTOM)
 
         panel.SetSizer(sizer)
         return panel
@@ -93,40 +111,40 @@ class UI(wx.Frame):
         poptxt = wx.StaticText(panel, label="Population")
         sizer.Add(poptxt, pos=(0, 0), flag=wx.LEFT|wx.TOP, border=20)
 
-        pop = wx.SpinCtrl(panel,value='1000',min=1,max=10000)
-        sizer.Add(pop, pos=(0, 1), flag=wx.TOP,border=15)
+        self.pop = wx.SpinCtrl(panel,value='1000',min=1,max=10000)
+        sizer.Add(self.pop, pos=(0, 1), flag=wx.TOP,border=15)
 
         ####
         gentxt = wx.StaticText(panel, label="Generation")
         sizer.Add(gentxt, pos=(1, 0), flag=wx.LEFT|wx.TOP, border=20)
 
-        gen = wx.SpinCtrl(panel,value='1000',min=1,max=10000)
-        sizer.Add(gen, pos=(1, 1),  flag=wx.TOP, border=15)
+        self.gen = wx.SpinCtrl(panel,value='1000',min=1,max=10000)
+        sizer.Add(self.gen, pos=(1, 1),  flag=wx.TOP, border=15)
         ####
         muttxt = wx.StaticText(panel, label="Mutation")
         sizer.Add(muttxt, pos=(2, 0), flag=wx.TOP|wx.LEFT, border=20)
 
-        mut = fs.FloatSpin(panel,value='0.2',digits=1,increment=0.1)
-        mut.SetRange(0.0,1.0)
-        sizer.Add(mut,pos=(2,1), flag=wx.TOP, border=15,)
+        self.mut = fs.FloatSpin(panel,value='0.2',digits=1,increment=0.1)
+        self.mut.SetRange(0.0,1.0)
+        sizer.Add(self.mut,pos=(2,1), flag=wx.TOP, border=15,)
 
         ####
         cxtxt = wx.StaticText(panel, label="Crossing")
         sizer.Add(cxtxt, pos=(3, 0), flag=wx.TOP|wx.LEFT, border=20)
 
-        cx = fs.FloatSpin(panel,value='0.8',digits=1,increment=0.1)
-        cx.SetRange(0.0,1.0)
-        cx.SetSize((100,40))
-        sizer.Add(cx,pos=(3,1), flag=wx.TOP, border=15)
+        self.cx = fs.FloatSpin(panel,value='0.8',digits=1,increment=0.1)
+        self.cx.SetRange(0.0,1.0)
+        self.cx.SetSize((100,40))
+        sizer.Add(self.cx,pos=(3,1), flag=wx.TOP, border=15)
         #### Column 2
 
-        arg = wx.StaticText(panel, label="Arguments")
+        arg = wx.StaticText(panel, label="Test Arguments")
         sizer.Add(arg, pos=(0, 4), flag=wx.LEFT|wx.TOP, border=20)
 
         self.argtxt = wx.TextCtrl(panel)
         sizer.Add(self.argtxt, pos=(1, 4), span=(1,3), flag=wx.LEFT|wx.TOP|wx.EXPAND, border=10)
 
-        argbutton = wx.Button(panel, label="Browse...",size=(100,20))
+        argbutton = wx.Button(panel, label="Browse...",size=(80,20))
         sizer.Add(argbutton, pos=(0, 5), flag=wx.TOP,border=15)
         self.Bind(wx.EVT_BUTTON, self.OnBrowse, id=argbutton.GetId())
 
@@ -134,8 +152,8 @@ class UI(wx.Frame):
         ter = wx.StaticText(panel, label="Terminals")
         sizer.Add(ter, pos=(2, 4), flag=wx.LEFT|wx.TOP, border=20)
 
-        tertxt = wx.TextCtrl(panel)
-        sizer.Add(tertxt, pos=(3, 4), span=(1,3),  flag=wx.LEFT|wx.TOP|wx.EXPAND, border=10)
+        self.tertxt = wx.TextCtrl(panel)
+        sizer.Add(self.tertxt, pos=(3, 4), span=(1,3),  flag=wx.LEFT|wx.TOP|wx.EXPAND, border=10)
 
 
 
@@ -196,8 +214,9 @@ class UI(wx.Frame):
         sizer = wx.GridBagSizer(5, 5)
 
 
-        gen = wx.Button(panel,-1,'Generate',size=(100,-1))
-        sizer.Add(gen,border=25, pos=(5,5),flag=wx.TOP|wx.LEFT)
+        genb = wx.Button(panel,-1,'Generate',size=(100,-1))
+        sizer.Add(genb,border=25, pos=(5,5),flag=wx.TOP|wx.LEFT)
+        self.Bind(wx.EVT_BUTTON, self.OnGenerate, id=genb.GetId())
 
         panel.SetSizer(sizer)
 
@@ -218,13 +237,6 @@ class UI(wx.Frame):
         for i in range(num):
             self.list.CheckItem(i, False)
 
-    def OnApply(self, event):
-        num = self.list.GetItemCount()
-        for i in range(num):
-            if i == 0: self.log.Clear()
-            if self.list.IsChecked(i):
-                self.log.AppendText(self.list.GetItemText(i) + '\n')
-
     def OnBrowse(self,event):
         openFileDialog = wx.FileDialog(self,"Open .csv arguments file","","",
                                        "CSV files (*.csv)|*.csv",wx.FD_OPEN | wx.FD_FILE_MUST_EXIST)
@@ -235,7 +247,77 @@ class UI(wx.Frame):
         self.argtxt.SetValue(str(openFileDialog.GetPath()))
 
     def OnGenerate(self,event):
-        pass
+
+        saveFileDialog = wx.FileDialog(self, "Save XML file", "", "",
+                                   "XML files (*.xml)|*.xml", wx.FD_SAVE | wx.FD_OVERWRITE_PROMPT)
+
+        if saveFileDialog.ShowModal() == wx.ID_CANCEL:
+            return     # the user changed idea...
+
+        # save the current contents in the file
+        # this can be done with e.g. wxPython output streams:
+
+        parameters = {}
+        if self.client.GetValue() == "" :
+            wx.MessageBox('Client IP adress is required!', 'Error', wx.OK | wx.ICON_ERROR)
+            return
+
+        cport = self.portclient.GetValue()
+        curl = self.client.GetValue()
+        tport = self.porttarget.GetValue()
+        turl = self.target.GetValue()
+
+        o = urlparse(curl)
+        curl = o.scheme+"://"+o.netloc
+        if cport!="":
+            curl+=":"+cport
+        curl+=o.path
+
+        o = urlparse(turl)
+        turl = o.scheme+"://"+o.netloc
+        if tport!="":
+            turl+=":"+tport
+        turl+=o.path
+
+        parameters["evalUrl"]   = curl
+        if self.target.GetValue() != "" : parameters["copyUrl"]   = turl
+        if self.pop.GetValue() != "" : parameters["pop"]       = str(self.pop.GetValue())
+        if self.gen.GetValue() != "" : parameters["gen"]       = str(self.gen.GetValue())
+        if self.mut.GetValue() != "" : parameters["mut"]       = str(self.mut.GetValue())
+        if self.cx.GetValue() != "" : parameters["cx"]        = str(self.cx.GetValue())
+        parameters["fname"]     = str(saveFileDialog.GetPath())
+
+
+
+        ### terminals ###
+        if self.tertxt.GetValue() != "":
+            terminals = self.tertxt.GetValue().split(",")
+            for t in range(len(terminals)):
+                terminals[t] = float(terminals[t])
+            parameters["terminals"] = terminals
+
+        #### primitives ####
+        num = self.list.GetItemCount()
+        primitives=[]
+        for i in range(num):
+            if self.list.IsChecked(i):
+                primitives.append(str(self.list.GetItemText(i)))
+        parameters["primitives"]= primitives
+
+        #### args ####
+        if self.argtxt.GetValue() != "":
+            args={}
+            f = open(self.argtxt.GetValue(),"rb")
+            reader = csv.reader(f)
+            for row in reader:
+                key = row.pop(0)
+                args[key]=row
+            f.close()
+            parameters["arguments"] = args
+
+        generateXML(**parameters)
+
+
 
 def main():
 

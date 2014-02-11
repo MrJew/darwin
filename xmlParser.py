@@ -73,49 +73,10 @@ def generateXML(fname=None,arguments=None,primitives=None,terminals=None,customP
     f.close()
 
 
-arguments = {'x':[1,2,3,4],'y':[1,2,3,4],'z':[1,2,3,4]}
-primitives = ["add","mul","safeDiv","sub"]
-terminals = [1]
+#arguments = {'x':[1,2,3,4],'y':[1,2,3,4],'z':[1,2,3,4]}
+#primitives = ["add","mul","safeDiv","sub"]
+#terminals = [1]
 
-generateXML(fname="./sample/config.xml",arguments=arguments,primitives=primitives,terminals=terminals,
-            pop='1000',gen='1000',cx='0.8',mut='0.2',evalUrl="http://localhost:8844",copyUrl="http://localhost:8080")
-
-
-tree = etree.parse("./sample/config.xml")
-root = tree.getroot()
-terminals = []
-arguments = {}
-imports = []
-primitives = []
-customPrimitives=[]
-for child in root:
-    if child.tag == "terminals":
-        terms = root.find(child.tag)
-        for t in terms:
-            terminals.append(float(terms.find(t.tag).text))
-        print terminals
-    elif child.tag == "imports":
-        imps = root.find(child.tag)
-        for i in imps:
-            imports.append(i.text)
-        print imports
-    elif child.tag == "basicPrimitives":
-        imps = root.find(child.tag)
-        for i in imps:
-            primitives.append(i.text)
-        print primitives
-    elif child.tag == "customPrimitives":
-        imps = root.find(child.tag)
-        for i in imps:
-            customPrimitives.append(i.text)
-        print customPrimitives
-    elif child.tag == "arguments":
-        args = root.find(child.tag)
-        for a in args:
-            if a.get("name") not in arguments:
-                arguments[a.get("name")]=[]
-            arguments[a.get("name")].append(float(a.text))
-        print arguments
-
-    else:
-        print child.tag,root.find(child.tag).text
+#generateXML(fname="./sample/config.xml",arguments=arguments,primitives=primitives,terminals=terminals,
+#            pop='1000',gen='1000',cx='0.8',mut='0.2',evalUrl="http://localhost:8844",copyUrl="http://localhost:8080")
+#
