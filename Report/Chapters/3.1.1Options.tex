@@ -1,0 +1,39 @@
+\subsection{RESTful Web Services} 
+RESTful web services were needed for creating a service that can evaluate individuals over a network. Simplicity was important for the framework we are
+choosing. Three of the frameworks encountered were WebPy and CherryPy, Django all of them lightweight and commonly used. Other options for a REST framework were Flask and Bottle.
+However CherryPy and Django are the only frameworks that handle POST and GET request correctly, without any problems. In order to fix this issues with WebPy, Flask or Bottle additional
+libraries would of been needed. It was desired to avoid more dependencies because they would just make the project more complex. That meant the choice was between two. The more simple
+choice was CherryPy but that wasn't the only reason why the project was chosen. Another of David White's projects was using a cloud of RaspberryPis which meant this potentially can
+be used as a test for the Darwin framework. Because CherryPy provided support for RaspberryPy's it was the obvious choice.
+\paragraph{}
+\subsection{Genetic Programming Framework}
+Genetic programming frameworks didn't have as many choices as RESTful web services however there was the option of implementing one.  Pyevolve, pystep, pygene and DEAP were 
+my only choices for genetic programming frameworks in python. None of them was minimalistic and simple enough, however implementing my own framework seemed as a much more complicated task
+that can slow down the project and it's final result. So a decision was made, that one of the frameworks was going to be used for the project which meant spending time learning more about
+the features they provide and how to use them correctly. The most common and supported one was
+the DEAP framework. It was a newer one but it had really good documentation, tutorials and examples making it the correct choice. However as a future development option for the project
+remains creating a genetic programming framework related to the project.
+\paragraph{}
+\subsection{Code Inspection and Generation}
+Code inspection and generation was needed in order to achieve simplicity for the user. The idea was with fewer parameters to do a lot which meant a lot of code generation
+and code inspection. For inspecting code the best solution was \textit{inspect} library which provided a way to extract source from function calls. It is a library that comes with python package
+has great documentation, examples and tutorials which proved only positive for the speed of development since not a lot of time was spend learning the inspect library.
+\paragraph{}
+Among one of the problems with using DEAP was it didn't support conversion between indiviudals and python source code or AST ( Abstract Syntax Tree). Representing an individual as raw code or an AST meant that 
+the evaluating web service can be simplified even more. This was an important part of the project however there are a lot of choices but the most correct one was the AST library which
+provides code generation while representing code as a syntax tree. This feature was very compatible with the way individuals are represented in genetic programming and it was more
+robust and safe way of doing code generation rather than using raw string.  This started the idea of an open source contribution to the DEAP framework for generating python source 
+and AST for a DEAP individuals.
+\paragraph{}
+\subsection{XML Files}
+XML files are commonly used for configuring systems. Since the system is working with many parameters starting the code and defining each and every one took a lot of time and made the code look messy.
+XML file was a simple solution to a simple problem. There are many libraries in python used for parsing XML files - expat,minidom,BeautifulSoup,lxml ect. In the case of choosing and XML parser the chosen
+one was the most simple to understand and implement and lxml gave me that impression considering the good documentation it had.
+\paragraph{}
+\subsection{Graphical User Interface}
+Graphical user interface was the next step into project simplification. It's role is to generate XML files for the user with the ease of controlling all the parameters needed.
+For creating GUI in python there are several good choices Tkinter,PyQT,wxPython. In my past I've had experience with Tkinter and I wasn't excited about working with it again. It looked
+much more complex compared to the other two. In sites such as StackOverflow the community was supporting wxPython. An additional benefit to using wxPython was the fact that there were a
+lot of good tools for generating layout. However my previous experience with GUI frameworks like Swing and it's similarities with wxPython, gave me the advantage of understanding wxPython
+quickly and writing a decent GUI in no time. In the end I didn't use any of the layout generating tools like wxGlade, wxDesigner or DialogBlocks because learning to use them was going to
+cost almost the same time as learning wxPython.

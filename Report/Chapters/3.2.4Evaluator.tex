@@ -1,0 +1,8 @@
+The final big component is the Evaluator [reference to class diagram]. It is a CherryPy service that can be ran on any machine running python and
+ has only one method - evaluate. It takes an individual, test arguments in the form of a dictionary and  fitness
+results evaluates the individual comapres with the fitness function and return the result. Initially the indiviual was in a DEAP
+represented form however that meant that in order to evaluate it the same DEAP configuration needed to be set up on the evaluating side as on the client one.
+This was unpractical,slower, it was introducing many dependencies and much harder to set up. The Evaluator needs
+to be easy to set up, easy to modify because it is expected to be ran on multiple machines including RaspberryPis.
+Because of that the individuals was later represented as source code which meant it was able to run on any machine
+that runs python. This way simplicity was achieved for this component by moving most of the overhead work to the client.
