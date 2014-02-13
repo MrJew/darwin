@@ -7,3 +7,4 @@ def runGP(xmlConfig=None,configClass=None):
     c.configure()
     p = Populator(configuration=c)
     p.populate()
+    return p

@@ -2,8 +2,6 @@ __author__ = 'MrJew'
 
 from configuration import Configuration
 from baseCherryPy import BaseCherryPy
-from baseConfig import BaseConfig
-import operator
 import cherrypy
 
 
