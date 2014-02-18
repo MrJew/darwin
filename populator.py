@@ -2,7 +2,7 @@ import random
 import requests
 from deap import gp,tools
 from helper import *
-
+import pygraphviz as pgv
 
 __author__ = 'MrJew'
 
@@ -19,7 +19,7 @@ class Populator:
             self.toolbox = configuration.toolbox
             self.population = self.toolbox.population(n=configuration.pop)
             self.parameters = self.collectFitnessFromTarget()
-            self.hof = tools.HallOfFame(1)
+            self.hof = tools.HallOfFame(self.configuration.hofnum)
 
     def crossover(self,offspring):
         """ Given a generation it mates all the individuals based on the crossover parameter"""
@@ -60,6 +60,7 @@ class Populator:
               "arguments"   : self.parameters,
               }
         try:
+
             r = requests.get(self.configuration.evalUrl+destination,params=args)
             result = float(r.text)
         except:
@@ -82,13 +83,12 @@ class Populator:
         fitnessList = []
         if self.configuration.copyUrl:
             for kwarg in kwargs:
-                r = requests.get(self.configuration.copyUrl,params=kwarg)
-                fitnessList.append([kwarg,float(r.text)])
+                r = self.configuration.configClass.requestHandler(self.configuration.copyUrl,kwarg)
+                fitnessList.append([kwarg,r])
         else:
             for kwarg in kwargs:
                 r = self.configuration.getFitnessFunction()(**kwarg)
                 fitnessList.append([kwarg,float(r)])
-                print fitnessList
 
         return str(fitnessList)
 
@@ -112,6 +112,21 @@ class Populator:
         self.outputIndividuals()
 
     def outputIndividuals(self):
+        inds = []
         for ind in self.hof:
-            print gp.stringify(ind)
-            print ind.fitness
+             inds.append((gp.stringify(ind), ind.fitness))
+        return inds
+
+    def draw(self,expr,fname):
+        nodes, edges, labels = gp.graph(expr)
+
+        g = pgv.AGraph()
+        g.add_nodes_from(nodes)
+        g.add_edges_from(edges)
+        g.layout(prog="dot")
+
+        for i in nodes:
+            n = g.get_node(i)
+            n.attr["label"] = labels[i]
+
+        g.draw(fname)

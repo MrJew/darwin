@@ -1,0 +1,17 @@
+While iterating through design decisions the idea was to make the GUI as common as possible. In many dialogs
+and simple graphical user interfaces a similar layout is encountered - menubar on top, left to right and
+top to bottom reading, bottom right buttons for completing the task see figure[picture of guis]. Because
+of its purpose and the way its used the GUI looks more as a dialogue window - simple pop up that helps 
+generate a file/configuration and its used for a short amount of time. That is has more of the look and feel of
+a dialogue and inspirations and examples for it are taken from similar designs.
+
+As seen in the final design of the GUI the most important parameters - target IP address and client IP address,
+are located at the top left corner. Other parameters text fields are located from left  to right top to bottom
+based on their relevance. That's why bottom left is located the button for generating the XML configuration
+file hence finishing the process.
+
+In the first iteration of the design additional features like adding custom primitives and selecting imports
+for those custom primitives were added as you can see in figure [pic of previous design]. However after discussion with the client it was later
+decided that these features are part of the more advanced functionality of the framework. Being so it meant
+it was unnecessary to implement them in the GUI since they were available in the code where they would be 
+normally reached and modified from a more experienced user.

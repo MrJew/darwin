@@ -11,61 +11,68 @@
 \contentsline {paragraph}{}{vi}
 \contentsline {chapter}{\numberline {2}Context}{vii}
 \contentsline {section}{\numberline {2.1}Background}{vii}
-\contentsline {section}{\numberline {2.2}Requirements}{vii}
-\contentsline {section}{\numberline {2.3}Organization}{vii}
-\contentsline {subsection}{\numberline {2.3.1}Meetings and Minutes}{vii}
-\contentsline {subsection}{\numberline {2.3.2}Agile Development}{vii}
-\contentsline {subsection}{\numberline {2.3.3}User Stories}{vii}
-\contentsline {subsection}{\numberline {2.3.4}Sprints}{vii}
-\contentsline {chapter}{\numberline {3}Design}{viii}
-\contentsline {section}{\numberline {3.1}Multiple Technologies}{viii}
-\contentsline {subsection}{\numberline {3.1.1}RESTful Web Services}{viii}
+\contentsline {paragraph}{}{vii}
+\contentsline {paragraph}{}{vii}
 \contentsline {paragraph}{}{viii}
-\contentsline {subsection}{\numberline {3.1.2}Genetic Programming Framework}{ix}
+\contentsline {section}{\numberline {2.2}Organization}{viii}
+\contentsline {subsection}{\numberline {2.2.1}Meetings and Minutes}{viii}
+\contentsline {paragraph}{}{viii}
+\contentsline {subsection}{\numberline {2.2.2}Requirements}{viii}
+\contentsline {subsection}{\numberline {2.2.3}Agile Development}{ix}
 \contentsline {paragraph}{}{ix}
-\contentsline {subsection}{\numberline {3.1.3}Code Inspection and Generation}{ix}
-\contentsline {paragraph}{}{ix}
-\contentsline {paragraph}{}{ix}
-\contentsline {subsection}{\numberline {3.1.4}XML Files}{ix}
-\contentsline {paragraph}{}{ix}
-\contentsline {subsection}{\numberline {3.1.5}Graphical User Interface}{x}
-\contentsline {section}{\numberline {3.2}Architecture}{x}
-\contentsline {subsection}{\numberline {3.2.1}Overall Design}{x}
-\contentsline {subsection}{\numberline {3.2.2}Client}{xi}
+\contentsline {subsection}{\numberline {2.2.4}User Stories and Sprints}{ix}
+\contentsline {paragraph}{}{xi}
+\contentsline {paragraph}{}{xi}
+\contentsline {paragraph}{}{xi}
+\contentsline {chapter}{\numberline {3}Design}{xii}
+\contentsline {section}{\numberline {3.1}Multiple Technologies}{xii}
+\contentsline {subsection}{\numberline {3.1.1}RESTful Web Services}{xii}
 \contentsline {paragraph}{}{xii}
-\contentsline {paragraph}{}{xii}
-\contentsline {paragraph}{}{xii}
-\contentsline {subsection}{\numberline {3.2.3}Evaluator}{xii}
-\contentsline {section}{\numberline {3.3}GUI Design}{xii}
-\contentsline {subsection}{\numberline {3.3.1}Design Principles}{xii}
-\contentsline {subsection}{\numberline {3.3.2}Purpose of the GUI}{xii}
-\contentsline {subsection}{\numberline {3.3.3}Iterations and Final Design}{xii}
-\contentsline {chapter}{\numberline {4}Implementation}{xiii}
-\contentsline {section}{\numberline {4.1}Technologies}{xiii}
-\contentsline {subsection}{\numberline {4.1.1}DEAP}{xiii}
-\contentsline {subsection}{\numberline {4.1.2}CherryPy}{xiii}
-\contentsline {subsection}{\numberline {4.1.3}Inspect}{xiii}
-\contentsline {subsection}{\numberline {4.1.4}Requests}{xiii}
-\contentsline {subsection}{\numberline {4.1.5}wxPython}{xiii}
-\contentsline {section}{\numberline {4.2}Implementation}{xiii}
-\contentsline {subsection}{\numberline {4.2.1}DEAP Set Up}{xiii}
-\contentsline {subsection}{\numberline {4.2.2}Generation of Individuals}{xiii}
-\contentsline {subsection}{\numberline {4.2.3}Evaluation Over a Network}{xiii}
-\contentsline {subsection}{\numberline {4.2.4}Code Generation}{xiii}
-\contentsline {subsection}{\numberline {4.2.5}GUI}{xiii}
-\contentsline {chapter}{\numberline {5}Evaluation}{xiv}
-\contentsline {section}{\numberline {5.1}Unit Testing}{xiv}
-\contentsline {section}{\numberline {5.2}System Testing}{xiv}
-\contentsline {section}{\numberline {5.3}UI and Usability Testing}{xiv}
-\contentsline {chapter}{\numberline {6}Problems Encountered and Future Development}{xv}
-\contentsline {section}{\numberline {6.1}Problems}{xv}
-\contentsline {subsection}{\numberline {6.1.1}Multiple Technologies Problem}{xv}
-\contentsline {subsection}{\numberline {6.1.2}Metaprogramming}{xv}
-\contentsline {section}{\numberline {6.2}Future Development}{xv}
-\contentsline {subsection}{\numberline {6.2.1}Expand Framework}{xv}
-\contentsline {subsection}{\numberline {6.2.2}Improving Web Services}{xv}
-\contentsline {subsection}{\numberline {6.2.3}Unit Tests as Fitness Functions}{xv}
-\contentsline {subsection}{\numberline {6.2.4}Co-Evolution}{xv}
-\contentsline {chapter}{\numberline {7}Conclusion}{xvi}
-\contentsline {section}{\numberline {7.1}Contribution}{xvi}
-\contentsline {chapter}{\numberline {8}References}{xvii}
+\contentsline {subsection}{\numberline {3.1.2}Genetic Programming Framework}{xiii}
+\contentsline {paragraph}{}{xiii}
+\contentsline {subsection}{\numberline {3.1.3}Code Inspection and Generation}{xiii}
+\contentsline {paragraph}{}{xiii}
+\contentsline {paragraph}{}{xiii}
+\contentsline {subsection}{\numberline {3.1.4}XML Files}{xiii}
+\contentsline {paragraph}{}{xiii}
+\contentsline {subsection}{\numberline {3.1.5}Graphical User Interface}{xiv}
+\contentsline {section}{\numberline {3.2}Architecture}{xiv}
+\contentsline {subsection}{\numberline {3.2.1}Overall Design}{xiv}
+\contentsline {subsection}{\numberline {3.2.2}Client}{xv}
+\contentsline {paragraph}{}{xvi}
+\contentsline {paragraph}{}{xvi}
+\contentsline {paragraph}{}{xvi}
+\contentsline {subsection}{\numberline {3.2.3}Evaluator}{xvi}
+\contentsline {section}{\numberline {3.3}GUI Design}{xvi}
+\contentsline {subsection}{\numberline {3.3.1}Design Principles}{xvi}
+\contentsline {subsection}{\numberline {3.3.2}Purpose of the GUI}{xvi}
+\contentsline {subsection}{\numberline {3.3.3}Iterations and Final Design}{xvi}
+\contentsline {chapter}{\numberline {4}Implementation}{xvii}
+\contentsline {section}{\numberline {4.1}Technologies}{xvii}
+\contentsline {subsection}{\numberline {4.1.1}DEAP}{xvii}
+\contentsline {subsection}{\numberline {4.1.2}CherryPy}{xvii}
+\contentsline {subsection}{\numberline {4.1.3}Inspect}{xvii}
+\contentsline {subsection}{\numberline {4.1.4}Requests}{xvii}
+\contentsline {subsection}{\numberline {4.1.5}wxPython}{xvii}
+\contentsline {section}{\numberline {4.2}Implementation}{xvii}
+\contentsline {subsection}{\numberline {4.2.1}DEAP Set Up}{xvii}
+\contentsline {subsection}{\numberline {4.2.2}Generation of Individuals}{xvii}
+\contentsline {subsection}{\numberline {4.2.3}Evaluation Over a Network}{xvii}
+\contentsline {subsection}{\numberline {4.2.4}Code Generation}{xvii}
+\contentsline {subsection}{\numberline {4.2.5}GUI}{xvii}
+\contentsline {chapter}{\numberline {5}Evaluation}{xviii}
+\contentsline {section}{\numberline {5.1}Unit Testing}{xviii}
+\contentsline {section}{\numberline {5.2}System Testing}{xviii}
+\contentsline {section}{\numberline {5.3}UI and Usability Testing}{xviii}
+\contentsline {chapter}{\numberline {6}Problems Encountered and Future Development}{xix}
+\contentsline {section}{\numberline {6.1}Problems}{xix}
+\contentsline {subsection}{\numberline {6.1.1}Multiple Technologies Problem}{xix}
+\contentsline {subsection}{\numberline {6.1.2}Metaprogramming}{xix}
+\contentsline {section}{\numberline {6.2}Future Development}{xix}
+\contentsline {subsection}{\numberline {6.2.1}Expand Framework}{xix}
+\contentsline {subsection}{\numberline {6.2.2}Improving Web Services}{xix}
+\contentsline {subsection}{\numberline {6.2.3}Unit Tests as Fitness Functions}{xix}
+\contentsline {subsection}{\numberline {6.2.4}Co-Evolution}{xix}
+\contentsline {chapter}{\numberline {7}Conclusion}{xx}
+\contentsline {section}{\numberline {7.1}Contribution}{xx}
+\contentsline {chapter}{\numberline {8}References}{xxi}

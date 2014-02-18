@@ -72,6 +72,49 @@ def generateXML(fname=None,arguments=None,primitives=None,terminals=None,customP
     f.write(s)
     f.close()
 
+def readXML(xmlFile):
+    tree = etree.parse(xmlFile)
+    root = tree.getroot()
+    params = {}
+    terminals=[]
+    imports=[]
+    primitives =[]
+    customPrimitives=[]
+    arguments={}
+
+
+    for child in root:
+        if child.tag == "terminals":
+            terms = root.find(child.tag)
+            for t in terms:
+                terminals.append(float(terms.find(t.tag).text))
+            params["terminals"]=terminals
+        elif child.tag == "imports":
+            imps = root.find(child.tag)
+            for i in imps:
+                imports.append(i.text)
+            params["imports"]=imports
+        elif child.tag == "basicPrimitives":
+            imps = root.find(child.tag)
+            for i in imps:
+                primitives.append(i.text)
+            params["basicPrimitives"]=primitives
+        elif child.tag == "customPrimitives":
+            imps = root.find(child.tag)
+            for i in imps:
+                customPrimitives.append(i.text)
+            params["customPrimitives"]=customPrimitives
+        elif child.tag == "arguments":
+            args = root.find(child.tag)
+            for a in args:
+                if a.get("name") not in arguments:
+                    arguments[a.get("name")]=[]
+                arguments[a.get("name")].append(float(a.text))
+            params["args"]=arguments
+        else:
+            params[child.tag]=child.text
+
+    return params
 
 #arguments = {'x':[1,2,3,4],'y':[1,2,3,4],'z':[1,2,3,4]}
 #primitives = ["add","mul","safeDiv","sub"]

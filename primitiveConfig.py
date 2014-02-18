@@ -4,10 +4,32 @@ import inspect
 import sys
 import operator
 import math
+import requests
 
-class PrimitiveConfig:
+
+
+class Handlers:
+
+    def handler(self,url,params=None):
+        r=None
+        if params:
+            r = requests.get(url,params=params)
+        else:
+            r = requests.get(url)
+        return self.responseHandler(r)
+
+    def requestHandler(self,url,params):
+        return self.handler(url,params)
+
+
+    def responseHandler(self,r):
+        return float(r.text)
+
+
+class PrimitiveConfig(Handlers):
     listOfExcludes = ["listOfExcludes","getSource","getPrimitives","functionArgs","updateExcludes",
-                      "fitnessFunction","numberOfFunctionArgs","getFunctions","basicPrimitives",
+                      "fitnessFunction","numberOfFunctionArgs","getFunctions","basicPrimitives"
+                      ,"requestHandler","responseHandler", "handler",
                       "__doc__","__module__","__init__"]
     basicPrimitives = ["add","mul","sub","safeDiv","sin","cos","sqrt","pow","log"]
 
@@ -102,3 +124,6 @@ class PrimitiveConfig:
 
         result += main
         return result
+
+
+

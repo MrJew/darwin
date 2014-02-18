@@ -1,7 +1,7 @@
 from deap import base,creator,gp,tools
-from lxml import etree
-import StringIO
-from baseConfig import *
+from xmlParser import readXML
+from primitiveConfig import *
+import random
 
 class Configuration:
     """
@@ -37,7 +37,7 @@ class Configuration:
     depthInitialMax = 3
     maxDepthLimit = 17
     logging = True
-    hofnum = None
+    hofnum = 5
     imports = []
     terminals = []
 
@@ -47,7 +47,7 @@ class Configuration:
                   depthInitialMax=None, isMax=None, maxDepthLimit=None, logging=None):
 
         if configClass : self.configClass = configClass
-        else: self.configClass = BaseConfig()
+        else: self.configClass = PrimitiveConfig()
         self.evalUrl = evaluatingService
         self.copyUrl = copyService
         self.testArguments = testArguments
@@ -71,46 +71,7 @@ class Configuration:
     def configXml(self,xmlFile):
         """ Configure the gp framework through an xml file specifying the parameters"""
 
-        tree = etree.parse(xmlFile)
-        root = tree.getroot()
-        params = {}
-        terminals=[]
-        imports=[]
-        primitives =[]
-        customPrimitives=[]
-        arguments={}
-
-
-        for child in root:
-            if child.tag == "terminals":
-                terms = root.find(child.tag)
-                for t in terms:
-                    terminals.append(float(terms.find(t.tag).text))
-                params["terminals"]=terminals
-            elif child.tag == "imports":
-                imps = root.find(child.tag)
-                for i in imps:
-                    imports.append(i.text)
-                params["imports"]=imports
-            elif child.tag == "basicPrimitives":
-                imps = root.find(child.tag)
-                for i in imps:
-                    primitives.append(i.text)
-                params["basicPrimitives"]=primitives
-            elif child.tag == "customPrimitives":
-                imps = root.find(child.tag)
-                for i in imps:
-                    customPrimitives.append(i.text)
-                params["customPrimitives"]=customPrimitives
-            elif child.tag == "arguments":
-                args = root.find(child.tag)
-                for a in args:
-                    if a.get("name") not in arguments:
-                        arguments[a.get("name")]=[]
-                    arguments[a.get("name")].append(float(a.text))
-                params["args"]=arguments
-            else:
-                params[child.tag]=child.text
+        params = readXML(xmlFile)
 
 
         if 'cx'      in params: self.cx = float(params['cx'])
@@ -174,6 +135,10 @@ class Configuration:
         if isinstance( terminal, (float,int,long) ): self.pset.addTerminal(terminal)
         else:
             for i in terminal: self.pset.addTerminal(i)
+
+    def generateXML(self):
+        random.uniform(0.01,1200.0)
+        random.uniform(-1200.0,-0.01)
 
     # Setters for the configurations
 

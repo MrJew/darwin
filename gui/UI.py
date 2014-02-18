@@ -1,7 +1,7 @@
 __author__ = 'mrjew'
 import wx
 import wx.lib.agw.floatspin as fs
-from baseConfig import BaseConfig
+from primitiveConfig import PrimitiveConfig
 from wx.lib.mixins.listctrl import CheckListCtrlMixin, ListCtrlAutoWidthMixin
 import sys
 import csv
@@ -177,7 +177,7 @@ class UI(wx.Frame):
         self.list = CheckListCtrl(rightPanel)
         self.list.InsertColumn(0, 'Primitive', width=150)
 
-        primitives = BaseConfig().basicPrimitives
+        primitives = PrimitiveConfig().basicPrimitives
 
         for i in primitives:
             self.list.InsertStringItem(sys.maxint, i)

@@ -1,5 +1,5 @@
 <config>
-  <mut>0.0</mut>
+  <mut>0.2</mut>
   <arguments>
     <arg name="y" number="0">1</arg>
     <arg name="y" number="1">0</arg>
@@ -17,18 +17,20 @@
     <arg name="z" number="3">-3.3</arg>
     <arg name="z" number="4">11</arg>
   </arguments>
-  <pop>2</pop>
+  <pop>1000</pop>
   <terminals>
     <terminal>1.0</terminal>
   </terminals>
   <cx>0.8</cx>
-  <copyUrl>http://localhost:8080/</copyUrl>
-  <basicPrimitives>
+  <copyUrl>http://localhost:8080</copyUrl>
+  <basicPrimitives> abo
     <primitive>add</primitive>
     <primitive>mul</primitive>
     <primitive>sub</primitive>
     <primitive>safeDiv</primitive>
+    <primitive>sqrt</primitive>
+    <primitive>pow</primitive>
   </basicPrimitives>
-  <evalUrl>http://localhost:8844/</evalUrl>
-  <gen>2</gen>
+  <evalUrl>http://localhost:8844</evalUrl>
+  <gen>1000</gen>
 </config>

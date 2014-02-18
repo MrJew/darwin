@@ -1,0 +1,26 @@
+As mentioned the project is focusing on a user-centric tool. Which meant user perspective on how
+the project should work and look was important. A list of user stories was created for the client
+explaining the way he and any potential user was going to interact with the framework. The list
+of stories was later iterated until there were set of user stories defining each of the sprints
+as seen in figure [ref]
+\paragraph{}
+\textbf{Sprint one - } was focussed on creating an evaluating web service separated from the client.
+That was done with the idea that with later development in the project this will be used for
+improving a web service using genetic programming. However this idea was left behind but the functional
+decision gave the potential ability to evaluate multiple individuals at the same time using multiple
+evaluating services so it was a good base for the project. First sprint included configuration of 
+basic genetic programming parameters and using a pre-defined primitive set or a user defined one.
+However later on both were implemented. Generating python code out of the best solution was another 
+feature for sprint one which was complete in order to create the base for a framework. Since
+DEAP was already the choice for the genetic programming framework integration with it was a requirement as well.
+\paragraph{}
+\textbf{Sprint two - } involved using a URL address to set up an existing web service as an \textit{"Oracle"}
+which meant using them as a fitness function to the currently evolving web service. Because the user story was the user interacting with
+the system only through a single URL address that meant a lot of automated configuration needed to be done to create
+a simple easy to use framework. Unit tests had to be
+completed to make sure development was on the right track. 
+\paragraph{}
+\textbf{Sprint two - } aimed for creating a more interactive and easy way to configure the system. Initially that
+meant only creating an XML file parsing all the configuration parameters in the framework. However a GUI for generating
+the XML file was added to ease the process. The purpose of the GUI was to ease the configuration without removing the
+previously existing methods hence keeping the advanced functionality of the framework.
