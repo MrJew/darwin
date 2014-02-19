@@ -1,7 +1,27 @@
-darwin
-======
-
+Darwin
 =================================================================================================
+                                                                                
+                                                                       . :.           MMMO          
+                                                                .M,    MMMM.         .MMMM          
+                                                                   .M OMMMM.         MMMMN          
+                                                       .NMMN,         MMMN         .MMMM            
+                                            :MM:       MMMMM.        MMMM :MN.     .MMMMM           
+                                            MMMM.     MMMMM          MMMMMN N,M    .MMMMM.          
+                                         ,MMM:,      .MMMMM          MMMMMMM.      MMMMMM,          
+                                         MMMMN.       MMMMM         .MMMMMMN       MMMMMMMMMN,      
+                                        DMMMMM.      MMMMMM         .MMMMM..       MMMMMM    M      
+                                MMMM,  OMMMMMMMM,     MMMM:M.       NMMMMM.        MMMMM.           
+                            .MMMMMMMM  MMMMMM   DM.  MMMMM .M.      .MMMMM        .MMMMMM.          
+                           NMMMMMM      MMMM,   .N   ~MMM.  .M       :MMMM.        MMMNMMM.         
+                         ,MMMMMMM.     :MMMMM?.       MMMM .MN       MMMMM:        ,MM  MMM         
+                        OMMMMMMMM       NMM.MMM.     ,MMMMM          NMMNMM        MMD   MMM        
+                        MMMMMMMMMM       MM .MMM     NMN .MD        MMM ~MM.      MMM.   .MM.       
+                          MMMMM,NM       NM  MM.    MMM   MM.      MM, .MMM     .MM       MMM       
+                        :MMMOMM..M.  ~MMMMN. MM.  .MM,    MM.    MM..   .MM     ,M        .MM.      
+                      ,MMD,  MM  .N  MN      MM   .M.     ,M.   ,MM      MM     M8          MMMNM   
+                      ~M.   .MMM.ND  MM.     MMMM  MM.     MMMM. .MM     NMMNM. ,MMD,       ,M..    
+ 
+
 Basic Example
 =================================================================================================
 In the /sample folder are located the examples for the Client, evalator and the cloning instance. 
@@ -30,7 +50,7 @@ For example:
 
 Where "config.xml" is the location of the configuration XML you want to use
 
-=================================================================================================
+
 Advanced Example
 =================================================================================================
 In more advance cases we would want to configure
