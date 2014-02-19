@@ -316,7 +316,11 @@ class UI(wx.Frame):
             parameters["arguments"] = args
 
         generateXML(**parameters)
+        self.success(parameters["fname"])
 
+    def success(self,fname):
+        wx.MessageBox('XML configuration file:'+ fname +' generated  !', 'Generation Successful', wx.OK | wx.ICON_INFORMATION)
+        return
 
 
 def main():
