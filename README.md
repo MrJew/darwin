@@ -41,7 +41,7 @@ If you want to run only the evaluator and use your own fitness function
 
 For example:
 
-    class Config(BaseConfig):
+    class Config(PrimitiveConfig):
 
         def fitnessFunction(self,x,y,z):
             return x + y + z/3
@@ -53,8 +53,25 @@ Where "config.xml" is the location of the configuration XML you want to use
 
 Advanced Example
 =================================================================================================
-In more advance cases we would want to configure
+Custom Primitives:
+In more advance cases you would want to configure the framework ourselves. You might want to activate
+special features or set certain parameters. For example primitive sets might not be good enough
+and you need additional one. What you need to do is simply extend PrimitiveConfig.
 
+For example:
+
+    class Config(PrimitiveConfig):
+    
+        def myComplextMath(self,x,y,z):
+            return x + y - z*2 - 1
+
+        def specialMathFunction(self,a,b,c):
+            return a*b*(c-1)
+            
+    runGP(configClass=Config(),xmlconfig="config.xml")
+    
+The way PrimitiveConfig works is except the methods [name of used methods] every other method name is
+generating a primitive set the framework is using. 
 =================================================================================================
 Tests
 ===============================================================================================
