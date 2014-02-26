@@ -9,12 +9,17 @@ class BaseCherryPy:
     def evaluateCopy(self,individual,arguments):
         arguments = eval(arguments)
         diff=0
-        print individual
         for i in arguments:
             sys.argv = i[0]
             with stdoutIO() as s:
                 exec(individual) in {}
-            diff += (float(s.getvalue()) - i[1])**2
+            try:
+                res = float(s.getvalue())
+                diff += (res - i[1])**2
+            except:
+
+                diff = sys.float_info.max
+
         return str(diff)
 
     evaluateCopy.exposed=True

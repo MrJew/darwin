@@ -3,6 +3,7 @@ import requests
 from deap import gp,tools
 from helper import *
 import pygraphviz as pgv
+import time
 
 __author__ = 'MrJew'
 
@@ -25,16 +26,15 @@ class Populator:
         """ Given a generation it mates all the individuals based on the crossover parameter"""
         for child1, child2 in zip(offspring[::2], offspring[1::2]):
             if random.random() < self.configuration.cx:
-                self.toolbox.mate(child1, child2)
-                del child1.fitness.values
-                del child2.fitness.values
+                children = self.toolbox.mate(child1, child2)
+                offspring.extend(children)
 
     def mutation(self,offspring):
         """ Given a generation it mutates the individuals based on the mutation parameter"""
         for mutant in offspring:
             if random.random() < self.configuration.mut:
-                self.toolbox.mutate(mutant)
-                del mutant.fitness.values
+                mutants = self.toolbox.mutate(mutant)
+                offspring.extend(mutants)
 
     def nonEvaluated(self,offspring):
         """ Crete a list of all nonevaluated individuals in the population """
@@ -53,6 +53,7 @@ class Populator:
 
 
         print individual
+        print individual.height
         # check which service is send TODO merge
         destination = "/evaluateCopy"
 
@@ -60,12 +61,12 @@ class Populator:
               "arguments"   : self.parameters,
               }
         try:
-
             r = requests.get(self.configuration.evalUrl+destination,params=args)
             result = float(r.text)
         except:
-            result=500
-            self.outputIndividuals()
+            time.sleep(5)
+            r = requests.get(self.configuration.evalUrl+destination,params=args)
+            result = float(r.text)
 
         print result
         return result,

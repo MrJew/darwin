@@ -49,10 +49,16 @@ class PrimitiveConfig(Handlers):
             return operator.div(a,b)
 
     def sin(self,a):
-        return math.sin(a)
+        try:
+            return math.sin(a)
+        except:
+            return 0
 
     def cos(self,a):
-        return math.cos(a)
+        try:
+            return math.cos(a)
+        except:
+            return 0
 
     def sqrt(self,a):
         if a>0:
@@ -61,10 +67,16 @@ class PrimitiveConfig(Handlers):
             return 0
 
     def pow(self,a,b):
-        return math.pow(a,b)
+        try:
+            return math.pow(a,b)
+        except:
+            return 0
 
     def log(self,a):
-        return math.log(a)
+        try:
+            return math.log(a)
+        except:
+            return 0
 
     def updateExcludes(self,chosenPrimitives):
         self.listOfExcludes.extend([ p for p in self.basicPrimitives if p not in chosenPrimitives ])

@@ -1,0 +1,182 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<queryresult success='true'
+    error='false'
+    numpods='7'
+    datatypes='Math,MathematicalFunctionIdentity'
+    timedout=''
+    timedoutpods=''
+    timing='1.579'
+    parsetiming='0.187'
+    parsetimedout='false'
+    recalculate=''
+    id='MSPa36882001df1ice09574b00006a30c95egid9g165'
+    host='http://www4c.wolframalpha.com'
+    server='36'
+    related='http://www4c.wolframalpha.com/api/v2/relatedQueries.jsp?id=MSPa36892001df1ice09574b00003eh4bb0f6dfc9c1d&amp;s=36'
+    version='2.6'>
+ <pod title='Input'
+     scanner='Identity'
+     id='Input'
+     position='100'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <plaintext>pi×1.^2</plaintext>
+  </subpod>
+ </pod>
+ <pod title='Result'
+     scanner='Numeric'
+     id='Result'
+     position='200'
+     error='false'
+     numsubpods='1'
+     primary='true'>
+  <subpod title=''>
+   <plaintext>3.14159...</plaintext>
+  </subpod>
+  <states count='1'>
+   <state name='More digits'
+       input='Result__More digits' />
+  </states>
+ </pod>
+ <pod title='Conversion from radians to degrees'
+     scanner='Numeric'
+     id='ConversionFromRadiansToDegrees'
+     position='300'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <plaintext>180°</plaintext>
+  </subpod>
+ </pod>
+ <pod title='Number line'
+     scanner='NumberLine'
+     id='NumberLine'
+     position='400'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <plaintext></plaintext>
+  </subpod>
+ </pod>
+ <pod title='Alternative representations'
+     scanner='MathematicalFunctionData'
+     id='AlternativeRepresentations:MathematicalFunctionIdentityData'
+     position='500'
+     error='false'
+     numsubpods='3'>
+  <subpod title=''>
+   <plaintext>pi 1.^2 = 180 ° 1.^2</plaintext>
+  </subpod>
+  <subpod title=''>
+   <plaintext>pi 1.^2 = -i (log(-1) 1.^2)</plaintext>
+  </subpod>
+  <subpod title=''>
+   <plaintext>pi 1.^2 = cos^(-1)(-1) 1.^2</plaintext>
+  </subpod>
+  <states count='1'>
+   <state name='More'
+       input='AlternativeRepresentations:MathematicalFunctionIdentityData__More' />
+  </states>
+  <infos count='4'>
+   <info text='log(x) is the natural logarithm'>
+    <link url='http://reference.wolfram.com/mathematica/ref/Log.html'
+        text='Documentation'
+        title='Mathematica' />
+    <link url='http://functions.wolfram.com/ElementaryFunctions/Log'
+        text='Properties'
+        title='Wolfram Functions Site' />
+    <link url='http://mathworld.wolfram.com/NaturalLogarithm.html'
+        text='Definition'
+        title='MathWorld' />
+   </info>
+   <info text='i is the imaginary unit'>
+    <link url='http://reference.wolfram.com/mathematica/ref/I.html'
+        text='Documentation'
+        title='Documentation' />
+    <link url='http://mathworld.wolfram.com/i.html'
+        text='Definition'
+        title='MathWorld' />
+   </info>
+   <info text='cos^(-1)(x) is the inverse cosine function'>
+    <link url='http://reference.wolfram.com/mathematica/ref/ArcCos.html'
+        text='Documentation'
+        title='Mathematica' />
+    <link url='http://functions.wolfram.com/ElementaryFunctions/ArcCos'
+        text='Properties'
+        title='Wolfram Functions Site' />
+    <link url='http://mathworld.wolfram.com/InverseCosine.html'
+        text='Definition'
+        title='MathWorld' />
+   </info>
+   <info>
+    <link url='http://functions.wolfram.com/Constants/Pi/27/ShowAll.html'
+        text='More information' />
+   </info>
+  </infos>
+ </pod>
+ <pod title='Series representations'
+     scanner='MathematicalFunctionData'
+     id='SeriesRepresentations:MathematicalFunctionIdentityData'
+     position='600'
+     error='false'
+     numsubpods='3'>
+  <subpod title=''>
+   <plaintext>pi 1.^2 = 4. sum_(k=0)^infinity (-1)^k/(1+2 k)</plaintext>
+  </subpod>
+  <subpod title=''>
+   <plaintext>pi 1.^2 = -2.+2. sum_(k=1)^infinity 2^k/(binomial(2 k, k))</plaintext>
+  </subpod>
+  <subpod title=''>
+   <plaintext>pi 1.^2 = sum_(k=0)^infinity (2^(-k) (-6+50 k))/(binomial(3 k, k))</plaintext>
+  </subpod>
+  <states count='1'>
+   <state name='More'
+       input='SeriesRepresentations:MathematicalFunctionIdentityData__More' />
+  </states>
+  <infos count='2'>
+   <info text='(n
+m) is the binomial coefficient'>
+    <link url='http://reference.wolfram.com/mathematica/ref/Binomial.html'
+        text='Documentation'
+        title='Mathematica' />
+    <link url='http://functions.wolfram.com/GammaBetaErf/Binomial'
+        text='Properties'
+        title='Wolfram Functions Site' />
+    <link url='http://mathworld.wolfram.com/BinomialCoefficient.html'
+        text='Definition'
+        title='MathWorld' />
+   </info>
+   <info>
+    <link url='http://functions.wolfram.com/Constants/Pi/06/ShowAll.html'
+        text='More information' />
+   </info>
+  </infos>
+ </pod>
+ <pod title='Integral representations'
+     scanner='MathematicalFunctionData'
+     id='IntegralRepresentations:MathematicalFunctionIdentityData'
+     position='700'
+     error='false'
+     numsubpods='3'>
+  <subpod title=''>
+   <plaintext>pi 1.^2 = 2. integral_0^infinity 1/(1+t^2) dt</plaintext>
+  </subpod>
+  <subpod title=''>
+   <plaintext>pi 1.^2 = 4. integral_0^1 sqrt(1-t^2) dt</plaintext>
+  </subpod>
+  <subpod title=''>
+   <plaintext>pi 1.^2 = 2. integral_0^infinity (sin(t))/t dt</plaintext>
+  </subpod>
+  <states count='1'>
+   <state name='More'
+       input='IntegralRepresentations:MathematicalFunctionIdentityData__More' />
+  </states>
+  <infos count='1'>
+   <info>
+    <link url='http://functions.wolfram.com/Constants/Pi/07/ShowAll.html'
+        text='More information' />
+   </info>
+  </infos>
+ </pod>
+</queryresult>
