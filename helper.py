@@ -2,6 +2,7 @@ __author__ = 'MrJew'
 import sys
 import StringIO
 import contextlib
+import inspect
 
 def listTokwags(dicOfLists):
     newArgs=[]
@@ -24,12 +25,98 @@ def formatCode(method):
 
     return result[:-1]
 
+def formatLines(code):
+    lines = code.split('\n')
+    formated = []
+    for line in lines:
+        if line!='':
+            formated.append("    "+line)
+        else:
+            formated.append(line)
+    result = '\n'.join(formated)
+    return result
+
 def getSignature(arguments):
     """takes dictionary and creates a function signature based on the keys"""
     result=""
     for arg in arguments.keys():
         result+=arg+","
     return result[:-1]
+
+def individualForMethods(individual,config):
+    f = dir(config)
+    for i in f:
+        old = i+"("
+        new = "self."+i+"("
+        individual=individual.replace(old,new)
+    return individual
+
+def generateService(imports,arguments,individual,config):
+    result = "from baseCherryPy import BaseCherryPy\n"
+    if len(imports)==0:
+        imports = ['cherrypy']
+    else:
+        imports.append('cherrypy')
+    result += generateImports(imports)
+
+    result += "########################### CONFIG ##############################\n"
+    result += "cherrypy.config.update({'server.socket_host': '',	\n"
+    result += "                    'server.socket_port': 8844,})				\n"
+    result += "#################################################################\n\n"
+    result += "class ClonedWebService(BaseCherryPy):\n\n"
+    result += formatLines(generateFunctions(config,True))
+    result += formatLines(generateMain(arguments,individualForMethods(individual,config),True))
+    result += "    def index(self,"+arguments+"):\n"
+    result += "        return self.main("+arguments+")\n"
+    result += "    index.exposed = True\n\n"
+    result += "cherrypy.quickstart(ClonedWebService())"
+    f = open("../clonedwebservice.py","w")
+    f.write(result)
+    return result
+
+
+def generateImports(imports):
+    result=""
+    result+="import sys\n"
+    result+="import operator\n"
+    result+="import math\n"
+    for i in imports:
+        result +="import "+i+"\n"
+    result+="\n"
+    return result
+
+def generateFunctions(config,service):
+    result = ''
+    print config
+    for method in config.getPrimitives():
+
+        code = formatCode(inspect.getsource(getattr(config,method)))
+        code = code.split("\n")
+        args=''
+        for arg in config.functionArgs(method):
+            args=args+arg+','
+        args=args[:-1]
+        if not service:
+            code[0] = "def "+method+"("+args+"):"
+        else:
+            code[0] = "def "+method+"(self,"+args+"):"
+
+
+        for line in code:
+            result += line +"\n"
+    return result
+
+def generateMain(arguments,individual,service):
+    if not service:
+        main = "def main("+arguments+"):\n"
+    else:
+        main = "def main(self,"+arguments+"):\n"
+    for x in arguments.split(','):
+        main += "    "+x+" = "+"float("+x+")\n"
+    main +="    ind = "+individual+"\n"
+    main +="    return ind("+arguments+")\n\n"
+
+    return main
 
 class Proxy(object):
 

@@ -142,8 +142,8 @@ class Configuration:
 
     # Setters for the configurations
 
-    def setCopyService(self, copyService):
-        self.copyUrl = copyService
+    def setTargetService(self, targetService):
+        self.copyUrl = targetService
 
     def setEvaluatingService(self, evaluatingService):
         self.evalUrl = evaluatingService

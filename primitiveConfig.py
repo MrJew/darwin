@@ -11,14 +11,15 @@ import requests
 class Handlers:
 
     def handler(self,url,params=None):
-        r=None
         if params:
             r = requests.get(url,params=params)
         else:
             r = requests.get(url)
+        print r.text
         return self.responseHandler(r)
 
     def requestHandler(self,url,params):
+
         return self.handler(url,params)
 
 
@@ -103,38 +104,10 @@ class PrimitiveConfig(Handlers):
         return args
 
     def getSource(self, imports,individual,arguments):
-        result=""
-        result+="import sys\n"
-        result+="import operator\n"
-        result+="import math\n"
-        for i in imports:
-            result +="import "+i+"\n"
-        result+="\n"
-
-        # getting the source and removing the self arg
-        for method in self.getPrimitives():
-
-            code = formatCode(inspect.getsource(getattr(self,method)))
-            code = code.split("\n")
-            args=''
-            for arg in self.functionArgs(method):
-                args=args+arg+','
-            args=args[:-1]
-            code[0] = "def "+method+"("+args+"):"
-
-            for line in code:
-                result += line +"\n"
-
-        #add lambda
-        main = "def main("+arguments+"):\n"
-        for x in arguments.split(','):
-            main += "    "+x+" = "+"float("+x+")\n"
-
-        main +="    ind = "+individual+"\n"
-        main +="    return ind("+arguments+")\n\n"
-        main += "print main(**sys.argv)\n"
-
-        result += main
+        result = generateImports(imports)
+        result+= generateFunctions(self,False)
+        result += generateMain(arguments,individual,False)
+        result += "print main(**sys.argv)\n"
         return result
 
 
