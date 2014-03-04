@@ -1,0 +1,17 @@
+\textbf{Expand symbolic regression} - throughout the project symbolic regression was 
+used as a proof of concept so the framework functionality can be showed. However non mathematical
+web services are harder to implement using the framework and this can be improved so cloning can be
+more automated. This can be done by adding a better method for overriding at the evaluating web service
+and tweaking the basic primitives sets by adding primitives for control flows.
+\paragraph{}
+\textbf{AST for code generation} - currently all the code that is generated is in string form and through
+unit tests it was proved that it's working well however using string manipulation rather then manipulating ASTs
+is not as robust. A good re-factoring plan is to do all the code generation with ASTs and keep generation from
+strings as little as possible. This would also help for creating the base for an open source contribution to
+the DEAP framework that adds the functionality for individuals to be converted to ASTs and/or executable python code.
+\paragraph{}
+\textbf{Asynchronous requests} - among the initial requirements of the project was using a cloud of evaluating
+web services to evaluate individuals over the web hence improving the speed especially for more complex
+individuals. However that idea is a small project on it's own and it was going to bring a lot of complexity to the project.
+Since the core of \textit{Darwin} is completed it's a solid place to start from however for dealing with threads
+and asynchronous requests python is not the best language to handle the issues, implementing it in C would be much better

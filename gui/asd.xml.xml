@@ -1,0 +1,6 @@
+<config>
+  <mut>0.2</mut>
+  <pop>1000</pop>
+  <cx>0.8</cx>
+  <gen>1000</gen>
+</config>

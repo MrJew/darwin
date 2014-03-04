@@ -1,0 +1,33 @@
+By separating the framework into several base components it was easier to split each of the components into
+it's core functions and apply unit tests to verify their correctness. However due to the complexity and
+dependencies in the framework test writing was complicated. Many of the functions depended either on 
+the DEAP toolbox or on the primitive set which was responsible for generating DEAP individuals. They couldn't
+be reproduced manually for the tests, so multiple components had to be ran first in order to verify the unit tests.
+Since DEAP was an external framework with a stable release it was assumed that it is functioning correctly so no 
+unit tests were ran on it specifically however components using it were extensively tested. Each of the components
+had testing aims however not all functions were covered since their complexity or dependency was too high, thats why
+they were left for system testing later on. The strategy for unit testing looked like this:
+
+\begin{enumerate}
+  \item Unit tests on each of PrimitiveConfig's methods
+  \begin{enumerate}
+	\item Test pre-set primitives
+	\item Test code generation
+	\item Test utility functions
+  \end{enumerate}  
+  \item Test all of Populator's methods without the configuration methods or the more complicated ones which would be part of the system testing.
+  \begin{enumerate}
+	\item Test methods related to individual manipulation
+	\item Test code generation
+	\item Test fitness gathering functions 
+  \end{enumerate}  
+  \item Handle all the functions in the helper module excluding Proxy class that is going to be aprt of the system testing.
+  \begin{enumerate}
+	\item Test utility functions
+	\item Test code generation
+  \end{enumerate} 
+\end{enumerate}
+
+Through the unit tests many errors in the code generation functions were found so they had to be re factored. The imports used for the custom primitive set
+weren't working properly so they had to be fixed. After the unit tests were created initially they were used for verification of code correctness after
+a change in the code. If the unit test didn't work that meant there was an error in the code.

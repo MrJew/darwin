@@ -6,26 +6,20 @@
     <arg name="r" number="2">1.5</arg>
     <arg name="r" number="3">5</arg>
     <arg name="r" number="4">15</arg>
-    <arg name="r" number="5">-13.4</arg>
+    <arg name="r" number="5">13.4</arg>
+    <arg name="r" number="6">20.1</arg>
+    <arg name="r" number="7">132.2</arg>
   </arguments>
-  <pop>1000</pop>
+  <pop>300</pop>
   <terminals>
     <terminal>3.14</terminal>
-    <terminal>1.0</terminal>
-    <terminal>-1.0</terminal>
   </terminals>
   <cx>0.8</cx>
-  <copyUrl>http://localhost:8811</copyUrl>
+  <copyUrl>http://api.wolframalpha.com/v2/query</copyUrl>
   <basicPrimitives>
-    <primitive>add</primitive>
     <primitive>mul</primitive>
-    <primitive>sub</primitive>
-    <primitive>safeDiv</primitive>
-    <primitive>sin</primitive>
-    <primitive>cos</primitive>
-    <primitive>sqrt</primitive>
     <primitive>pow</primitive>
   </basicPrimitives>
   <evalUrl>http://localhost:8844</evalUrl>
-  <gen>1000</gen>
+  <gen>300</gen>
 </config>

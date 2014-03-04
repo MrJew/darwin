@@ -1,0 +1,18 @@
+There were many dependencies in the framework, which made testing a very difficult task. So instead of spending
+a lot of time trying to write complicated unit tests for each function/method in the code it was
+decided it's easier to do system testing. In the case of methods like \textit{evaluate} where individuals were send to the evaluating
+web service unit tests weren't an option because in order to test them individuals had to be generated manually. Generating
+individuals was easy but generating the same ones every time so the test data can be robust was a problem. That's why after
+other framework functionalities were verified system testing was done to prove the correctness of the more complex components.
+\paragraph{}
+For system testing the goal was to use a generated web service for cloning and a real world one. The first step of the system
+testing was easy and simple enough. Testing proved successful and useful results were pulled out of it. For example a bug was
+detected in which DEAP individuals were generated with depth above 90. This meant that the python stack was breaking and couldn't
+evaluate the individual properly. The bug was fixed by modifying the way DEAP's decorator methods were used in the individual
+generation. This helped clear a major issue and second stage of system testing could being. In the second stage Wolfram Alpha[ref] 
+was used as an external web service targeted for cloning. The first issues was the way Wolfram Alpha was receiving parameters and
+the responses in XML format. Since the framework didn't have functionality to handle the issue system testing was stopped and development
+over request and response handlers was started. After completion of the tasks system testing was initiated again. Framework passed through
+first and second stage of system testing. Second stage was tested with Wolfram Alpha. The framework succeeded to generate a web service that had the same functionality
+as the expression used as input for Wolfram Alpha. The mathematical formula used was measuring the face of a circle. It was a formula
+that was simple enough so cloning time can be short but complex enough to show the frameworks functionality.

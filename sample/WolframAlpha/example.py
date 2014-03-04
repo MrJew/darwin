@@ -10,8 +10,11 @@ class Config(PrimitiveConfig):
     def requestHandler(self,url,params):
         print params
         apid= "X63LWT-U7E9YX8R2K"
-        main = "http://api.wolframalpha.com/v2/query?appid="+apid+"&input=pi*("+str(params['r'])+"%5E2)&format=plaintext"
-        return self.handler(main)
+        formatw = "plaintext"
+        expression="pi*("+str(params['r'])+"%5E2)"
+        arguments = {'format':formatw,'input':expression,'appid':apid}
+        #main = "?appid="+apid+"&input=pi*("+str(params['r'])+"%5E2)&format=plaintext"
+        return self.handler(url,params=arguments)
 
     def responseHandler(self,r):
         r.encoding = 'ASCII'
@@ -31,7 +34,9 @@ class Config(PrimitiveConfig):
 
 
 configClass = Config()
-c = Configuration(configClass=configClass,configXml="config.xml")
+c = Configuration(configClass=configClass,configXml="wolframalpha.xml")
 c.configure()
 p = Populator(configuration=c)
 p.populate()
+p.generateWebService(p.hof[0])
+print p.hof

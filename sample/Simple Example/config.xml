@@ -1,0 +1,31 @@
+<config>
+  <mut>0.2</mut>
+  <arguments>
+    <arg name="y" number="0">1</arg>
+    <arg name="y" number="1">0</arg>
+    <arg name="y" number="2">3.5</arg>
+    <arg name="y" number="3">-3.3</arg>
+    <arg name="y" number="4">11</arg>
+    <arg name="x" number="0">1</arg>
+    <arg name="x" number="1">0</arg>
+    <arg name="x" number="2">3.5</arg>
+    <arg name="x" number="3">-3.3</arg>
+    <arg name="x" number="4">11</arg>
+    <arg name="z" number="0">1</arg>
+    <arg name="z" number="1">0</arg>
+    <arg name="z" number="2">3.5</arg>
+    <arg name="z" number="3">-3.3</arg>
+    <arg name="z" number="4">11</arg>
+  </arguments>
+  <pop>100</pop>
+  <terminals>
+    <terminal>1.0</terminal>
+  </terminals>
+  <cx>0.8</cx>
+  <copyUrl>http://localhost:8080</copyUrl>
+  <basicPrimitives>
+    <primitive>add</primitive>
+  </basicPrimitives>
+  <evalUrl>http://localhost:8844</evalUrl>
+  <gen>100</gen>
+</config>
