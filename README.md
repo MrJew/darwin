@@ -24,7 +24,7 @@ Darwin
 
 Darwin is a genetic programming framework for clonning web services. It aims to give the user only the
 necessary functionality for reversing the functionality of a web service while automating the rest of 
-the process. It is usins the DEAP framework for genetic programming so some of the configurations are
+the process. It is using the DEAP framework for genetic programming so some of the configurations are
 simmilar. Darwin focuses on simplicity so it provides a GUI for generating the configuration file needed for the framework. In the following tutorial you will be explained how to use the framework, bot basic and advanced
 examples are provided which are located in the project folder.
 
