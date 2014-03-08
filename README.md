@@ -22,9 +22,27 @@ Darwin
                       ~M.   .MMM.ND  MM.     MMMM  MM.     MMMM. .MM     NMMNM. ,MMD,       ,M..    
  
 
+Darwin is a genetic programming framework for clonning web services. It aims to give the user only the
+necessary functionality for reversing the functionality of a web service while automating the rest of 
+the process. It is usins the DEAP framework for genetic programming so some of the configurations are
+simmilar. Darwin focuses on simplicity so it provides a GUI for generating the configuration file needed for the framework. In the following tutorial you will be explained how to use the framework, bot basic and advanced
+examples are provided which are located in the project folder.
+
+Dependencies
+=================================================================================================
+Packages required for the system to run.
+
+DEAP
+requests
+CherryPy
+pygraphvz
+inspect
+wxpython
+
 Basic Example
 =================================================================================================
-In the /sample folder are located the examples for the Client, evalator and the cloning instance. 
+In the /examples folder are located the examples for the framework. To demonstrate the basic functionality
+we will use the files in /Simple Example:
 
 If you want to try the cloning example:
 
@@ -32,12 +50,22 @@ If you want to try the cloning example:
 2. Run the service we are clonning - dummyinstance.py 
 3. Run the Client - rungp.py *needs to be ran last*.
 
-If you want to run only the evaluator and use your own fitness function
+What we get is the best individual and at clonedwebservice.py . The web service generated based on the primitive set.
 
-1. In rungp.py import baseConfig
+Let's try this. 
+
+1. In rungp.py import primitiveConfig
 2. create a class that extends PrimitiveConfig
-3. write a method with the name "fitnessFunction(self, args...) and give it a return statement
-4. call configuration parsing as parameter the newly created config class and your xml config file (use the template)
+3. write a method with the name "targetFunction(self, args...) and give it a return statement. The framework will automatically assign the arguments to the method based on the arguments given from the .csv file names "args.csv".
+Darwin will later use the target function to calculate the fitness.
+4. After the function is created we need to provide an XNL file configuration file. Run the GUI located in gui folder there you can choose among multiple configuration options. Since we want to use a targetFunction() rather than a URL address we leave Target URL field empty. Then you'll need to choose the primitives from the checkbox to the left. Primitives are the functions the framework is going to use in order to clone your expression. In this case we know the expression so we should use primitives that are going to be used in the expression. However normally we will need to assume what the primitives can be. In the arguments field a path to the .csv file needs to be specified where the test arguments are defined the format looks like this:
+
+    x,1.0,2,3.1,-4
+    y,8.3,-22,3.1,-4
+    z,2.0,1,-8.1,-4
+    
+In the end the Terminals are defined which are the constants that you want to be used in your evaluation for example if the targetFunction is measuring the size of a circle pi would be required as a terminal. Click "Generate" to save the XML file in a location of your choice
+5. Call configuration parsing as parameter the newly created config class and your XML config file.
 
 For example:
 
@@ -46,32 +74,49 @@ For example:
         def fitnessFunction(self,x,y,z):
             return x + y + z/3
 
-    c = Configuration(configClass=Config(),configXml="config.xml")
+    runGP(configClass=Config(),configXml="config.xml")
+
+Where "config.xml" is the location of the configuration XML you want to use.
+
+6.There are two ways to configure the framework, one is through the XML file as shown above and the other one is through the code with expressions. What runGP does is
+
+    def runGP(xmlConfig=None,configClass=None):
+    c = Configuration(configClass=configClass,configXml="config.xml")
     c.configure()
     p = Populator(configuration=c)
     p.populate()
-
-Where "config.xml" is the location of the configuration XML you want to use.
-There are two ways to configure the framework through the code  with expressions
-like
+    return p
     
-    c = Configuration()
+However this does not give us the opportunity to dinamically configure the framework. To do that we need to work with the configuration and population class directly like this as shown below:
+
+    c = Configuration(configXml="config.xml")
     c.setTargetService("http://localhost:8080") # if you run dummyInstance that's the url to access it
     c.setEvaluatingService("http://localhost:8844") # if you run cherryInstance that's the url to access it
     c.pop = 1000 # define the population
     c.gen = 1000 # define the generations
     
-Or the other option is to use the GUI to generate an XML file or ofcourse generate it yourself. Try running
-the GUI by starting UI.py. Try generating an XML file.
+This code will set the evaluating service which mean it will not run your targetFunction as a fitness but rather what the web service located at "http://localhost:8844" returns. This web service can be ran through dummyInstance.py . You can try applying the same expression you used in the targetFunction in the service.
+
+    class CopyService():
+
+    def index(self,x,y,z):
+        x,y,z = float(x),float(y),float(z)
+        r = x+y+z
+        return str(r)
+
+    index.exposed = True
     
+Simply substitute "r" with the expression of your choice.
+
+Congradulations you just used Darwin framework to clone a web service.
 
 
 Advanced Example
 =================================================================================================
 Custom Primitives:
-In more advance cases you would want to configure the framework ourselves. You might want to activate
-special features or set certain parameters. For example primitive sets might not be good enough
-and you need additional one. What you need to do is simply extend PrimitiveConfig.
+In more advance cases you would want to configure the framework yourself. You might want to activate
+special features or set certain parameters. For example the baseic set of primitives might not be good enough
+and you need additional ones. What you need to do is simply extend PrimitiveConfig.
 
 For example:
 
@@ -89,10 +134,11 @@ For example:
     p.populate()
     
 The way PrimitiveConfig works is except the methods ["listOfExcludes","getSource","getPrimitives","functionArgs","updateExcludes",
-                      "fitnessFunction","numberOfFunctionArgs","getFunctions","basicPrimitives"
+                      "targetFunction","numberOfFunctionArgs","getFunctions","basicPrimitives"
                       ,"requestHandler","responseHandler", "handler",]
 every other method name is generating a primitive for the framework to use.
-Update the basic example to use primitive sets that you've created.
+Update the basic example to use primitive sets that you've created. If you've chosen an expression
+that can use those primitives you will see them in the final individual.
 
 Clone Wolfram Alfa Example
 =================================================================================================
