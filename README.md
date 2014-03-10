@@ -32,12 +32,12 @@ Dependencies
 =================================================================================================
 Packages required for the system to run.
 
-DEAP
-requests
-CherryPy
-pygraphvz
-inspect
-wxpython
+-DEAP
+-requests
+-CherryPy
+-pygraphvz
+-inspect
+-wxpython
 
 Basic Example
 =================================================================================================
@@ -47,7 +47,7 @@ we will use the files in /Simple Example:
 If you want to try the cloning example:
 
 1. Run the Evaluator - cherrypyinstance.py
-2. Run the service we are clonning - dummyinstance.py 
+2. Run the service we are cloning - dummyinstance.py 
 3. Run the Client - rungp.py *needs to be ran last*.
 
 What we get is the best individual and at clonedwebservice.py . The web service generated based on the primitive set.
@@ -87,7 +87,7 @@ Where "config.xml" is the location of the configuration XML you want to use.
     p.populate()
     return p
     
-However this does not give us the opportunity to dinamically configure the framework. To do that we need to work with the configuration and population class directly like this as shown below:
+However this does not give us the opportunity to dynamically  configure the framework. To do that we need to work with the configuration and population class directly like this as shown below:
 
     c = Configuration(configXml="config.xml")
     c.setTargetService("http://localhost:8080") # if you run dummyInstance that's the url to access it
@@ -108,7 +108,7 @@ This code will set the evaluating service which mean it will not run your target
     
 Simply substitute "r" with the expression of your choice.
 
-Congradulations you just used Darwin framework to clone a web service.
+Congratulations  you just used Darwin framework to clone a web service.
 
 
 Advanced Example
@@ -150,11 +150,12 @@ requestHandler and later on the XML response needs to be handled by responseHand
 
     # targetServiceURL = http://api.wolframalpha.com/v2/query
     # params are defined in the .csv file in WolframAlpha folder 
-    def requestHandler(self,url,params):
+    def requestHandler(self,url,testArguments):
         apid= "X63LWT-U7E9YX8R2K"
-        exp = "pi*("+str(params['r'])+"%5E2)"   # pi*r^2
-        main = url+"?appid="+apid+"&input="+exp+"&format=plaintext"
-        return self.handler(main)
+        formatw = "plaintext"
+        expression="pi*("+str(testArguments['r'])+"%5E2)"
+        arguments = {'format':formatw,'input':expression,'appid':apid}
+        return self.handler(main,params=arguments)
 
     def responseHandler(self,r):
         r.encoding = 'ASCII'
@@ -171,17 +172,22 @@ requestHandler and later on the XML response needs to be handled by responseHand
             result = result[:-3]
         return float(result)
         
-params is a dictionary that contains a single set of test arguments. If we have arguments x,y,z
+"params" is a dictionary that contains a single set of test arguments. If we have arguments x,y,z
 and we have a csv file in the form
 
     x,1,2,3,4
     y,1,2,3,4
     z,1,2,3,4
    
-params in requestHandler is going to be {'x':1,'y':1,'z',1}. In our case the only argument is being
-'r' .
+"params" in requestHandler is going to be {'x':1,'y':1,'z',1}. In our case the only argument is being
+'r' . Which in the case of the example take arguments:
 
-In the responseHandler we are handling the xml reposne received from Wolfram Alpha and the result we
+    r,1,0,1.5,5,15,13.4,10,32
+
+We return with a call to self.hadler that can take up to two arguments an url and a dictionaries with URL paramters.
+In the case of WolframAlpha parameters to the url http://api.wolframalpha.com/v2/query are appid,format,input.
+
+In the responseHandler we are handling the XML reposne received from Wolfram Alpha and the result we
 are interested in is written to the variable 'result'. It's up to us to convert the result in string
 form to float so a fitness value for the set of parameters can be returned.
 
