@@ -1,0 +1,17 @@
+CherryPy is a minimalistic python object-oriented framework which focuses on flexibility and has a reliable HTTP/1.1-complient, WSGI thread
+pooled webserver. It requires small amount of source code to run it, making it very useful to take the purpose of an \textit{evaluator}. The \textit{evaluator}
+needs to be light in order to run either with multiple instances on a single server or run on a small devices like a RaspnerryPi.
+
+\begin{lstlisting}[language=Python,caption={Example CherryPy webservice that has the method "hello"},label={lst:CherryPy}]
+class HelloWorld(BaseCherryPy):
+
+    def hello(self):
+        return "Hello world!"
+    hello.exposed = True
+
+	\end{lstlisting}
+The way CherryPy works is it maps each method written in a class by adding it to the server URL name so it can be called. Each of those methods has to have
+ an \textit{exposed} flag set to true as shown in \ref{lst:CherryPy} so CherryPy can see it. This class is ran through the CherryPy which handles
+all the URL parsing. For example if we have a method as shown in \ref{lst:CherryPy} and the hostname is \textit{http://localhost} then when accessing the server
+with URL \textit{http://localhost/hello} the URL and it's parameters if existing will be forwarded to the method \textit{hello}. After that the hello method
+will return the contents and CherryPy will format the response in a correct HTTP format.

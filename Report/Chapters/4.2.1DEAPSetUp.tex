@@ -1,0 +1,25 @@
+The way DEAP is used in Darwin framework by utilizing the loose coupling used in it's design. Each of the DEAP components is configured
+separately. This way the processes of Darwin framework that are dependant on DEAP can be split into multiple functions so loose coupling can
+be achieved.
+\paragraph{}
+The \textit{Configuration} class as seen in figure [ref to configuration component] consists of the \textit{pset} and \textit{toolbox} components
+from the DEAP framework. In order to set the needed information for the genetic programming an abstraction layers is added to the DEAP framework.
+Because the purpose of Darwin is known - solve symbolic regression problems, there are many pre-set parameters used in the configuration, hence there are 
+fewer parameters to be specified for Darwin since other are specified automatically. This level of abstraction both simplifies the use of the
+framework by lowering the amount of parameters needed and creates a link between Darwin and DEAP. \textit{Configuration} provides a \textit{configure()} method
+that organizes the Darwin variables and sets up the DEAP framework underneath. This \textit{configure()} method does four things as seen in [ref fig configure method]:
+
+\begin{enumerate}
+  \item \textit{setPrimitiveFunctions()} extracts the primitive functions from the user defined class that extends \textit{PrimitiveConfig} . It takes an instance
+of each of the methods and maps them to the DEAP framework.
+  \item \textit{setTerminals()} gathers a list of all defined terminals and instantiates them in the DEAP framework.
+  \item \textit{configureToolbox()} is a more complex method where DEAP's \textit{toolbox} is configured.
+  \begin{enumerate}
+	\item Creates an individual by specifying the type of structure it is going to use (PrimitiveTree in the case). 
+	\item Checks if the individual is aiming for minimum or maximum fitness function; this sets the individual to either look for lowest or 0 fitness value or the maximum among individuals.
+	\item Defines the initial size of the individuals, the size of the population and generation based on the user parameters.
+	\item Maps all the mutation and crossover methods to pre-defined DEAP algorithms which are good for the purpose of the genetic program
+	\item Since DEAP uses decorators to modify the generated individuals, decorators need to be defined to limit the size of an individual.
+  \end{enumerate}
+  \item \textit{configureArgumetns()} takes the test arguments given by the user and based on their names maps them to DEAP so the individuals can take arguments.
+\end{enumerate}
