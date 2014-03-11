@@ -11,7 +11,8 @@ cherrypy.config.update({'server.socket_host': 'localhost',	    #
 class CopyService():
 
     def index(self,x,y,z):
-        r = float(x)+float(y)+float(z)
+        x,y,z = float(x),float(y),float(z)
+        r = x+y+z
         return str(r)
 
     index.exposed = True

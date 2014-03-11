@@ -5,8 +5,7 @@ from helper import stdoutIO
 
 class BaseCherryPy:
 
-
-    def evaluateCopy(self,individual,arguments):
+    def evaluate(self,individual,arguments):
         arguments = eval(arguments)
         diff=0
         for i in arguments:
@@ -22,7 +21,7 @@ class BaseCherryPy:
 
         return str(diff)
 
-    evaluateCopy.exposed=True
+    evaluate.exposed=True
 
 
 

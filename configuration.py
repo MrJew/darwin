@@ -97,9 +97,12 @@ class Configuration:
 
     def configure(self):
         """ Creates the toolbox and sets all the needed parameters"""
-        self.setPrimitiveFunctions()
+        self.setPrimitiveFunctions() #Organizes
         self.setTerminals(self.terminals)
+        self.configureToolbox()
+        self.configureArguments()
 
+    def configureToolbox(self):
         if not self.isMax   : creator.create("FitnessMin", base.Fitness, weights=(-1.0,))
         else                : creator.create("FitnessMax", base.Fitness, weights=(-1.0,))
 
@@ -114,7 +117,6 @@ class Configuration:
 
         self.toolbox.decorate('mutate',gp.staticDepthLimit(self.maxDepthLimit))
         self.toolbox.decorate('mate',gp.staticDepthLimit(self.maxDepthLimit))
-        self.configureArguments()
 
     def configureArguments(self):
         """ Based on the fitness function it sets the arguments for the GP """

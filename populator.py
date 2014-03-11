@@ -40,7 +40,7 @@ class Populator:
 
 
         print individual
-        destination = "/evaluateCopy"
+        destination = "/evaluate"
 
         args={"individual"  : self.generateSource(individual),
               "arguments"   : self.parameters,

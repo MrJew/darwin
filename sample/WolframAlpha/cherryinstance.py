@@ -14,9 +14,9 @@ cherrypy.config.update({'server.socket_host': 'localhost',	#
 
 class HelloWorld(BaseCherryPy):
 
-    def index(self):
+    def hello(self):
         return "Hello world!"
-    index.exposed = True
+    hello.exposed = True
 
 
 cherrypy.quickstart(HelloWorld())

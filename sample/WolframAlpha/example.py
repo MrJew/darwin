@@ -7,13 +7,12 @@ from StringIO import StringIO
 #apid= X63LWT-U7E9YX8R2K
 class Config(PrimitiveConfig):
 
-    def requestHandler(self,url,params):
-        print params
+    def requestHandler(self,url,testArguments):
+        print testArguments
         apid= "X63LWT-U7E9YX8R2K"
         formatw = "plaintext"
-        expression="pi*("+str(params['r'])+"%5E2)"
+        expression="pi*("+str(testArguments['r'])+"%5E2)"
         arguments = {'format':formatw,'input':expression,'appid':apid}
-        #main = "?appid="+apid+"&input=pi*("+str(params['r'])+"%5E2)&format=plaintext"
         return self.handler(url,params=arguments)
 
     def responseHandler(self,r):

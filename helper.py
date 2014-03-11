@@ -87,7 +87,6 @@ def generateImports(imports):
 
 def generateFunctions(config,service):
     result = ''
-    print config
     for method in config.getPrimitives():
 
         code = formatCode(inspect.getsource(getattr(config,method)))
@@ -118,6 +117,12 @@ def generateMain(arguments,individual,service):
 
     return main
 
+
+##############################################################################################################
+## THE CODE BENEATH IS NOT MINE IT IS CREATED BY STACKOVERFLOW USER isedev AND THE CODE IS TAKEN            ##
+## FROM THE THREAD http://stackoverflow.com/questions/14708216/showing-current-output-from-exec-in-python   ##
+## ADDRESSING THE ISSUE OF REDIRECTING STANDARD OUTPUT IN A DIFFERENT CONTEXT BACK TO THE ORIGINAL ONE      ##
+##############################################################################################################
 class Proxy(object):
 
     def __init__(self,stdout,stringio):
