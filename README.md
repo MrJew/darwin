@@ -35,9 +35,8 @@ Packages required for the system to run.
 1. DEAP
 2. requests
 3. CherryPy
-4. pygraphvz
-5. inspect
-6. wxpython
+4. pygraphviz
+5. wxpython
 
 Basic Example
 =================================================================================================
