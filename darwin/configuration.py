@@ -93,7 +93,7 @@ class Configuration:
 
     def getFitnessFunction(self):
         """ Returns an instance of the fitness function"""
-        return (getattr(self.configClass,"fitnessFunction"))
+        return (getattr(self.configClass,"targetFunction"))
 
     def configure(self):
         """ Creates the toolbox and sets all the needed parameters"""

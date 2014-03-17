@@ -59,6 +59,7 @@ Let's try this.
 3. write a method with the name "targetFunction(self, args...) and give it a return statement. The framework will automatically assign the arguments to the method based on the arguments given from the .csv file names "args.csv".
 Darwin will later use the target function to calculate the fitness.
 4. After the function is created we need to provide an XML file configuration file. Run the GUI located in gui folder there you can choose among multiple configuration options. Since we want to use a targetFunction() rather than a URL address we leave Target URL field empty. Then you'll need to choose the primitives from the checkbox to the left. Primitives are the functions the framework is going to use in order to clone your expression. In this case we know the expression so we should use primitives that are going to be used in the expression. However normally we will need to assume what the primitives can be. In the arguments field a path to the .csv file needs to be specified where the test arguments are defined the format looks like this:
+NOTE: The name of the arguments in the .csv file need to be the same as the arguments in your target function.
 
     x,1.0,2,3.1,-4
     y,8.3,-22,3.1,-4
@@ -74,26 +75,28 @@ For example:
         def fitnessFunction(self,x,y,z):
             return x + y + z/3
 
-    runGP(configClass=Config(),configXml="config.xml")
+    runGP(configClass=Config(),xmlConfig="config.xml")
 
 Where "config.xml" is the location of the configuration XML you want to use.
 
 6.There are two ways to configure the framework, one is through the XML file as shown above and the other one is through the code with expressions. What runGP does is
 
     def runGP(xmlConfig=None,configClass=None):
-    c = Configuration(configClass=configClass,configXml="config.xml")
-    c.configure()
-    p = Populator(configuration=c)
-    p.populate()
-    return p
+        c = Configuration(configClass=configClass,configXml="config.xml")
+        c.configure()
+        p = Populator(configuration=c)
+        p.populate()
+        return p
     
-However this does not give us the opportunity to dynamically  configure the framework. To do that we need to work with the configuration and population class directly like this as shown below:
+However this does not give us the opportunity to dynamically  configure the framework. To do that we need to work with the configuration and population class directly like this as shown below. Change the code in rungp with this:
 
     c = Configuration(configXml="config.xml")
     c.setTargetService("http://localhost:8080") # if you run dummyInstance that's the url to access it
     c.setEvaluatingService("http://localhost:8844") # if you run cherryInstance that's the url to access it
     c.pop = 1000 # define the population
     c.gen = 1000 # define the generations
+    p = Populator(configuration=c)
+    p.populate()
     
 This code will set the evaluating service which mean it will not run your targetFunction as a fitness but rather what the web service located at "http://localhost:8844" returns. This web service can be ran through dummyInstance.py . You can try applying the same expression you used in the targetFunction in the service.
 

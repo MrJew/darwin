@@ -29,7 +29,7 @@ class Handlers:
 
 class PrimitiveConfig(Handlers):
     listOfExcludes = ["listOfExcludes","getSource","getPrimitives","functionArgs","updateExcludes",
-                      "fitnessFunction","numberOfFunctionArgs","getFunctions","basicPrimitives"
+                      "targetFunction","numberOfFunctionArgs","getFunctions","basicPrimitives"
                       ,"requestHandler","responseHandler", "handler",
                       "__doc__","__module__","__init__"]
     basicPrimitives = ["add","mul","sub","safeDiv","sin","cos","sqrt","pow","log"]
