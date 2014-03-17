@@ -112,6 +112,8 @@ class Populator:
                 ind.fitness.values = fit
             self.population = self.offspring
             self.hof.update(self.population)
+            if self.hof[0].fitness.values[0]==0.0:
+                break
 
         self.outputIndividuals()
 

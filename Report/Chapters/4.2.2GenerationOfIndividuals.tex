@@ -1,0 +1,41 @@
+Individuals are created and generated in the \textit{Populator} class. It is a component of the framework where
+the genetic programming is done and handles output. It also contains functionality for communicating with other
+web services, either an evaluator or a target web service for cloning.
+\paragraph{}
+Unlike the \textit{Configuration} class the \textit{Populator} doesn't work with the \textit{pset} and \textit{toolbox} DEAP
+components directly. It uses them to generate individuals and apply mutation or crossover algorithm to it. Instead of using
+the standard genetic programming algorithm that DEAP provides by calling a single function, the algorithm had to be implemented 
+manually. As seen in \ref{lst:populate} the offspring is initialized by copying it from the initial population. This first population is a
+generation of random individuals with depth between 1 and 3. 
+
+\begin{lstlisting}[language=Python,caption={Populate function responsible for generating individuals},label={lst:populate}]
+
+ def populate(self):
+    for gen in range(self.configuration.gen):
+        self.offspring = self.toolbox.select(self.population, len(self.population))
+        self.offspring = map(self.toolbox.clone, self.offspring)
+        self.crossover()
+        self.mutation()
+        invalid_ind = self.nonEvaluated(self.offspring)
+        fitnesses = self.toolbox.map(self.evaluate, invalid_ind)
+        for ind, fit in zip(invalid_ind, fitnesses):
+            ind.fitness.values = fit
+        self.population = self.offspring
+        self.hof.update(self.population)
+
+    self.outputIndividuals()
+\end{lstlisting}
+
+To each generation crossover and mutation functions are applied. However both of the functions are modified so each
+individual is evaluated separately. The whole avoiding of DEAP standard genetic programming function is because evaluation
+is not done in the \textit{Populator} but by the \textit{Evaluator}. In order to make use of the decorators the crossover
+and mutation function a manual substitution of the generation is done as seen in \ref{lst:mutation}.
+
+\begin{lstlisting}[language=Python,caption={Modified mutation method to substitute each parent with its children},label={lst:populate}]
+
+def mutation(self):
+    for i in range(len(self.offspring)):
+        if random.random() < self.configuration.mut:
+            self.offspring[i], = self.toolbox.mutate(self.offspring[i])
+            del self.offspring[i].fitness.values
+\end{lstlisting}

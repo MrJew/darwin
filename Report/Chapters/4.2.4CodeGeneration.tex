@@ -1,0 +1,62 @@
+Code generation is the main technique for automation used in Darwin framework. It is using
+the inspect library to gather the data and code needed for code generation. The main methods
+for extraction of code are located in \textit{PrimitiveConfig}. The methods that use the inspect library
+are extracting the code of the functions chosen as primitives as seen in fig \ref{lst:inspect}.
+The method \textit{functionArgs} extracts the arguments hence the signature from target primitive function
+given it's name.
+
+\begin{lstlisting}[language=Python,caption={Function extracting the arguments of a primitive based on it's name},label={lst:inspect}]
+def functionArgs(self,funcName):
+    func = getattr(self,funcName)
+    args = inspect.getargspec(func)[0]
+    del args[0] # removes 'self'
+    return args
+\end{lstlisting}
+
+The method for generating DEAP individual into source is located in PrimitiveConfig as well. In the \textit{helper} module
+there are multiple functions constructing different parts of the individual source as seen in figure \ref{lst:gen}.
+
+\begin{lstlisting}[language=Python,caption={Function in PrimitiveConfig class that gathers source code parts of the individual},label={lst:gen}]
+
+def getSource(self, imports,individual,arguments):
+    source = generateImports(imports)
+    source+= generateFunctions(self,False)
+    source += generateMain(arguments,individual,False)
+    source += "print main(**sys.argv)\n"
+    return source
+\end{lstlisting}
+
+The \textit{getSource} method collects source from three main methods located in the \textit{helper} module.
+
+\begin{enumerate}
+\item \textit{generateImports} based on a list of module names is generating the import statements.
+
+\item \textit{generateFunctions} extracts the source and the signature of a primitive by removing the self argument in the method. 
+\item \textit{generateMain} creates a main function that is taking as parameters the arguments of an individual. Later the DEAP
+individual that is represented as a stack of functions is ran through a lambda expression that yields and returns the result
+\item the main method is called using system arguments as a dictionary. The result is printed to the standard output
+so it can be forwarded to the original context when executed
+\end{enumerate}
+
+The same methods are used when generating a webservice as seen in figure \ref{lst:webs}. The difference is the code is wrapped into a class that is ran
+by CherryPy meaning the primitive signature and the lambda expression need to include the \textit{self} notation. The webservice has
+an index method that is called only by accessing the URL that returns the result of the individual.
+
+\begin{lstlisting}[language=Python,caption={A generated web service that is the result of the Darwin framework},label={lst:webs}]
+
+class ClonedWebService(BaseCherryPy):
+
+    def mul(self,a,b):
+        return operator.mul(a,b)
+
+    def main(self,r):
+        r = float(r)
+        ind = lambda r: self.mul(self.mul(3.14, r), r)
+        return ind(r)
+
+    def index(self,r):
+        return self.main(r)
+    index.exposed = True
+
+cherrypy.quickstart(ClonedWebService())
+\end{lstlisting}

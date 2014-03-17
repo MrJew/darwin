@@ -1,0 +1,30 @@
+\begin{thebibliography}{1}
+
+\bibitem{moscow}
+Stephanie Famuyide.
+\newblock Moscow: Requirements prioritization technique.
+
+\bibitem{github}
+GitHub.
+\newblock Github.
+\newblock \url{https://github.com/}.
+
+\bibitem{genofix}
+Michael G.~Epitropakis Jerry~Swan and John~R. Woodward.
+\newblock {\em Gen-O-Fix: An embeddable framework for Dynamic Adaptive Genetic
+  Improvement Programming}.
+\newblock PhD thesis, Department of Computing Science and Mathematics;
+  University of Stirling, 2014.
+
+\bibitem{pivotal}
+PivotalTracker.
+\newblock Pivotaltracker.
+\newblock \url{http://www.pivotaltracker.com/}.
+
+\bibitem{softrepair}
+Westley Weimer Claire Le~Goues Stephanie~Forrest, ThanhVu~Nguyen.
+\newblock {\em A Genetic Programming Approach to Automated Software Repair}.
+\newblock PhD thesis, Dept. of Computer Science of University of New Mexico and
+  University of Virginia, 2009.
+
+\end{thebibliography}

@@ -2,10 +2,10 @@ The way DEAP is used in Darwin framework by utilizing the loose coupling used in
 separately. This way the processes of Darwin framework that are dependant on DEAP can be split into multiple functions so loose coupling can
 be achieved.
 \paragraph{}
-The \textit{Configuration} class as seen in figure [ref to configuration component] consists of the \textit{pset} and \textit{toolbox} components
+The \textit{Configuration} class as seen in figure \ref{lst:config} consists of the \textit{pset} and \textit{toolbox} components
 from the DEAP framework. In order to set the needed information for the genetic programming an abstraction layers is added to the DEAP framework.
 Because the purpose of Darwin is known - solve symbolic regression problems, there are many pre-set parameters used in the configuration, hence there are 
-fewer parameters to be specified for Darwin since other are specified automatically. This level of abstraction both simplifies the use of the
+fewer parameters to be specified for Darwin. This level of abstraction both simplifies the use of the
 framework by lowering the amount of parameters needed and creates a link between Darwin and DEAP. \textit{Configuration} provides a \textit{configure()} method
 that organizes the Darwin variables and sets up the DEAP framework underneath. This \textit{configure()} method does four things as seen in [ref fig configure method]:
 
@@ -23,3 +23,24 @@ of each of the methods and maps them to the DEAP framework.
   \end{enumerate}
   \item \textit{configureArgumetns()} takes the test arguments given by the user and based on their names maps them to DEAP so the individuals can take arguments.
 \end{enumerate}
+
+\begin{landscape}
+\begin{lstlisting}[language=Python,caption={The core method in Configuration class that configures the DEAP framework},label={lst:config}]
+
+def configureToolbox(self):
+    if not self.isMax   : creator.create("FitnessMin", base.Fitness, weights=(-1.0,))
+    else                : creator.create("FitnessMax", base.Fitness, weights=(-1.0,))
+
+    creator.create("Individual", gp.PrimitiveTree, fitness=creator.FitnessMin, pset=self.pset)
+    self.toolbox.register("expr", gp.genRamped, pset= self.pset, min_=self.depthInitialMin, max_=self.depthInitialMax)
+    self.toolbox.register("individual", tools.initIterate, creator.Individual,  self.toolbox.expr)
+    self.toolbox.register("population", tools.initRepeat, list,  self.toolbox.individual)
+    self.toolbox.register("select", tools.selTournament, tournsize=3)
+    self.toolbox.register("mate", gp.cxOnePoint)
+    self.toolbox.register("expr_mut", gp.genFull, min_=0, max_=2)
+    self.toolbox.register('mutate', gp.mutUniform, expr= self.toolbox.expr_mut)
+
+	self.toolbox.decorate('mutate',gp.staticDepthLimit(self.maxDepthLimit))
+    self.toolbox.decorate('mate',gp.staticDepthLimit(self.maxDepthLimit))
+\end{lstlisting}
+\end{landscape}	

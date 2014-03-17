@@ -1,16 +1,51 @@
 For requirements engineering an iterative approach was chosen. Through the first several meetings
-different ideas and goals were considered until requirements were finalized. The MoSCoW method was used to
+different ideas and goals were considered until requirements were finalized. The MoSCoW\cite{moscow} method was used to
 reach a common understanding with the client about the importance of each requirement and how
 relevant it was to the project. MoSCoW method involves grading each requirement for how important it is for the project using the following technique:
-(M - must, C - could, S - should, W - won't). This way main goals and issues can stand and development can focus on them.
-Set of requirements were chosen for each of the three sprints as seen in figure[insert table of requirements].
+(M - must, C - could, S - should, W - won't).
+
+\begin{table}[ht] 
+\caption{Spring one and spring two of the framework} % title of Table 
+\centering % used for centering table 
+\begin{tabular}{l l} % centered columns (4 columns) 
+\hline\hline %inserts double horizontal lines 
+Sprint One – GP to create a web service & Sprint Two - GP to clone a web service \\ [0.5ex] % inserts table 
+%heading 
+\hline % inserts single horizontal line
+1. Evolve a web service - M & 1. Integrate with DEAP - M \\
+2. Fitness evaluation over REST - M & 2. Incorporate unit tests - C \\
+3. Basic GP configuration - M & 3. Start from existing web service - S \\
+4. Define function set - M & 4. Test through interpreter - S \\
+5. Pre-set function set - S & 5. Use original web service as an "Oracle" - M \\
+6. Generate python code of the best solution - M & - \\
+7. Manipulate python code - S & - \\ [1ex]
+\hline %inserts single line 
+\end{tabular} 
+\label{table:req} % is used to refer this table in the text 
+\end{table}
 
 However later on because of the project complexity and the small time frame the third sprint was changed
 from \textit{improving a web service} to creating graphical user interface for easier configuration of the 
-framework. Even though requirements were set small changes were done through out the development process
-to suit the current situation and improve the software product[insert iterated version]
+framework \ref{table:req}. Even though requirements were set, small changes were done through out the development process
+to suit the current situation and improve the software product.
 
-Before the requirements for each sprint were built there were basic requirements that needed to be identified. [show basic requirements]
+\begin{table}[ht] 
+\caption{Basic requirements for the project's technologies} % title of Table 
+\centering % used for centering table 
+\begin{tabular}{l} % centered columns (4 columns) 
+\hline\hline %inserts double horizontal lines 
+Basic Requirements \\ [0.5ex] % inserts table 
+%heading 
+\hline % inserts single horizontal line
+1. Must be implemented in python \\
+2. Must use a REST framework (CherryPy) \\
+3. Develop or choose a genetic programming framework (DEAP) \\
+\hline %inserts single line 
+\end{tabular} 
+\label{table:breq} % is used to refer this table in the text 
+\end{table}
+
+Before the requirements for each sprint were built there were basic requirements that needed to be identified \ref{table:breq}. 
 Framework for genetic programming and a REST framework had to be chosen. Weeks of research were dedicated to find the most suitable frameworks.
 The only initial requirement was that the project should be done in python and later on after the client agreed with the technologies used they
 were  added to the basic requirements. Knowing and understanding the technologies that would be the building blocks of the project helped guide 
