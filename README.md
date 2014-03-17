@@ -37,6 +37,7 @@ Packages required for the system to run.
 3. CherryPy
 4. pygraphviz
 5. wxpython
+6. lxml
 
 Basic Example
 =================================================================================================
