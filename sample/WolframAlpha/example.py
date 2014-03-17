@@ -1,8 +1,7 @@
 __author__ = 'mrjew'
-from configuration import *
-from populator import *
+from darwin.configuration import *
+from darwin.populator import *
 from lxml import etree
-from StringIO import StringIO
 
 #apid= X63LWT-U7E9YX8R2K
 class Config(PrimitiveConfig):

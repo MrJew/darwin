@@ -1,7 +1,5 @@
 __author__ = 'MrJew'
-
-from configuration import Configuration
-from baseCherryPy import BaseCherryPy
+from darwin.baseCherryPy import BaseCherryPy
 import cherrypy
 
 

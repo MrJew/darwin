@@ -1,5 +1,5 @@
 __author__ = 'mrjew'
-from runner import *
+from darwin.runner import *
 
 
 p = runGP(xmlConfig="config.xml")

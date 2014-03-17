@@ -70,7 +70,7 @@ def generateService(imports,arguments,individual,config):
     result += "        return self.main("+arguments+")\n"
     result += "    index.exposed = True\n\n"
     result += "cherrypy.quickstart(ClonedWebService())"
-    f = open("../clonedwebservice.py","w")
+    f = open("clonedwebservice.py","w")
     f.write(result)
     return result
 
