@@ -9,7 +9,7 @@
 \usepackage{cite}
 \DeclareGraphicsExtensions{.pdf,.png,.jpg}
 
-
+\pagenumbering{arabic}
 
 
 \begin{document}
@@ -19,6 +19,8 @@
 \maketitle
 
 \tableofcontents
+\listoffigures
+\listoftables
 %==============================================================================
 \chapter{Introduction}
 \input{Chapters/1.0Introduction.tex}
@@ -35,22 +37,23 @@
 %==============================================================================
 \chapter{Context}
 \input{Chapters/2.0Context.tex}
-\section{Background}
+\section{Related Work}
 \input{Chapters/2.1Background.tex}
 
 \section{Organization}
 \input{Chapters/2.3Organization.tex}
 
-\subsection{Meetings and Minutes}
-\input{Chapters/2.3.1Meetings.tex}
+\subsection{Agile Development}
+\input{Chapters/2.3.2AgileDevelopment.tex}
+
 \subsection{Requirements}
 \input{Chapters/2.2Requirements.tex}
 
-\subsection{Agile Development}
-\input{Chapters/2.3.2AgileDevelopment.tex}
 \subsection{User Stories and Sprints}
 \input{Chapters/2.3.3UserStories.tex}
 
+\subsection{Meetings and Minutes}
+\input{Chapters/2.3.1Meetings.tex}
 
 %==============================================================================
 \chapter{Design}
@@ -70,12 +73,15 @@
 \subsection{Evaluator}
 \input{Chapters/3.2.4Evaluator.tex}
 
-\section{GUI Design}
--why use gui
-\subsection{Design Principles}
+\section{GUI Design and XML}
+\input{Chapters/3.3GUIDesign.tex}
 
-\subsection{Purpose of the GUI}
-\subsection{Iterations and Final Design}
+\subsection{XML Configuration}
+\input{Chapters/3.3.2XMLConfiguration.tex}
+
+\subsection{Purpose of the GUI and Iterations}
+\input{Chapters/3.3.3PurpouseOfGui.tex}
+
 
 %==============================================================================
 \chapter{Implementation}
@@ -99,7 +105,7 @@
 \subsection{wxPython}
 \input{Chapters/4.1.5wxPython.tex}
 
-\section{Implementation}
+\section{Core Components and Functionality}
 \input{Chapters/4.2Implementation.tex}
 
 \subsection{DEAP Set Up}

@@ -1,80 +1,73 @@
-\contentsline {chapter}{\numberline {1}Introduction}{iv}
-\contentsline {paragraph}{}{iv}
-\contentsline {section}{\numberline {1.1}Genetic Programming}{iv}
-\contentsline {paragraph}{}{iv}
-\contentsline {paragraph}{}{v}
-\contentsline {paragraph}{}{v}
-\contentsline {section}{\numberline {1.2}Web Services}{v}
-\contentsline {paragraph}{}{v}
-\contentsline {paragraph}{}{vi}
-\contentsline {section}{\numberline {1.3}Problem}{vi}
-\contentsline {paragraph}{}{vi}
-\contentsline {chapter}{\numberline {2}Context}{vii}
-\contentsline {section}{\numberline {2.1}Background}{vii}
-\contentsline {paragraph}{}{vii}
-\contentsline {paragraph}{}{vii}
-\contentsline {paragraph}{}{viii}
-\contentsline {section}{\numberline {2.2}Organization}{viii}
-\contentsline {subsection}{\numberline {2.2.1}Meetings and Minutes}{viii}
-\contentsline {subsection}{\numberline {2.2.2}Requirements}{ix}
-\contentsline {subsection}{\numberline {2.2.3}Agile Development}{ix}
-\contentsline {subsection}{\numberline {2.2.4}User Stories and Sprints}{xi}
-\contentsline {chapter}{\numberline {3}Design}{xii}
-\contentsline {section}{\numberline {3.1}Multiple Technologies}{xii}
-\contentsline {subsection}{\numberline {3.1.1}RESTful Web Services}{xii}
-\contentsline {paragraph}{}{xii}
-\contentsline {subsection}{\numberline {3.1.2}Genetic Programming Framework}{xiii}
-\contentsline {paragraph}{}{xiii}
-\contentsline {subsection}{\numberline {3.1.3}Code Inspection and Generation}{xiii}
-\contentsline {paragraph}{}{xiii}
-\contentsline {paragraph}{}{xiii}
-\contentsline {subsection}{\numberline {3.1.4}XML Files}{xiii}
-\contentsline {paragraph}{}{xiii}
-\contentsline {subsection}{\numberline {3.1.5}Graphical User Interface}{xiv}
-\contentsline {section}{\numberline {3.2}Architecture}{xiv}
-\contentsline {subsection}{\numberline {3.2.1}Overall Design}{xiv}
-\contentsline {subsection}{\numberline {3.2.2}Client}{xv}
-\contentsline {paragraph}{}{xvi}
-\contentsline {paragraph}{}{xvi}
-\contentsline {paragraph}{}{xvi}
-\contentsline {subsection}{\numberline {3.2.3}Evaluator}{xvi}
-\contentsline {section}{\numberline {3.3}GUI Design}{xvi}
-\contentsline {subsection}{\numberline {3.3.1}Design Principles}{xvi}
-\contentsline {subsection}{\numberline {3.3.2}Purpose of the GUI}{xvi}
-\contentsline {subsection}{\numberline {3.3.3}Iterations and Final Design}{xvi}
-\contentsline {chapter}{\numberline {4}Implementation}{xvii}
-\contentsline {section}{\numberline {4.1}Technologies}{xvii}
-\contentsline {subsection}{\numberline {4.1.1}DEAP}{xvii}
-\contentsline {paragraph}{}{xvii}
-\contentsline {paragraph}{}{xvii}
-\contentsline {subsection}{\numberline {4.1.2}CherryPy}{xvii}
-\contentsline {subsection}{\numberline {4.1.3}Inspect}{xviii}
-\contentsline {subsection}{\numberline {4.1.4}Requests}{xviii}
-\contentsline {subsection}{\numberline {4.1.5}wxPython}{xviii}
-\contentsline {paragraph}{}{xviii}
-\contentsline {section}{\numberline {4.2}Implementation}{xix}
-\contentsline {subsection}{\numberline {4.2.1}DEAP Set Up}{xix}
-\contentsline {paragraph}{}{xix}
-\contentsline {subsection}{\numberline {4.2.2}Generation of Individuals}{xxi}
-\contentsline {paragraph}{}{xxi}
-\contentsline {subsection}{\numberline {4.2.3}Evaluation Over a Network}{xxi}
-\contentsline {paragraph}{}{xxii}
-\contentsline {paragraph}{}{xxii}
-\contentsline {subsection}{\numberline {4.2.4}Code Generation}{xxii}
-\contentsline {subsection}{\numberline {4.2.5}GUI}{xxiv}
-\contentsline {chapter}{\numberline {5}Evaluation}{xxv}
-\contentsline {section}{\numberline {5.1}Unit Testing}{xxv}
-\contentsline {section}{\numberline {5.2}System Testing}{xxvi}
-\contentsline {paragraph}{}{xxvi}
-\contentsline {section}{\numberline {5.3}UI and Usability Testing}{xxvi}
-\contentsline {chapter}{\numberline {6}Problems Encountered and Future Development}{xxviii}
-\contentsline {section}{\numberline {6.1}Problems}{xxviii}
-\contentsline {paragraph}{}{xxviii}
-\contentsline {section}{\numberline {6.2}Future Development}{xxix}
-\contentsline {subsection}{\numberline {6.2.1}Improvements}{xxix}
-\contentsline {paragraph}{}{xxix}
-\contentsline {paragraph}{}{xxix}
-\contentsline {subsection}{\numberline {6.2.2}New Functionality}{xxix}
-\contentsline {paragraph}{}{xxix}
-\contentsline {chapter}{\numberline {7}Conclusion}{xxx}
-\contentsline {section}{\numberline {7.1}Contribution}{xxx}
+\contentsline {chapter}{\numberline {1}Introduction}{5}
+\contentsline {paragraph}{}{5}
+\contentsline {section}{\numberline {1.1}Genetic Programming}{5}
+\contentsline {paragraph}{}{5}
+\contentsline {paragraph}{}{7}
+\contentsline {section}{\numberline {1.2}Web Services}{7}
+\contentsline {paragraph}{}{8}
+\contentsline {section}{\numberline {1.3}Problem}{8}
+\contentsline {paragraph}{}{8}
+\contentsline {chapter}{\numberline {2}Context}{9}
+\contentsline {section}{\numberline {2.1}Related Work}{9}
+\contentsline {paragraph}{}{9}
+\contentsline {paragraph}{}{9}
+\contentsline {paragraph}{}{10}
+\contentsline {section}{\numberline {2.2}Organization}{10}
+\contentsline {subsection}{\numberline {2.2.1}Agile Development}{10}
+\contentsline {subsection}{\numberline {2.2.2}Requirements}{11}
+\contentsline {subsection}{\numberline {2.2.3}User Stories and Sprints}{12}
+\contentsline {subsection}{\numberline {2.2.4}Meetings and Minutes}{13}
+\contentsline {chapter}{\numberline {3}Design}{14}
+\contentsline {section}{\numberline {3.1}Multiple Technologies}{14}
+\contentsline {subsection}{\numberline {3.1.1}RESTful Web Services}{14}
+\contentsline {subsection}{\numberline {3.1.2}Genetic Programming Framework}{15}
+\contentsline {subsection}{\numberline {3.1.3}Code Inspection and Generation}{15}
+\contentsline {paragraph}{}{15}
+\contentsline {subsection}{\numberline {3.1.4}Graphical User Interface and XML}{16}
+\contentsline {section}{\numberline {3.2}Architecture}{16}
+\contentsline {subsection}{\numberline {3.2.1}Overall Design}{17}
+\contentsline {paragraph}{}{17}
+\contentsline {subsection}{\numberline {3.2.2}Client}{19}
+\contentsline {paragraph}{}{19}
+\contentsline {paragraph}{}{19}
+\contentsline {paragraph}{}{19}
+\contentsline {subsection}{\numberline {3.2.3}Evaluator}{19}
+\contentsline {section}{\numberline {3.3}GUI Design and XML}{20}
+\contentsline {subsection}{\numberline {3.3.1}XML Configuration}{20}
+\contentsline {subsection}{\numberline {3.3.2}Purpose of the GUI and Iterations}{20}
+\contentsline {chapter}{\numberline {4}Implementation}{23}
+\contentsline {section}{\numberline {4.1}Technologies}{23}
+\contentsline {subsection}{\numberline {4.1.1}DEAP}{23}
+\contentsline {paragraph}{}{23}
+\contentsline {paragraph}{}{23}
+\contentsline {subsection}{\numberline {4.1.2}CherryPy}{23}
+\contentsline {subsection}{\numberline {4.1.3}Inspect}{24}
+\contentsline {subsection}{\numberline {4.1.4}Requests}{24}
+\contentsline {subsection}{\numberline {4.1.5}wxPython}{24}
+\contentsline {paragraph}{}{24}
+\contentsline {section}{\numberline {4.2}Implementation}{25}
+\contentsline {subsection}{\numberline {4.2.1}DEAP Set Up}{25}
+\contentsline {paragraph}{}{25}
+\contentsline {subsection}{\numberline {4.2.2}Generation of Individuals}{27}
+\contentsline {paragraph}{}{27}
+\contentsline {subsection}{\numberline {4.2.3}Evaluation Over a Network}{27}
+\contentsline {paragraph}{}{28}
+\contentsline {paragraph}{}{28}
+\contentsline {subsection}{\numberline {4.2.4}Code Generation}{28}
+\contentsline {subsection}{\numberline {4.2.5}GUI}{30}
+\contentsline {chapter}{\numberline {5}Evaluation}{31}
+\contentsline {section}{\numberline {5.1}Unit Testing}{31}
+\contentsline {section}{\numberline {5.2}System Testing}{32}
+\contentsline {paragraph}{}{32}
+\contentsline {section}{\numberline {5.3}UI and Usability Testing}{32}
+\contentsline {chapter}{\numberline {6}Problems Encountered and Future Development}{34}
+\contentsline {section}{\numberline {6.1}Problems}{34}
+\contentsline {paragraph}{}{34}
+\contentsline {section}{\numberline {6.2}Future Development}{35}
+\contentsline {subsection}{\numberline {6.2.1}Improvements}{35}
+\contentsline {paragraph}{}{35}
+\contentsline {paragraph}{}{35}
+\contentsline {subsection}{\numberline {6.2.2}New Functionality}{35}
+\contentsline {paragraph}{}{35}
+\contentsline {chapter}{\numberline {7}Conclusion}{36}
+\contentsline {section}{\numberline {7.1}Contribution}{36}

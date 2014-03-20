@@ -129,7 +129,7 @@ class Populator:
                         self.lambdify(gp.stringify(individual),self.configuration.pset),
                         self.configuration.configClass,)
 
-    def draw(self,expr,fname):
+    def graphIndividual(self,expr,fname):
         nodes, edges, labels = gp.graph(expr)
         g = pgv.AGraph()
         g.add_nodes_from(nodes)
