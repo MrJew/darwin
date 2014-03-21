@@ -58,37 +58,39 @@ Let's try this.
 2. create a class that extends PrimitiveConfig
 3. write a method with the name "targetFunction(self, args...) and give it a return statement. The framework will automatically assign the arguments to the method based on the arguments given from the .csv file names "args.csv".
 Darwin will later use the target function to calculate the fitness.
-4. After the function is created we need to provide an XML file configuration file. Run the GUI located in gui folder there you can choose among multiple configuration options. Since we want to use a targetFunction() rather than a URL address we leave Target URL field empty. Then you'll need to choose the primitives from the checkbox to the left. Primitives are the functions the framework is going to use in order to clone your expression. In this case we know the expression so we should use primitives that are going to be used in the expression. However normally we will need to assume what the primitives can be. In the arguments field a path to the .csv file needs to be specified where the test arguments are defined the format looks like this:
-NOTE: The name of the arguments in the .csv file need to be the same as the arguments in your target function.
+
+    def targetFunction(self,x,y,z):
+
+4. After the function is created we need to provide an XML file configuration file. Run the GUI located in darwin/UI.py, there you can choose among multiple configuration options. Since we want to use a targetFunction() rather than a URL address we leave Target URL field empty. Then you'll need to choose the primitives from the checkbox to the left. Primitives are the functions the framework is going to use in order to clone your expression. In the arguments field a path to the .csv file needs to be specified where the test arguments are defined the format looks like this:
+
+*NOTE*: The name of the arguments in the .csv file need to be the same as the arguments in your target function.
 
     x,1.0,2,3.1,-4
     y,8.3,-22,3.1,-4
     z,2.0,1,-8.1,-4
     
-In the end the Terminals are defined which are the constants that you want to be used in your evaluation for example if the targetFunction is measuring the size of a circle pi would be required as a terminal. Click "Generate" to save the XML file in a location of your choice
+In the end the Terminals are defined which are the constants that you want to be used in your evaluation for example if the targetFunction is measuring the size of a circle pi would be required as a terminal. Sperate multiple terminals with comma. For example if expression is:
+
+    return x + y + z/3
+
+Then 3 will be terminal.
+
+Click "Generate" to save the XML file in a location of your choice
+
 5. Call configuration parsing as parameter the newly created config class and your XML config file.
 
 For example:
 
     class Config(PrimitiveConfig):
 
-        def fitnessFunction(self,x,y,z):
+        def targetFunction(self,x,y,z):
             return x + y + z/3
 
     runGP(configClass=Config(),xmlConfig="config.xml")
 
 Where "config.xml" is the location of the configuration XML you want to use.
 
-6.There are two ways to configure the framework, one is through the XML file as shown above and the other one is through the code with expressions. What runGP does is
-
-    def runGP(xmlConfig=None,configClass=None):
-        c = Configuration(configClass=configClass,configXml="config.xml")
-        c.configure()
-        p = Populator(configuration=c)
-        p.populate()
-        return p
-    
-However this does not give us the opportunity to dynamically  configure the framework. To do that we need to work with the configuration and population class directly like this as shown below. Change the code in rungp with this:
+6.There are two ways to configure the framework, one is through the XML file as shown above and the other one is through the code with expressions. To do that we need to work with the configuration and population class directly like this as shown below. Change the code in rungp with this:
 
     c = Configuration(configXml="config.xml")
     c.setTargetService("http://localhost:8080") # if you run dummyInstance that's the url to access it
@@ -110,6 +112,8 @@ This code will set the evaluating service which mean it will not run your target
         index.exposed = True
     
 Simply substitute "r" with the expression of your choice.
+
+*NOTE:* dummyinstance.py is runing at http://localhost:8080 and cherrypyinstace.py at http://localhost:8844
 
 Congratulations  you just used Darwin framework to clone a web service.
 
