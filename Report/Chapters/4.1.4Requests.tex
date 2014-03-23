@@ -2,4 +2,6 @@ Requests is a simple python library that provides easy API for sending HTTP requ
 abstraction over the standard python library \textit{urllib2}. Requests library works by creating a requests object
 which is filled in with the data it needs - URL as string, parameters in the form of dictionary. This object has methods like \textit{get} and \textit{post}
 which send respectively GET or POST request to the target URL with the parameters. The \textit{get} and \textit{post} method return a
-response object that contains the result in text format which in the case of web services is normally XML.
+response object that contains the result in text format which in the case of web services is normally XML. Requests library
+is used in the \textit{Populator} component by giving it the functionality to access both the \textit{Evaluator} and the
+target web service.

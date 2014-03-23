@@ -1,10 +1,22 @@
 __author__ = 'mrjew'
 from lxml import etree
 
-# create XML
+
 def generateXML(fname=None,arguments=None,primitives=None,terminals=None,customPrimitives=None,
                 pop=None,gen=None,cx=None,mut=None,evalUrl=None,copyUrl=None,imports=None):
-
+    """Creates an xml file
+        fname: file name of the xmlFile
+        arguments: location of the .csv file contain the test arguments (e.g. /root/home/darwinProject/args.csb
+        primitives: list of primitive names from the pre-set darwin primitives
+        terminals: list of numbers
+        customPrimitives: list of primitive names created by the user
+        pop: number specifying the population size
+        gen: number of generations
+        cx: float number between 0.0-1.0 that specifies the crossing rate applied to the population
+        mut:float number between 0.0-1.0 that specifies the mutation rate applied to the population
+        evalUrl: full URL name to the target web service for evaluation
+        copyUrl: full URL name to the target web service for cloning
+        imports: list of names of modules used in the custom primitives """
     children={}
     if pop : children['pop']=pop
     if gen : children['gen']=gen
@@ -73,6 +85,7 @@ def generateXML(fname=None,arguments=None,primitives=None,terminals=None,customP
     f.close()
 
 def readXML(xmlFile):
+    """ Given a location of an XML configuration file and returns a dictionary of it's data"""
     tree = etree.parse(xmlFile)
     root = tree.getroot()
     params = {}
@@ -115,11 +128,3 @@ def readXML(xmlFile):
             params[child.tag]=child.text
 
     return params
-
-#arguments = {'x':[1,2,3,4],'y':[1,2,3,4],'z':[1,2,3,4]}
-#primitives = ["add","mul","safeDiv","sub"]
-#terminals = [1]
-
-#generateXML(fname="./sample/config.xml",arguments=arguments,primitives=primitives,terminals=terminals,
-#            pop='1000',gen='1000',cx='0.8',mut='0.2',evalUrl="http://localhost:8844",copyUrl="http://localhost:8080")
-#

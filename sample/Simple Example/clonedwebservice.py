@@ -30,7 +30,7 @@ class ClonedWebService(BaseCherryPy):
         y = float(y)
         x = float(x)
         z = float(z)
-        ind = lambda y,x,z: self.add(self.add(x, z), y)
+        ind = lambda y,x,z: self.add(self.add(y, z), x)
         return ind(y,x,z)
 
     def index(self,y,x,z):

@@ -1,11 +1,11 @@
 \contentsline {chapter}{\numberline {1}Introduction}{5}
 \contentsline {paragraph}{}{5}
-\contentsline {section}{\numberline {1.1}Genetic Programming}{5}
-\contentsline {paragraph}{}{5}
+\contentsline {section}{\numberline {1.1}What is Genetic Programming?}{5}
+\contentsline {paragraph}{}{6}
 \contentsline {paragraph}{}{7}
-\contentsline {section}{\numberline {1.2}Web Services}{7}
+\contentsline {section}{\numberline {1.2}What are Web Services?}{7}
 \contentsline {paragraph}{}{8}
-\contentsline {section}{\numberline {1.3}Problem}{8}
+\contentsline {section}{\numberline {1.3}Aim}{8}
 \contentsline {paragraph}{}{8}
 \contentsline {chapter}{\numberline {2}Context}{9}
 \contentsline {section}{\numberline {2.1}Related Work}{9}
@@ -20,12 +20,14 @@
 \contentsline {chapter}{\numberline {3}Design}{14}
 \contentsline {section}{\numberline {3.1}Multiple Technologies}{14}
 \contentsline {subsection}{\numberline {3.1.1}RESTful Web Services}{14}
+\contentsline {paragraph}{}{15}
 \contentsline {subsection}{\numberline {3.1.2}Genetic Programming Framework}{15}
 \contentsline {subsection}{\numberline {3.1.3}Code Inspection and Generation}{15}
 \contentsline {paragraph}{}{15}
 \contentsline {subsection}{\numberline {3.1.4}Graphical User Interface and XML}{16}
+\contentsline {paragraph}{}{16}
 \contentsline {section}{\numberline {3.2}Architecture}{16}
-\contentsline {subsection}{\numberline {3.2.1}Overall Design}{17}
+\contentsline {subsection}{\numberline {3.2.1}Overall Design}{16}
 \contentsline {paragraph}{}{17}
 \contentsline {subsection}{\numberline {3.2.2}Client}{19}
 \contentsline {paragraph}{}{19}
@@ -36,18 +38,14 @@
 \contentsline {subsection}{\numberline {3.3.1}XML Configuration}{20}
 \contentsline {subsection}{\numberline {3.3.2}Purpose of the GUI and Iterations}{20}
 \contentsline {chapter}{\numberline {4}Implementation}{23}
-\contentsline {section}{\numberline {4.1}Technologies}{23}
+\contentsline {section}{\numberline {4.1}Use of Technologies}{23}
 \contentsline {subsection}{\numberline {4.1.1}DEAP}{23}
 \contentsline {paragraph}{}{23}
 \contentsline {paragraph}{}{23}
-\contentsline {subsection}{\numberline {4.1.2}CherryPy}{23}
-\contentsline {subsection}{\numberline {4.1.3}Inspect}{24}
-\contentsline {subsection}{\numberline {4.1.4}Requests}{24}
-\contentsline {subsection}{\numberline {4.1.5}wxPython}{24}
+\contentsline {subsection}{\numberline {4.1.2}Requests}{24}
+\contentsline {section}{\numberline {4.2}Core Components and Functionality}{24}
+\contentsline {subsection}{\numberline {4.2.1}DEAP Set Up}{24}
 \contentsline {paragraph}{}{24}
-\contentsline {section}{\numberline {4.2}Implementation}{25}
-\contentsline {subsection}{\numberline {4.2.1}DEAP Set Up}{25}
-\contentsline {paragraph}{}{25}
 \contentsline {subsection}{\numberline {4.2.2}Generation of Individuals}{27}
 \contentsline {paragraph}{}{27}
 \contentsline {subsection}{\numberline {4.2.3}Evaluation Over a Network}{27}
@@ -55,19 +53,24 @@
 \contentsline {paragraph}{}{28}
 \contentsline {subsection}{\numberline {4.2.4}Code Generation}{28}
 \contentsline {subsection}{\numberline {4.2.5}GUI}{30}
-\contentsline {chapter}{\numberline {5}Evaluation}{31}
-\contentsline {section}{\numberline {5.1}Unit Testing}{31}
-\contentsline {section}{\numberline {5.2}System Testing}{32}
-\contentsline {paragraph}{}{32}
-\contentsline {section}{\numberline {5.3}UI and Usability Testing}{32}
-\contentsline {chapter}{\numberline {6}Problems Encountered and Future Development}{34}
-\contentsline {section}{\numberline {6.1}Problems}{34}
-\contentsline {paragraph}{}{34}
-\contentsline {section}{\numberline {6.2}Future Development}{35}
-\contentsline {subsection}{\numberline {6.2.1}Improvements}{35}
-\contentsline {paragraph}{}{35}
-\contentsline {paragraph}{}{35}
-\contentsline {subsection}{\numberline {6.2.2}New Functionality}{35}
-\contentsline {paragraph}{}{35}
-\contentsline {chapter}{\numberline {7}Conclusion}{36}
-\contentsline {section}{\numberline {7.1}Contribution}{36}
+\contentsline {chapter}{\numberline {5}Evaluation}{32}
+\contentsline {section}{\numberline {5.1}Unit Testing}{32}
+\contentsline {paragraph}{}{33}
+\contentsline {paragraph}{}{33}
+\contentsline {section}{\numberline {5.2}System Testing}{33}
+\contentsline {paragraph}{}{33}
+\contentsline {paragraph}{}{33}
+\contentsline {paragraph}{}{33}
+\contentsline {section}{\numberline {5.3}UI and Usability Testing}{34}
+\contentsline {chapter}{\numberline {6}Problems Encountered and Future Development}{36}
+\contentsline {section}{\numberline {6.1}Problems}{36}
+\contentsline {paragraph}{}{36}
+\contentsline {section}{\numberline {6.2}Future Development}{37}
+\contentsline {subsection}{\numberline {6.2.1}Improvements}{37}
+\contentsline {paragraph}{}{37}
+\contentsline {paragraph}{}{37}
+\contentsline {subsection}{\numberline {6.2.2}New Functionality}{37}
+\contentsline {paragraph}{}{37}
+\contentsline {chapter}{\numberline {7}Conclusion}{38}
+\contentsline {section}{\numberline {7.1}Summary}{38}
+\contentsline {section}{\numberline {7.2}Contribution}{38}

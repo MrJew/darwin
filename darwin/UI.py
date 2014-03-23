@@ -26,6 +26,7 @@ class UI(wx.Frame):
         self.Show()
 
     def InitUI(self):
+        """Connects all the components and arranges them in the grid"""
         self.InitMenu()
 
         textPanel = self.InitTexts()
@@ -50,7 +51,7 @@ class UI(wx.Frame):
         self.Show(True)
 
     def InitMenu(self):
-
+        """Creates the menubar with all menus and submenus """
         menubar = wx.MenuBar()
 
         fileMenu = wx.Menu()
@@ -69,13 +70,9 @@ class UI(wx.Frame):
         self.SetMenuBar(menubar)
 
     def InitTexts(self):
+        """Craetes a component that contains the text fields specifying the webservices """
         panel = wx.Panel(self,-1)
         sizer = wx.GridBagSizer(4,2)
-
-        #filetxt = wx.StaticText(panel, label="File Name")
-        #sizer.Add(filetxt,pos=(0,0), flag = wx.LEFT|wx.TOP)
-        #self.file = wx.TextCtrl(panel,style=wx.TE_LEFT)
-        #sizer.Add(self.file, span=(1,20), pos=(1,0), flag = wx.TOP|wx.EXPAND|wx.BOTTOM)
 
         clienttxt = wx.StaticText(panel, label="Client IP Adress")
         sizer.Add(clienttxt,pos=(0,0), flag = wx.LEFT|wx.TOP)
@@ -101,6 +98,7 @@ class UI(wx.Frame):
         return panel
 
     def InitAttributes(self):
+        """Creates a component that contains all the attribute fields"""
 
         panel = wx.Panel(self,-1)
 
@@ -165,7 +163,7 @@ class UI(wx.Frame):
 
 
     def InitPrimitives(self):
-
+        """ Creates a component with a list of check list that contains the pre set primitives"""
         panel = wx.Panel(self,-1)
 
         vbox = wx.BoxSizer(wx.VERTICAL)

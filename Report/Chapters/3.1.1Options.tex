@@ -12,10 +12,10 @@ choice was CherryPy but that wasn't the only reason why the project was chosen. 
 \label{fig:webtab}
 \end{figure}
 
-\textbf{CherryPy}
 \paragraph{}
-CherryPy is a minimalistic python object-oriented framework which focuses on flexibility and has a reliable HTTP/1.1-complient, WSGI thread
-pooled web server. It requires a small amount of source code to run it, making it very useful to take the purpose of an \textit{Evaluator}. The \textit{Evaluator}
+\textbf{CherryPy}
+is a minimalistic python object-oriented framework which focuses on flexibility and has a reliable HTTP/1.1-complient, WSGI thread
+pooled web server. It requires a small amount of source code to run it, making it very useful to take the purpose of the project. Darwin's webservice component
 needs to be light in order to run either with multiple instances on a single server or run on a small devices like a Raspberry Pi.
 \subsection{Genetic Programming Framework}
 Genetic programming frameworks didn't have as many choices as RESTful web services however there was the option of implementing one.  Pyevolve\cite{pyevolve}, pystep\cite{pystep}, pygene\cite{pygene} and DEAP\cite{deap} were 
@@ -31,7 +31,7 @@ has great documentation, examples and tutorials which proved positive for the sp
 \paragraph{}
 Among one of the problems with using DEAP was it didn't support conversion between individuals and python source code or AST ( Abstract Syntax Tree). Representing an individual as raw code or an AST meant that 
 the evaluating web service can be simplified even more. Using AST was very compatible with the way individuals are represented in genetic programming and it was more
-robust and safe way of doing code generation rather than using raw string. However the more simple choice = raw strings, was selected due to pressure of time.  This suggested the idea of an open source contribution to the DEAP framework
+robust and safe way of doing code generation rather than using raw string. However the more simple choice (raw strings), was selected due to pressure of time.  This suggested the idea of an open source contribution to the DEAP framework
  for generating python source 
 and AST for a DEAP individuals.
 \subsection{Graphical User Interface and XML}
@@ -44,12 +44,9 @@ lot of good tools for generating layout. However, my previous experience with GU
 quickly and writing a decent GUI in no time. In the end I didn't use any of the layout generating tools like wxGlade, wxDesigner or DialogBlocks because learning to use them was going to
 cost almost the same time as learning wxPython.
 \paragraph{}
-\textbf{wxPython}
-\paragraph{}
-WxPython follows the standard graphical library design pattern -MVC (Model View Controller).
+\textbf{wxPython} follows the standard graphical library design pattern -MVC (Model View Controller).
 This design is focused on separation of concerns making it perfect for building a GUI for creation of XML files. The model or the 
 data is the configuration parameters used, the view is the wxPython's frame and interface and the controller is the XML parser making use of data.
-\paragraph{}
 The library provides an easy to understand and use API. The main component is a frame, each secondary component like a pane, button or a menubar
 is added to it. The framework uses different types of sizers to organize the components in the frame. To create more complex layouts
 sizers can be stacked. WxPython has a large number of pre-set and easy to configure dialogue boxes for almost any case that might be needed.

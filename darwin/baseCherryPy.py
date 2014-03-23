@@ -6,6 +6,7 @@ from helper import stdoutIO
 class BaseCherryPy:
 
     def evaluate(self,individual,arguments):
+        """ Evaluate method that acts as a fitness function for the darwin framework used by the evaluator"""
         arguments = eval(arguments)
         diff=0
         for i in arguments:

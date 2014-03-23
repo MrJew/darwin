@@ -124,12 +124,15 @@ class Populator:
         return inds
 
     def generateWebService(self,individual):
+        """ Generates a file called 'clonedwebservice.py' that contains a webservice with the specified individual"""
         generateService(self.configuration.imports,
                         getSignature(self.configuration.testArguments),
                         self.lambdify(gp.stringify(individual),self.configuration.pset),
                         self.configuration.configClass,)
 
     def graphIndividual(self,expr,fname):
+        """ creates a file that contains the graph of an individual
+        """
         nodes, edges, labels = gp.graph(expr)
         g = pgv.AGraph()
         g.add_nodes_from(nodes)

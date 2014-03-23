@@ -41,6 +41,11 @@ Michael G.~Epitropakis Jerry~Swan and John~R. Woodward.
 \newblock PhD thesis, Department of Computing Science and Mathematics;
   University of Stirling, 2014.
 
+\bibitem{monkey}
+George Kouzmov.
+\newblock Surveymonkey.
+\newblock \url{https://www.surveymonkey.com/s/3GZH57M}.
+
 \bibitem{lxml}
 lxml.
 \newblock lxml.
@@ -91,5 +96,10 @@ W3.
 WebPy.
 \newblock Webpy.
 \newblock \url{http://webpy.org/}.
+
+\bibitem{wolfram}
+WolframAlpha.
+\newblock Wolframalpha.
+\newblock \url{http://www.wolframalpha.com/}.
 
 \end{thebibliography}

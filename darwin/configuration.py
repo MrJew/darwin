@@ -103,6 +103,9 @@ class Configuration:
         self.configureArguments()
 
     def configureToolbox(self):
+        """ inernal method that configures the deap's toolbox based on the Configuration class
+        """
+
         if not self.isMax   : creator.create("FitnessMin", base.Fitness, weights=(-1.0,))
         else                : creator.create("FitnessMax", base.Fitness, weights=(-1.0,))
 
@@ -128,6 +131,7 @@ class Configuration:
         self.pset.renameArguments(**renameArgs)
 
     def setEmpheralConstant(self,constant):
+        """ Empheral Constants used by deap """
         self.pset.addEphemeralConstant(constant)
 
 

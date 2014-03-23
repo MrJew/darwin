@@ -3,12 +3,12 @@ the genetic programming is done and handles output. It also contains functionali
 web services, either an evaluator or a target web service for cloning.
 \paragraph{}
 Unlike the \textit{Configuration} class the \textit{Populator} doesn't work with the \textit{pset} and \textit{toolbox} DEAP
-components directly. It uses them to generate individuals and apply mutation or crossover algorithm to it. Instead of using
+components directly. It uses them to generate individuals and apply a mutation or crossover algorithm to it. Instead of using
 the standard genetic programming algorithm that DEAP provides by calling a single function, the algorithm had to be implemented 
 manually. As seen in \ref{lst:populate} the offspring is initialized by copying it from the initial population. This first population is a
 generation of random individuals with depth between 1 and 3. 
 
-\begin{lstlisting}[language=Python,caption={Populate function responsible for generating individuals},label={lst:populate}]
+\begin{lstlisting}[language=Python,caption={Populate function responsible for generating individuals},label={lst:populate},breaklines=true]
 
  def populate(self):
     for gen in range(self.configuration.gen):
@@ -27,9 +27,9 @@ generation of random individuals with depth between 1 and 3.
 \end{lstlisting}
 
 To each generation crossover and mutation functions are applied. However both of the functions are modified so each
-individual is evaluated separately. The whole avoiding of DEAP standard genetic programming function is because evaluation
+individual is evaluated separately. The whole avoiding of DEAP's standard genetic programming function is because evaluation
 is not done in the \textit{Populator} but by the \textit{Evaluator}. In order to make use of the decorators the crossover
-and mutation function a manual substitution of the generation is done as seen in \ref{lst:mutation}.
+and mutation function a manual substitution of the generation is done as seen in \ref{lst:populate}.
 
 \begin{lstlisting}[language=Python,caption={Modified mutation method to substitute each parent with its children},label={lst:populate}]
 

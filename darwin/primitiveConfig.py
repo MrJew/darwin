@@ -19,21 +19,28 @@ class Handlers:
         return self.responseHandler(r)
 
     def requestHandler(self,url,params):
+        """ Method to be overwritten for creating a more specific request
+        """
 
         return self.handler(url,params)
 
 
     def responseHandler(self,r):
+        """ Method to be overwritten for handling a more specific response
+        """
         return float(r.text)
 
 
 class PrimitiveConfig(Handlers):
+
+
     listOfExcludes = ["listOfExcludes","getSource","getPrimitives","functionArgs","updateExcludes",
                       "targetFunction","numberOfFunctionArgs","getFunctions","basicPrimitives"
                       ,"requestHandler","responseHandler", "handler",
                       "__doc__","__module__","__init__"]
     basicPrimitives = ["add","mul","sub","safeDiv","sin","cos","sqrt","pow","log"]
 
+    # Pre set primitives
     def add(self,a,b):
         return operator.add(a,b)
 
@@ -80,9 +87,11 @@ class PrimitiveConfig(Handlers):
             return 0
 
     def updateExcludes(self,chosenPrimitives):
+        """ Based on the specified primitives in the XML file updates the list of used primitives"""
         self.listOfExcludes.extend([ p for p in self.basicPrimitives if p not in chosenPrimitives ])
 
     def getPrimitives(self):
+        """Gathers a list of all the primitives used by DEAP"""
         return [method for method in dir(self) if method not in self.listOfExcludes]
 
     def getFunctions(self):
@@ -104,6 +113,10 @@ class PrimitiveConfig(Handlers):
         return args
 
     def getSource(self, imports,individual,arguments):
+        """ Generates a source of an individual
+            imports: list of imports used by the custom primitves
+            individual: DEAP individual
+            arguments: dictionary arguments"""
         result = generateImports(imports)
         result+= generateFunctions(self,False)
         result += generateMain(arguments,individual,False)

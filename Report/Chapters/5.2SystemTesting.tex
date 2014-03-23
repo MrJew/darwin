@@ -1,15 +1,22 @@
 There were many dependencies in the framework, which made testing a very difficult task. So instead of spending
-a lot of time trying to write complicated unit tests for each function/method in the code it was
-decided it's easier to do system testing. In the case of methods like \textit{evaluate} where individuals were send to the evaluating
+valuable time writing complicated unit tests for each function/method in the code, extensive system testing was initiated.
+ In the case of methods like \textit{evaluate} where individuals were send to the evaluating
 web service unit tests weren't an option because in order to test them individuals had to be generated manually. Generating
 individuals was easy but generating the same ones every time so the test data can be robust was a problem. That's why after
-other framework functionalities were verified system testing was done to prove the correctness of the more complex components.
+other framework functionalities were verified system testing was used to prove the correctness of the more complex components.
 \paragraph{}
 For system testing the goal was to use a generated web service for cloning and a real world one. The first step of the system
-testing was easy and simple enough. Testing proved successful and useful results were pulled out of it. For example a bug was
+testing was easy and simple enough. Testing proved successful and useful results were pulled out of it. 
+\paragraph{}
+\textbf{Simple Testing}
+ involved running the Darwin framework against a simple, created for testing webservice. 
+Using this simple webservice a bug was
 detected in which DEAP individuals were generated with depth above 90. This meant that the python stack was breaking and couldn't
 evaluate the individual properly. The bug was fixed by modifying the way DEAP's decorator methods were used in the individual
-generation. This helped clear a major issue and second stage of system testing could being. In the second stage Wolfram Alpha[ref] 
+generation. This helped clear a major issue and second stage of system testing could being.
+\paragraph{}
+\textbf{Wolfram Alpha Testing}
+ was used in the second stage. Wolfram Alpha\cite{wolfram} 
 was used as an external web service targeted for cloning. The first issues was the way Wolfram Alpha was receiving parameters and
 the responses in XML format. Since the framework didn't have functionality to handle the issue system testing was stopped and development
 over request and response handlers was started. After completion of the tasks system testing was initiated again. Framework passed through

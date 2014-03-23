@@ -1,12 +1,12 @@
 By separating the framework into several base components it was easier to split each of the components into
-it's core functions and apply unit tests to verify their correctness. However due to the complexity and
-dependencies in the framework test writing was complicated. Many of the functions depended either on 
+its core functions and apply unit tests to verify their correctness. However due to the complexity and
+dependencies in the framework, test writing was complicated. Many of the functions depended either on 
 the DEAP toolbox or on the primitive set which was responsible for generating DEAP individuals. They couldn't
-be reproduced manually for the tests, so multiple components had to be ran first in order to verify the unit tests.
+be reproduced manually for the tests, so multiple components had to be enabled in order to verify the unit tests.
 Since DEAP was an external framework with a stable release it was assumed that it is functioning correctly so no 
 unit tests were ran on it specifically however components using it were extensively tested. Each of the components
 had testing aims however not all functions were covered since their complexity or dependency was too high, thats why
-they were left for system testing later on. The strategy for unit testing looked like this:
+they were left for system testing later on. This was the unit testing strategy:
 
 \begin{enumerate}
   \item Unit tests on each of PrimitiveConfig's methods
@@ -31,3 +31,11 @@ they were left for system testing later on. The strategy for unit testing looked
 Through the unit tests many errors in the code generation functions were found so they had to be re factored. The imports used for the custom primitive set
 weren't working properly so they had to be fixed. After the unit tests were created initially they were used for verification of code correctness after
 a change in the code. If the unit test didn't work that meant there was an error in the code.
+\paragraph{}
+Among the bugs found through unit tests was a code generation one. The python source was missing the imports specified by the user. When a simple system
+test was ran it couldn't be identified since the primitives used didn't include any external imports. However because of the modified configuration used
+for unit testing the bug was identified on time.
+\paragraph{}
+Another problem was with the pre-set primitives. Because of the mathematical nature of primitives division by 0 had to be avoided.
+In the simple system tests there were no examples with division by 0, the bug wasn't found until unit tests
+for each primitive were executed.

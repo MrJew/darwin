@@ -5,6 +5,8 @@ import contextlib
 import inspect
 
 def listTokwags(dicOfLists):
+    """ based on a dictionary that contains an argument name and list of arguments as a value it creates
+        a list of dictionaries used as kwargs"""
     newArgs=[]
     for i in range(len(dicOfLists.values()[0])):
         nd={}
@@ -14,6 +16,7 @@ def listTokwags(dicOfLists):
     return newArgs
 
 def formatCode(method):
+    """ formats the method by removing the 'self' parameter"""
     method = method.split('\n')
     newList = []
     for line in method:
@@ -26,6 +29,7 @@ def formatCode(method):
     return result[:-1]
 
 def formatLines(code):
+    """formats the code by tabbing it correctly"""
     lines = code.split('\n')
     formated = []
     for line in lines:
@@ -44,6 +48,7 @@ def getSignature(arguments):
     return result[:-1]
 
 def individualForMethods(individual,config):
+    """ Creates an individual for a lambda expression by adding self notation so they can be executed in a class"""
     f = dir(config)
     for i in f:
         old = i+"("
@@ -52,6 +57,12 @@ def individualForMethods(individual,config):
     return individual
 
 def generateService(imports,arguments,individual,config):
+    """ Generates a cloned webservice using a standard individual and adding CherryPy wrapper
+        imports: list of imports used by the custom primitves
+        individual: DEAP individual
+        arguments: dictionary arguments
+        config: configuration class used in the framework
+     """
     result = "from baseCherryPy import BaseCherryPy\n"
     if len(imports)==0:
         imports = ['cherrypy']
@@ -76,6 +87,7 @@ def generateService(imports,arguments,individual,config):
 
 
 def generateImports(imports):
+    """ Generate lines that specify imports used by the individual """
     result=""
     result+="import sys\n"
     result+="import operator\n"
@@ -86,6 +98,7 @@ def generateImports(imports):
     return result
 
 def generateFunctions(config,service):
+    """ based on the primitives extracts the function code and formats it correctly """
     result = ''
     for method in config.getPrimitives():
 
@@ -106,6 +119,7 @@ def generateFunctions(config,service):
     return result
 
 def generateMain(arguments,individual,service):
+    """ creates a main function in the individual called by the evaluator to get the individual result """
     if not service:
         main = "def main("+arguments+"):\n"
     else:
