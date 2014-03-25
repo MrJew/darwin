@@ -29,9 +29,9 @@ frame objects, code objects). Generation is used to create new code objects and 
 For inspecting code the best solution was the \textit{inspect} library which provided a way to extract source and other parameters from functions. It is a library that comes with python, 
 has great documentation, examples and tutorials which proved positive for the speed of development.
 \paragraph{}
-Among one of the problems with using DEAP was it didn't support conversion between individuals and python source code or AST ( Abstract Syntax Tree). Representing an individual as raw code or an AST meant that 
+Main problem using DEAP was it didn't support conversion between DEAP individuals and python source code or AST ( Abstract Syntax Tree). Representing an individual as raw code or an AST meant that 
 the evaluating web service can be simplified even more. Using AST was very compatible with the way individuals are represented in genetic programming and it was more
-robust and safe way of doing code generation rather than using raw string. However the more simple choice (raw strings), was selected due to pressure of time.  This suggested the idea of an open source contribution to the DEAP framework
+robust and safe way of doing code generation rather than using raw string. However the more simple choice, raw strings, was selected due to pressure of time.  This suggested the idea of an open source contribution to the DEAP framework
  for generating python source 
 and AST for a DEAP individuals.
 \subsection{Graphical User Interface and XML}

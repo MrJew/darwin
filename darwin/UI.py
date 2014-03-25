@@ -149,8 +149,8 @@ class UI(wx.Frame):
         ###
         ter = wx.StaticText(panel, label="Terminals")
         sizer.Add(ter, pos=(2, 4), flag=wx.LEFT|wx.TOP, border=20)
-
         self.tertxt = wx.TextCtrl(panel)
+        self.tertxt.SetValue("e.g 1.0,2.0,3.14,-2.1")
         sizer.Add(self.tertxt, pos=(3, 4), span=(1,3),  flag=wx.LEFT|wx.TOP|wx.EXPAND, border=10)
 
 
@@ -259,11 +259,20 @@ class UI(wx.Frame):
         if self.client.GetValue() == "" :
             wx.MessageBox('Client IP adress is required!', 'Error', wx.OK | wx.ICON_ERROR)
             return
+        elif self.argtxt.GetValue() == "":
+            wx.MessageBox('Test arguments field empty, .csv file with arguments requiresd!!', 'Error', wx.OK | wx.ICON_ERROR)
+            return
 
         cport = self.portclient.GetValue()
         curl = self.client.GetValue()
         tport = self.porttarget.GetValue()
         turl = self.target.GetValue()
+
+        if len(curl)<7 or curl[:7]!="http://":
+            curl = "http://"+curl
+
+        if len(turl)<7 or turl[:7]!="http://":
+            turl = "http://"+turl
 
         o = urlparse(curl)
         curl = o.scheme+"://"+o.netloc
@@ -277,6 +286,7 @@ class UI(wx.Frame):
             turl+=":"+tport
         turl+=o.path
 
+
         parameters["evalUrl"]   = curl
         if self.target.GetValue() != "" : parameters["copyUrl"]   = turl
         if self.pop.GetValue() != "" : parameters["pop"]       = str(self.pop.GetValue())
@@ -288,6 +298,7 @@ class UI(wx.Frame):
 
 
         ### terminals ###
+        if self.tertxt.GetValue()[:3] =="e.g": self.tertxt.SetValue("");
         if self.tertxt.GetValue() != "":
             terminals = self.tertxt.GetValue().split(",")
             for t in range(len(terminals)):

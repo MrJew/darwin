@@ -11,30 +11,22 @@ cherrypy.config.update({'server.socket_host': '',
 
 class ClonedWebService(BaseCherryPy):
 
-    def add(self,a,b):
-        return operator.add(a,b)
-
     def mul(self,a,b):
         return operator.mul(a,b)
 
-    def safeDiv(self,a,b):
-        if b==0:
+    def pow(self,a,b):
+        try:
+            return math.pow(a,b)
+        except:
             return 0
-        else:
-            return operator.div(a,b)
 
-    def sub(self,a,b):
-        return operator.sub(a,b)
+    def main(self,r):
+        r = float(r)
+        ind = lambda r: self.mul(3.14, self.mul(3.14, r))
+        return ind(r)
 
-    def main(self,y,x,z):
-        y = float(y)
-        x = float(x)
-        z = float(z)
-        ind = lambda y,x,z: self.add(x, self.add(y, z))
-        return ind(y,x,z)
-
-    def index(self,y,x,z):
-        return self.main(y,x,z)
+    def index(self,r):
+        return self.main(r)
     index.exposed = True
 
 cherrypy.quickstart(ClonedWebService())

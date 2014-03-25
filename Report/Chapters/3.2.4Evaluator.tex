@@ -1,8 +1,7 @@
-The final big component is the \textit{Evaluator} \ref{fig:classd}. It is a CherryPy service that can be executed on any machine running python and
- has only one method - evaluate. It takes an individual, test arguments in the form of a dictionary and  fitness
-results evaluates the individual compares with the fitness function and return the result. Initially the individual was in a DEAP
-represented form however that meant that in order to evaluate it the same DEAP configuration needed to be set up on the evaluating side as on the client one.
-This was impractical,slower, it was introducing many dependencies and much harder to set up. The Evaluator needs
-to be easy to set up, easy to modify because it is expected to be ran on multiple machines including RaspberryPis.
-Because of that the individuals was later represented as source code which meant it was able to run on any machine
-that runs python. This way simplicity was achieved for this component by moving most of the overhead work to the client.
+The final big component is the \textit{Evaluator} \ref{fig:firstSprint}. It is a CherryPy service that can be executed on any machine running python and
+ has only one method - evaluate. It would receive an individual, compare it to results from the target return fitness as a result. Initially design involved using DEAP individuals.
+However evaluate it the same DEAP configuration needed to be set up on the evaluating side as on the client one.
+This was impractical,slower, it was introducing many dependencies. The Evaluator needs
+to be easy to set up, easy to modify because it is expected to be ran on multiple machines including Raspberry Pi.
+Because of that individuals were later represented as source code which meant it was able to run on any machine
+that runs Python. This way simplicity was achieved for this component by moving most of the overhead work to the client.

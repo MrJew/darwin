@@ -4,25 +4,17 @@ terminals that the genetic program is going to use are defined. The toolbox give
 generations and population as well as methods that invoke mutation, crossover and evaluation over the population.
 \paragraph{}
 Knowing how the DEAP framework works, it was later obvious that the same parameters needed for DEAP's configuration
-were going to be needed for Darwin's as well. Through the \textit{PrimitiveConfig} class shown in figure ~\ref{fig:classd}
-it was possible to set all the primitive functions and the fitness function needed for the program. Later on the client decided
-that there should be a pre-set number of primitives and the user would choose through the GUI which to enable. However in
-the case of an advanced user if additional primitives need to be added the class can simply be extended and add them as
-normal methods. No other configurations regarding the primitives need to be done since Darwin is handling everything else.
-
+were going to be needed for Darwin's as well. So the idea was to create a \textit{Configuration} class used as a data
+model for the framework. For easier configuration of the parameters an XML configuration file was introduced. It carried
+all parameters besides the primitives.
 \paragraph{}
-In figure ~\ref{fig:classd} you can see that for the configuration of the genetic programming algorithm other parameters are needed which
-are not specified in the \textit{PrimitiveSet} class; this is done in the \textit{Configuration} component. When setting up the framework they can be set manually or configured
-by an XML file that carries all the information needed. There are only two parameters that are mandatory and the framework
-won't work without them - the address of the evaluating web service and the target service that needs to be cloned. Any other
-parameter is automatically set up with a standard value for solving the symbolic regression problem. The class that configures
-the framework acts like a data model since all the parameters needed through any other step of the framework is instantiated there.
-This data model is later used by the \textit{Populator} component.
+\textit{Configuration} needed primitive set to configure DEAP. To create modularity and automation a class was introduced
+where all primitives were captured. User should implement methods in the class that would be treated as primitives. To
+automate the configuration extraction of source had to be introduced to the class' functionality.
 \paragraph{}
-The \textit{Populator} class is basically a wrapper around the DEAP framework. The class creates the first generation by
-randomly generating individuals. Each individual is send over the network to the evaluating webservice. The evaluating webservice measures the fitness
+The \textit{Populator} component would be a wrapper around the DEAP framework. 
+The component would use the DEAP framework in a specific way to generate individuals and convert them to python code for easier transportation.
+ Each individual is send over the network to the evaluating webservice. The evaluating webservice measures the fitness
 of an individual and returns it. After each individual's fitness value is updated it
-repeats the process until the number of generations are reached or an individual with 0.0 fitness is found. Besides executing the actual genetic program the \textit(Populator)
-logs the traffic between the services and handles the output of the genetic program - either displaying the best individual or 
-generating a web service working with the best individual.
+repeats the process until the number of generations are reached or an individual with 0.0 fitness is found.
 

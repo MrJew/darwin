@@ -1,13 +1,14 @@
 For python GUI development wxPython was a great choice because it offered simplicity and progress was easy.
 The framework supports loose coupling and high cohesion, it gives the opportunity to develop separate components
 and combine them later. This design feature was used to develop a component for each set of elements in the
-wireframe \ref{guie}. 
+wireframe. Later on it was decided that advanced functionality should be opt out from the GUI and only
+basic configuration should be available. The result was the following GUI \ref{imp}
 
 \begin{figure}[htp]
 \centering
-\includegraphics[scale=0.6]{Figures/guiit.png}
-\caption{One of the iterations of the GUI showing all the possible parameters}
-\label{fig:guie}
+\includegraphics[scale=0.7]{Figures/gui.png}
+\caption{Graphical user interface for the Darwin framework that generates XML files}
+\label{fig:guiimp}
 \end{figure}
 
 The GUI was split into five components \ref{guicode}.
@@ -24,7 +25,6 @@ The GUI was split into five components \ref{guicode}.
 \end{enumerate} 
 
 \begin{lstlisting}[language=Python,caption={The method in the GUI that initializes all the components used},label={lst:guicode}]
-
 def InitUI(self):
     self.InitMenu()
     textPanel = self.InitTexts()
@@ -33,4 +33,33 @@ def InitUI(self):
     buttPanel = self.InitButtons()
 \end{lstlisting}
 
-When the \textit{Generate} button is pressed the UI is organizing all the data from the fields into a dictionary which is passed to the XML parser to generate the XML configuration file.
+When the \textit{Generate} button is pressed the GUI is organizing all the data from the fields into a dictionary which is passed to the XML parser to generate the XML configuration file \ref{lst:xmlf}
+
+\begin{lstlisting}[language=XML,caption={XML file used by the framework for configuring the needed parameters},label={lst:xmlf}]
+<config>
+  <mut>0.2</mut>
+  <arguments>
+    <arg name="r" number="0">1</arg>
+    <arg name="r" number="1">0</arg>
+    <arg name="r" number="2">1.5</arg>
+    <arg name="r" number="3">5</arg>
+    <arg name="r" number="4">15</arg>
+    <arg name="r" number="5">13.4</arg>
+    <arg name="r" number="6">20.1</arg>
+    <arg name="r" number="7">132.2</arg>
+  </arguments>
+  <pop>300</pop>
+  <terminals>
+    <terminal>3.14</terminal>
+  </terminals>
+  <cx>0.8</cx>
+  <copyUrl>http://api.wolframalpha.com/v2/query</copyUrl>
+  <basicPrimitives>
+    <primitive>mul</primitive>
+    <primitive>pow</primitive>
+  </basicPrimitives>
+  <evalUrl>http://localhost:8844</evalUrl>
+  <gen>300</gen>
+</config>
+\end{lstlisting}
+

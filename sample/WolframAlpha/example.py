@@ -6,6 +6,9 @@ from lxml import etree
 #apid= X63LWT-U7E9YX8R2K
 class Config(PrimitiveConfig):
 
+    def pow(self,a):
+        return a^2
+
     def requestHandler(self,url,testArguments):
         print testArguments
         apid= "X63LWT-U7E9YX8R2K"

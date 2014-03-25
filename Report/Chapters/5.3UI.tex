@@ -7,18 +7,17 @@ tutorial, understanding of the framework and usability of the GUI. Each had to a
 \begin{enumerate}
 \item How helpful was it to understand the basics of the framework?
 \item How complex it was to create the first examples?
-\item How confident are you understand the framework basics? 
 \item How complex was to create the advanced example?
 \item How far on the tutorial did you reach in 30 minutes?
 \end{enumerate}
  
-Second part of the evaluation they had to asses the graphical user interface by answering the following questions: 
+Second part of the evaluation participants had to asses the graphical user interface by answering the following questions: 
 
 \begin{enumerate}
 \item How intuitive is it?
 \item How simple is it?
 \item Were there enough options presented?
-\item Can you give additional feedback that can help improve the GUI
+\item Can you give additional feedback that can help improve the GUI?
 \end{enumerate}
 
 In addition through the evaluation the participants were observed and notes based on their actions were taken to compare with their feedback. This way a more
@@ -38,10 +37,18 @@ accurate conclusions could be drawn. SurveyMonkey was used for the survey. Throu
 \item There should be more frequent code examples?
 \end{itemize}
 
-As seen in the results from the survey, participants had hard time with running the first example as seen in fig \ref{firstex}. This was due to the more complicated tutorial
-and because hard set up of the framework. However
-in the end of the tutorial there was a high number participants that understood the basics framework functionality. Most of the participants managed to complete the tutorial
+As seen in the results from the survey, participants had hard time with running the first example as seen in fig \ref{fig:firstex}. This was due to the multiple dependencies of the
+framework, lack of installation script and ambiguity in the tutorial. However
+in the end of the tutorial there was a high number participants that understood the basic framework functionality. Most of the participants managed to complete the tutorial
 in less than 30 minutes, however these 30 minutes didn't include set up time.
 
+\begin{figure}[htp]
+\centering
+\includegraphics[scale=0.5]{Figures/q1.png}
+\caption{Plotted answers to the question: "How complex it was to create the first examples?" and "How helpful was it to understand the basics of the framework?" }
+\label{fig:firstex}
+\end{figure}
+
 For the GUI the results from participants were quite positive. The main problems with the GUI were the lack of feedback in the case of an error and lack of automation
-at the URL fields.
+at the URL fields. Each of those problems was fixed by adding pop-up dialogues in case of a missing field, example for the \textit{Terminals} field was added and the
+URL fields don't need \textit{http}.

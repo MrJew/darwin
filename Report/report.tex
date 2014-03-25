@@ -9,8 +9,8 @@
 \usepackage{cite}
 \DeclareGraphicsExtensions{.pdf,.png,.jpg}
 
-\pagenumbering{arabic}
 
+\pagenumbering{roman}
 
 \begin{document}
 \title{Darwin: A Genetic Programming Framework for Cloning Web Services}
@@ -18,20 +18,36 @@
 \date{31 January 2014}
 \maketitle
 
+\begin{abstract}
+Web services have become a common way of communicating between devices. With the growth of the
+world wide web there are thousands software projects using webservices to exchange information.
+
+The project aims prove that genetic programming can be used for cloning web services. It focuses
+on creating a user centric framework. Cloned web services present software redundancy
+also known as N-version programming, that can increase the reliability of a system.
+The Darwin framework proves that such use of genetic programming is possible.
+
+This is an innovative project, there are no prior attempts to use genetic programming to clone
+web services. Hopefully it would create a base for future development in the area. 
+\end{abstract}
+
 \tableofcontents
 \listoffigures
 \listoftables
+
 %==============================================================================
+
+
 \chapter{Introduction}
 \input{Chapters/1.0Introduction.tex}
-
+\pagenumbering{arabic}
 \section{What is Genetic Programming?}
 \input{Chapters/1.1GeneticProgramming.tex}
 
 \section{What are Web Services?}
 \input{Chapters/1.2WebServices.tex}
 
-\section{Aim}
+\section{Project's Aim}
 \input{Chapters/1.3Probem.tex}
 
 %==============================================================================
@@ -58,7 +74,7 @@
 %==============================================================================
 \chapter{Design}
 \input{Chapters/3.0Design.tex}
-\section{Multiple Technologies}
+\section{Choice of Technologies}
 \input{Chapters/3.1.MultipleTechnologies.tex}
 \input{Chapters/3.1.1Options.tex}
 
@@ -146,8 +162,11 @@
 \section{Contribution}
 \input{Chapters/7.1Contribution.tex}
 
+
 %==============================================================================
+
+
 \bibliographystyle{plain}
 \bibliography{report}
-
+\pagenumbering{roman}
 \end{document}
