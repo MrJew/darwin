@@ -4,8 +4,9 @@ functionality. Like the more widespread genetic algorithms (GA), genetic program
 based methodology to iterate through solutions until a correct one is found. In genetic programming a 
 predefined size \textbf{population} is iterated through a user defined number of \textbf{generations}. 
 The population consists of \textbf{individuals} which are programs represented as a tree structure.
-This tree structure is constructed from a pre-defined \textbf{primitive set} of functions and \textbf{terminals}.
-The terminals represent the bottom nodes of the tree, they can be both arguments and constants. An individual
+This tree structure is constructed from a pre-defined set of \textbf{primitives} and \textbf{terminals}.
+The primitives represent the functions from which the individual is constructed and
+the terminals represent the bottom nodes of the tree, they can be both arguments and constants. A tree representation of an individual
 can be seen in figure \ref{fig:ind}
 \begin{figure}[htp]
 \centering
@@ -18,13 +19,13 @@ is evaluated and compared. This way the correctness of the program can be calcul
 minimum and maximum where minimum is looking for individuals with fitness values closer to 0 (where 0 usually means that a solution is found)
 and maximum for the individuals with highest fitness result.
 \paragraph{}
-Genetic program works by randomly generates individuals for the first generation evaluating them through the 
+Genetic program randomly generates individuals for the first generation, evaluates them through the 
 fitness function and creates new programs through \textbf{crossover} and \textbf{mutation}. Crossover 
 is used to combine the genetic information of two individuals which means switching the nodes of a tree of one individual
 with another as seen in figure \ref{fig:cross}. With a tree-based representation replacing a node means replacing the whole branch. When mutation
-is applied to an individual a single node is replaced with a new randomly generated one again changing a single
+is applied to an individual a single node is replaced with a new randomly generated one. Changing a single
 node can mean changing the whole branch shown in figure \ref{fig:mut}. After crossover and mutation are applied to the population a new generation
-that consists of the children of the old population, individuals from the old population and mutated individuals is created
+that consists of the children, individuals from the old population and mutated individuals is created
 hence the iterations continue until the generations are completed. A result may not be found in the end of the generations.
 The result of a genetic program is a heuristic, a stochastic method - no guarantee of success.
 \begin{figure}[htp]
@@ -41,16 +42,16 @@ The result of a genetic program is a heuristic, a stochastic method - no guarant
 \label{fig:mut}
 \end{figure}
 
-One of the problems with genetic programming is searching the correct parameters to solve a specific problem. For each problem
-a specified number of populations, generations needs to be provided also the percentage of the population to which crossover and
-mutation are going to be applied. In more advanced cases the types of mutation, crossover and fitness function algorithms used need
+One of the problems with genetic programming is searching for the correct parameters to solve a specific problem. For each problem
+a specified number of populations, generations needs to be provided e.g the percentage of the population to which crossover and
+mutation are going to be applied. In more advanced cases the types of mutation and crossover algorithms need
 to be specified. Another complication is choosing the correct fitness function to evaluate the correctness of the individuals. If 
 an incorrect fitness function is defined an individual with seemingly good fitness value may be far from correct. The primitive
-and terminal sets need to be chosen correctly as well. If too many primitives are chosen the generations might not be enough to 
-find a solution to the problem because we are expanding the search boundaries. However if small sets are chosen we are 
+and terminal sets need to be wisely chosen as well. If too many primitives are chosen the generations might not be enough to 
+find a solution to the problem because the search boundaries were expanded. However if small sets are chosen we are 
 limiting the search boundaries or the individuals won't have a sufficient primitive set to satisfy the required functionality.
 \paragraph{}
 Using this methodology multiple problems can be solved. A common and a simple one is symbolic regression. In the case
 of symbolic regression an individual represents a mathematical expression and is evaluated against another expression
-specified in the fitness function using the primitive set of operators available. In this project we are using this technique as a proof
+specified in the fitness function. In this project this technique is uesed as a proof
 of concept for the capabilities of the framework.

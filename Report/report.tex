@@ -7,6 +7,8 @@
 \usepackage{caption}
 \usepackage{url}
 \usepackage{cite}
+\usepackage{tikz}
+\def\checkmark{\tikz\fill[scale=0.4](0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) -- cycle;}
 \DeclareGraphicsExtensions{.pdf,.png,.jpg}
 
 
@@ -22,13 +24,23 @@
 Web services have become a common way of communicating between devices. With the growth of the
 world wide web there are thousands software projects using webservices to exchange information.
 
-The project aims prove that genetic programming can be used for cloning web services. It focuses
-on creating a user centric framework. Cloned web services present software redundancy
+Genetic programming is a branch of artificial intelligence inspired by biological evolution. Its creating a program that modifies programs.
+It uses an evolutionary algorithm based methodology to iterate through individuals(programs) and captures the best performing ones.
+The result of a genetic program is a heuristic, a stochastic method - no guarantee of success.
+
+The project aims to prove that genetic programming can be used for cloning web services. It focuses
+on creating a user centric framework. Cloning is done through reverse engineering the functionality using the primitive set of the genetic program.
+ One of many applications of cloned web services is software redundancy
 also known as N-version programming, that can increase the reliability of a system.
 The Darwin framework proves that such use of genetic programming is possible.
 
 This is an innovative project, there are no prior attempts to use genetic programming to clone
 web services. Hopefully it would create a base for future development in the area. 
+\end{abstract}
+
+\renewcommand{\abstractname}{Acknowledgements}
+\begin{abstract}
+\input{Chapters/7.1Contribution.tex}
 \end{abstract}
 
 \tableofcontents
@@ -56,20 +68,27 @@ web services. Hopefully it would create a base for future development in the are
 \section{Related Work}
 \input{Chapters/2.1Background.tex}
 
+
 \section{Organization}
 \input{Chapters/2.3Organization.tex}
+
+\subsection{Meetings and Minutes}
+\input{Chapters/2.3.1Meetings.tex}
 
 \subsection{Agile Development}
 \input{Chapters/2.3.2AgileDevelopment.tex}
 
+
+\section{Requirements Gathering}
+After creating project management environment and clarifying genetic programming concepts it was possible to specify the requirements.
+There were pre-set by the client, however with time they iterated and new ones were introduced. Requirements were key to establishing
+the same goal both for me and the client.
 \subsection{Requirements}
 \input{Chapters/2.2Requirements.tex}
 
 \subsection{User Stories and Sprints}
 \input{Chapters/2.3.3UserStories.tex}
 
-\subsection{Meetings and Minutes}
-\input{Chapters/2.3.1Meetings.tex}
 
 %==============================================================================
 \chapter{Design}
@@ -137,15 +156,23 @@ web services. Hopefully it would create a base for future development in the are
 \input{Chapters/5.2SystemTesting.tex}
 \section{UI and Usability Testing}
 \input{Chapters/5.3UI.tex}
+
+
 %==============================================================================
-\chapter{Problems Encountered and Future Development}
+\chapter{Conclusion}
+
+
+
 \input{Chapters/6.0ProblemsAndFuture.tex}
 
 \section{Problems}
 \input{Chapters/6.1Problems.tex}
 
 \section{Future Development}
-\input{Chapters/6.2FutureDevelopment.tex}
+Since the beginning of the project the development has been very ambitious and all
+the goals that were set were accomplished. This gave the opportunity to think a lot about
+improvements for the framework - anything from re-factoring, improving features to adding
+additional functionality.
 
 \subsection{Improvements}
 \input{Chapters/6.2.1Improvements.tex}
@@ -153,20 +180,13 @@ web services. Hopefully it would create a base for future development in the are
 \subsection{New Functionality}
 \input{Chapters/6.2.2NewFeatures.tex}
 
-%==============================================================================
-\chapter{Conclusion}
-
 \section{Summary}
 \input{Chapters/7.1Summary.tex}
 
-\section{Contribution}
-\input{Chapters/7.1Contribution.tex}
-
-
 %==============================================================================
 
 
-\bibliographystyle{plain}
+\bibliographystyle{ieeetr}
 \bibliography{report}
 \pagenumbering{roman}
 \end{document}

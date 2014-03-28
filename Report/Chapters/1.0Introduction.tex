@@ -1,16 +1,15 @@
 In recent years web services have become a common method of communicating between applications
 and accessing needed information, creating distributed environment for many developers.
 Due to the standardized communication used by the web services they are expected to be used even 
-more in the future. The nature of web
-services is a black box system which means we are unfamiliar with its contents and we only know how to
+more in the future. The nature of a web service is a black box system which means we are unfamiliar with its contents and we only know how to
 access it and what it returns. 
 \paragraph{}
-The central goal of this project is to produce a tool for cloning a web services using genetic
+The main goal of this project is to produce a tool for cloning a web services using genetic
 programming, a proof of concept project that reached very far. Genetic programming 
 involves generating programs based on a set of functions and then evaluating the quality (correctness)
 of the program via a fitness function. To prove that cloning of a web service can be achieved using
-genetic programming  a symbolic regression problem was used. To solve symbolic regression where the genetic program needs to find a 
-mathematical expression that yields the same result as a given one from a fitness function. But 
-instead of using our own fitness function we use a real webservice hence generating a program
+genetic programming  a symbolic regression problem was used. To solve a symbolic regression problem the genetic program needs to 
+generate an individual that yields the same result as a mathematical expression specified in the fitness function. But 
+instead of defining the expression used in the fitness function, a real webservice is used hence generating a program
 that has the same functionality as the webservice. Proving this meant that theoretically, by increasing 
 the complexity of our function set we can achieve cloning of an even more complex web service.

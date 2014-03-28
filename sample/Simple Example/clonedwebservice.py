@@ -1,7 +1,7 @@
 from baseCherryPy import BaseCherryPy
 import sys
-import operator
 import math
+import operator
 import cherrypy
 
 ########################### CONFIG ##############################

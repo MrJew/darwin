@@ -1,105 +1,77 @@
 \begin{thebibliography}{10}
 
-\bibitem{bottle}
-Bottle.
-\newblock Bottle.
-\newblock \url{http://bottlepy.org/docs/dev/index.html}.
-
-\bibitem{cherrypy}
-CherryPy.
-\newblock Cherrypy.
-\newblock \url{http://www.cherrypy.org/}.
-
-\bibitem{deap}
-deap.
-\newblock deap.
-\newblock \url{http://deap.gel.ulaval.ca/doc/default/index.html}.
-
-\bibitem{django}
-Django.
-\newblock Django.
-\newblock \url{https://www.djangoproject.com/}.
-
-\bibitem{moscow}
-Stephanie Famuyide.
-\newblock Moscow: Requirements prioritization technique.
-
-\bibitem{flask}
-Flask.
-\newblock Flask.
-\newblock \url{http://flask.pocoo.org/}.
-
-\bibitem{github}
-GitHub.
-\newblock Github.
-\newblock \url{https://github.com/}.
+\bibitem{webservdef}
+W3, ``W3.'' \url{http://www.w3.org/TR/ws-gloss/}.
 
 \bibitem{genofix}
-Michael G.~Epitropakis Jerry~Swan and John~R. Woodward.
-\newblock {\em Gen-O-Fix: An embeddable framework for Dynamic Adaptive Genetic
-  Improvement Programming}.
+M.~G.~E. Jerry~Swan and J.~R. Woodward, {\em Gen-O-Fix: An embeddable framework
+  for Dynamic Adaptive Genetic Improvement Programming}.
 \newblock PhD thesis, Department of Computing Science and Mathematics;
   University of Stirling, 2014.
 
-\bibitem{monkey}
-George Kouzmov.
-\newblock Surveymonkey.
-\newblock \url{https://www.surveymonkey.com/s/3GZH57M}.
-
-\bibitem{lxml}
-lxml.
-\newblock lxml.
-\newblock \url{http://lxml.de/}.
-
-\bibitem{picloud}
-The~University of~Glasgow's Raspberry Pi~Project.
-\newblock The university of glasgow's raspberry pi project.
-\newblock \url{http://raspberrypicloud.wordpress.com/}.
-
-\bibitem{raspi}
-Raspberry Pi.
-\newblock Raspberry pi.
-\newblock \url{http://www.raspberrypi.org/}.
-
-\bibitem{pivotal}
-PivotalTracker.
-\newblock Pivotaltracker.
-\newblock \url{http://www.pivotaltracker.com/}.
-
-\bibitem{pyevolve}
-PYevolve.
-\newblock Pyevolve.
-\newblock \url{http://pyevolve.sourceforge.net/}.
-
-\bibitem{pygene}
-PyGene.
-\newblock Pygene.
-\newblock \url{http://freenet.mcnabhosting.com/python/pygene/}.
-
-\bibitem{pystep}
-pySTEP.
-\newblock pystep.
-\newblock \url{http://pystep.sourceforge.net/}.
-
 \bibitem{softrepair}
-Westley Weimer Claire Le~Goues Stephanie~Forrest, ThanhVu~Nguyen.
-\newblock {\em A Genetic Programming Approach to Automated Software Repair}.
+W.~W. C. L.~G. Stephanie~Forrest, ThanhVu~Nguyen, {\em A Genetic Programming
+  Approach to Automated Software Repair}.
 \newblock PhD thesis, Dept. of Computer Science of University of New Mexico and
   University of Virginia, 2009.
 
-\bibitem{webservdef}
-W3.
-\newblock W3.
-\newblock \url{http://www.w3.org/TR/ws-gloss/}.
+\bibitem{github}
+GitHub, ``Github.'' \url{https://github.com/}.
+
+\bibitem{pivotal}
+PivotalTracker, ``Pivotaltracker.'' \url{http://www.pivotaltracker.com/}.
+
+\bibitem{moscow}
+S.~Famuyide, ``Moscow: Requirements prioritization technique,''
+
+\bibitem{picloud}
+T.~U. of~Glasgow's Raspberry Pi~Project, ``The university of glasgow's
+  raspberry pi project.'' \url{http://raspberrypicloud.wordpress.com/}.
+
+\bibitem{raspi}
+R.~Pi, ``Raspberry pi.'' \url{http://www.raspberrypi.org/}.
 
 \bibitem{webpy}
-WebPy.
-\newblock Webpy.
-\newblock \url{http://webpy.org/}.
+WebPy, ``Webpy.'' \url{http://webpy.org/}.
+
+\bibitem{cherrypy}
+CherryPy, ``Cherrypy.'' \url{http://www.cherrypy.org/}.
+
+\bibitem{flask}
+Flask, ``Flask.'' \url{http://flask.pocoo.org/}.
+
+\bibitem{bottle}
+Bottle, ``Bottle.'' \url{http://bottlepy.org/docs/dev/index.html}.
+
+\bibitem{django}
+Django, ``Django.'' \url{https://www.djangoproject.com/}.
+
+\bibitem{pyevolve}
+PYevolve, ``Pyevolve.'' \url{http://pyevolve.sourceforge.net/}.
+
+\bibitem{pystep}
+pySTEP, ``pystep.'' \url{http://pystep.sourceforge.net/}.
+
+\bibitem{pygene}
+PyGene, ``Pygene.'' \url{http://freenet.mcnabhosting.com/python/pygene/}.
+
+\bibitem{deap}
+deap, ``deap.'' \url{http://deap.gel.ulaval.ca/doc/default/index.html}.
+
+\bibitem{lxml}
+lxml, ``lxml.'' \url{http://lxml.de/}.
+
+\bibitem{requests}
+requests, ``requests.'' \url{http://docs.python-requests.org/en/latest/}.
 
 \bibitem{wolfram}
-WolframAlpha.
-\newblock Wolframalpha.
-\newblock \url{http://www.wolframalpha.com/}.
+WolframAlpha, ``Wolframalpha.'' \url{http://www.wolframalpha.com/}.
+
+\bibitem{tut}
+G.~Kouzmov, ``Darwin tutorial.''
+  \url{https://github.com/MrJew/darwin/blob/master/README.md}.
+
+\bibitem{monkey}
+G.~Kouzmov, ``Surveymonkey.'' \url{https://www.surveymonkey.com/s/3GZH57M}.
 
 \end{thebibliography}

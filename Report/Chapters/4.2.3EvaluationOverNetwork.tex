@@ -1,13 +1,13 @@
-Evaluation over the network is done using the requests python library creating HTTP requests to the \textit{evaluator} webservice that is created using the CherryPy Framework.
+Evaluation over the network is done using the requests python library creating HTTP requests to the \textit{Evaluator} web service that is created using the CherryPy framework.
 \paragraph{}
-If no target function is specified and a target webservice is, then the requests library is used to send the test arguments to the webservice so it can get the correct result. This result
+If no target function is specified and a target web service is, then the requests library is used to send the test arguments to the web service so it can get the correct result. This result
 is put with every set of test arguments in a dictionary and sent to the evaluator together with an individual. Initially the idea was to have multiple evaluators processing the
-individuals which meant making asynchronous requests to multiple webservices. However the complexity of the tast was too high and the development time for such a component would
-of been too long, so only a single evaluator used.
+individuals which meant making asynchronous requests to multiple web services. However the complexity of the task was too high and the development time for such a component would
+of been too long, so only a single evaluator is used.
 \paragraph{}
 The easy parsing of parameters in CherryPy made it comfortable to send individuals as parameters to the web service and their test arguments so they can be evaluated. Initially
 the web service had to set up additional DEAP configuration in order to evaluate an individual and return the result. However there was a lot of complexity and dependencies were
-too many and so it was later re-factored to parse the source code of an individual to the \textit{evaluator}. This simplifies of the evaluator to 
+too many and so it was later re-factored to parse the source code of an individual to the \textit{Evaluator}. This simplifies of the evaluator to 
 a single simple method.
 
 \begin{lstlisting}[language=Python,caption={The soruce of the evaluator},label={lst:evaluator}]
@@ -33,6 +33,6 @@ class BaseCherryPy:
 In order to run the evaluator the class that is used by CherryPy needs to be either \textit{BaseCherryPy} or a class extending it. What \textit{BaseCherryPy} contains
 is a method that has the exposed flag set to true that handles the sent individual. The client is always calling the method called \textit{evaluator} see \ref{lst:evaluator} with two parameters.
 One is an individual in Python source code and the second is a dictionary with test arguments and compare values from the target. What the method does is it sets the system arguments
-of the python interpreter to the test arguments and after that executes the source code into a different context. Then by overwriting the \textit{contextmanager}\footnote{Note that the overwriting of contextmanager
+of the python interpreter to the test arguments and after that executes the source code in a different context. Then by overwriting the \textit{contextmanager}\footnote{Note that the overwriting of contextmanager
 wasn't done by me but the stackoverflow user isedev in the thread http://stackoverflow.com/questions/14708216/showing-current-output-from-exec-in-python handling this issue} the python standard output is
-parsed back to the original context ( the one of the evaluator).
+redirected back to the original context ( the one of the evaluator).

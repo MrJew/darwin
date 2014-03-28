@@ -4,15 +4,15 @@ to be created and access to crossover and mutation algorithms. Each of its featu
 \paragraph{}
 Similar to Darwin, DEAP emphasizes on loose coupling in its design, it uses multiple components that provide the necessary functionality
 for the framework. The \textit{pset} is a class through which all the configuration related to the primitive set is done. Primitives are defined
-through mapping any defined function or method and declaring the amount of arguments they are taking. In addition the terminals are defined where
-there is a pre-set of constants that can be utilized. Arguments for the genetic program are also defined in through the \textit{pset} hence 
+through mapping any defined function or method and declaring the amount of arguments needed. Arguments for the genetic program are also defined through the \textit{pset} hence 
 separating it from other components so it can be extracted and manipulated individually.
 \paragraph{}
 Another core component of the DEAP framework is the \textit{toolbox}. This is the component where the genetic programming is configured. Parameters
 like maximum depth of an individuals are specified as well as the algorithms for crossover and mutation. The framework gives the flexibility to define your
-own mutation and crossover algorithms as well as manipulate their rates and the size of the population and generation. Fitness function is specified in the toolbox 
-and later maps to the toolbox. After configuration of the primitive set and the genetic
+own mutation and crossover algorithms as well as manipulate their rates and the size of the population and generation. Fitness function is specified and
+mapped in the toolbox. After configuration of the primitive set and the genetic
 programming parameters is done the population is generated. There is an automatic way of doing it through special DEAP functions however for Darwin
 a more complex approach was chosen which will be later explained. The statistics module takes the generations and creates
 set of statistics that can be displayed ( e.g. mean of a generation, best and worst individual ).
+
 

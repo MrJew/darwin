@@ -21,15 +21,15 @@ generation of random individuals with depth between 1 and 3.
         for ind, fit in zip(invalid_ind, fitnesses):
             ind.fitness.values = fit
         self.population = self.offspring
-        self.hof.update(self.population)
+        self.hof.update(self.population) #hall of fame storing the best individuals is updated
 
     self.outputIndividuals()
 \end{lstlisting}
 
 To each generation crossover and mutation functions are applied. However both of the functions are modified so each
-individual is evaluated separately. The whole avoiding of DEAP's standard genetic programming function is because evaluation
-is not done in the \textit{Populator} but by the \textit{Evaluator}. In order to make use of the decorators the crossover
-and mutation function a manual substitution of the generation is done as seen in \ref{lst:populate}.
+individual is evaluated separately. Avoiding of DEAP's standard genetic programming function is done because evaluation is
+moved to the \textit{Evaluator} rather than the \textit{Populator}. In order to make use of the decorators the crossover
+and mutation function, a manual substitution of the generation is done as seen in \ref{lst:populate}.
 
 \begin{lstlisting}[language=Python,caption={Modified mutation method to substitute each parent with its children},label={lst:populate}]
 

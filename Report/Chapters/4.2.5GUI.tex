@@ -2,7 +2,7 @@ For python GUI development wxPython was a great choice because it offered simpli
 The framework supports loose coupling and high cohesion, it gives the opportunity to develop separate components
 and combine them later. This design feature was used to develop a component for each set of elements in the
 wireframe. Later on it was decided that advanced functionality should be opt out from the GUI and only
-basic configuration should be available. The result was the following GUI \ref{imp}
+basic configuration should be available. The result was the following GUI \ref{fig:guiimp}
 
 \begin{figure}[htp]
 \centering
@@ -11,7 +11,7 @@ basic configuration should be available. The result was the following GUI \ref{i
 \label{fig:guiimp}
 \end{figure}
 
-The GUI was split into five components \ref{guicode}.
+The GUI was split into five components \ref{lst:guicode}.
 
 \begin{enumerate}
 	\item \textit{InitMenu()} initializes the menubar on top, creates each of the menu and sub-menu options and 
@@ -33,7 +33,7 @@ def InitUI(self):
     buttPanel = self.InitButtons()
 \end{lstlisting}
 
-When the \textit{Generate} button is pressed the GUI is organizing all the data from the fields into a dictionary which is passed to the XML parser to generate the XML configuration file \ref{lst:xmlf}
+When the \textit{Generate} button is pressed the GUI is organizing all the data from the fields into a dictionary which is passed to the XML parser to generate the XML configuration file see listing \ref{lst:xmlf}
 
 \begin{lstlisting}[language=XML,caption={XML file used by the framework for configuring the needed parameters},label={lst:xmlf}]
 <config>

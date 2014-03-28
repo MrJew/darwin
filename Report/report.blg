@@ -1,15 +1,13 @@
 This is BibTeX, Version 0.99dThe top-level auxiliary file: report.aux
-The style file: plain.bst
+The style file: ieeetr.bst
 Database file #1: report.bib
-You're missing a field name---line 11 of file report.bib
+You're missing a field name---line 183 of file report.bib
  :     
  :     %volume   = "",
 (Error may have been on previous line)
 I'm skipping whatever remains of this entry
 Too many commas in name 1 of "Stephanie Forrest, ThanhVu Nguyen, Westley Weimer, Claire Le Goues" for entry softrepair
-while executing---line 1049 of file plain.bst
+while executing---line 963 of file ieeetr.bst
 Warning--empty journal in moscow
 Warning--empty year in moscow
-Too many commas in name 1 of "Stephanie Forrest, ThanhVu Nguyen, Westley Weimer, Claire Le Goues" for entry softrepair
-while executing---line 1090 of file plain.bst
-(There were 3 error messages)
+(There were 2 error messages)

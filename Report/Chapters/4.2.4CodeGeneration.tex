@@ -38,8 +38,8 @@ individual that is represented as a stack of functions is executed through a lam
 so it can be forwarded to the original context when executed
 \end{enumerate}
 
-The same methods are used when generating a webservice as seen in figure \ref{lst:webs}. The difference is the code is wrapped into a class that is used
-by CherryPy meaning the primitive signature and the lambda expression need to include the \textit{self} notation. The webservice has
+The same methods are used when generating a web service as seen in figure \ref{lst:webs}. The difference is the code is wrapped into a class that is used
+by CherryPy meaning the primitive signature and the lambda expression need to include the \textit{self} notation. The web service has
 an index method that is called only by accessing the URL that returns the result of the individual.
 
 \begin{lstlisting}[language=Python,caption={A generated web service that is the result of the Darwin framework},label={lst:webs}]

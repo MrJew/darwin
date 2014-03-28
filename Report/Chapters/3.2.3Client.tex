@@ -1,6 +1,6 @@
-Before explaining how the client works, the DEAP framework needs to be explained. It is configured through a set of method calls
+Before showing how the client is designed, the DEAP framework needs to be explained. It is configured through a set of method calls
 to a \textit{toolbox}; this \textit{toolbox} is prior configured by a \textit{primitive set} where all the primitives and 
-terminals that the genetic program is going to use are defined. The toolbox give easy API for accessing and controlling the individuals,
+terminals that the genetic program is going to use are defined. The toolbox gives an easy API for accessing and controlling the individuals,
 generations and population as well as methods that invoke mutation, crossover and evaluation over the population.
 \paragraph{}
 Knowing how the DEAP framework works, it was later obvious that the same parameters needed for DEAP's configuration
@@ -8,13 +8,13 @@ were going to be needed for Darwin's as well. So the idea was to create a \texti
 model for the framework. For easier configuration of the parameters an XML configuration file was introduced. It carried
 all parameters besides the primitives.
 \paragraph{}
-\textit{Configuration} needed primitive set to configure DEAP. To create modularity and automation a class was introduced
-where all primitives were captured. User should implement methods in the class that would be treated as primitives. To
+The \textit{Configuration} component needed primitives to configure DEAP. To create modularity and automation a class was introduced
+where all primitives were captured. User would implement methods in the class that would be treated as primitives. To
 automate the configuration extraction of source had to be introduced to the class' functionality.
 \paragraph{}
 The \textit{Populator} component would be a wrapper around the DEAP framework. 
-The component would use the DEAP framework in a specific way to generate individuals and convert them to python code for easier transportation.
- Each individual is send over the network to the evaluating webservice. The evaluating webservice measures the fitness
-of an individual and returns it. After each individual's fitness value is updated it
-repeats the process until the number of generations are reached or an individual with 0.0 fitness is found.
+The component would use it in a specific way to generate individuals and convert them to python code for easier transportation.
+ Each individual is send over the network to the evaluating web service. The web service measures the fitness
+of the individual and returns it. After each individual's fitness value is updated it
+repeats the process until the number of generations are reached.
 
