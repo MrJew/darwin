@@ -30,14 +30,17 @@ examples are provided which are located in the project folder.
 
 Dependencies
 =================================================================================================
-Packages required for the system to run.
+Packages required for the system to run besides Python 2.7.
 
-1. DEAP
-2. requests
-3. CherryPy
-4. pygraphviz
-5. wxpython
-6. lxml
+1. DEAP 0.9.2 - http://deap.gel.ulaval.ca/doc/0.9/index.html
+2. requests 2.3 - http://docs.python-requests.org/en/latest/
+3. CherryPy 3.2 - http://www.cherrypy.org/
+4. pygraphviz 1.2 - http://pygraphviz.github.io/
+5. wxpython 2.9 - https://pypi.python.org/pypi/wxPython/2.9.1.1
+6. lxml - 3.1.2 - http://lxml.de/installation.html
+
+Make sure that all the libraries and the darwin python package are in your python path when
+you are running the examples.
 
 Basic Example
 =================================================================================================
